@@ -16,6 +16,7 @@ echo -n $i
 rm -f $i.out
 $qx $i 2> $i.err && $isak -l $i.isakov -s 100 -r 1000 | $qx -r 1> $i.out
 cat $i.err >> $i.out
+dos2unix $i.out 2> /dev/null
 #rm -f $i.err $i.isakov
 
 if cmp $i.gold $i.out 2> /dev/null > /dev/null

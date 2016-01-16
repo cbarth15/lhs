@@ -2,7 +2,7 @@ all: qxt.exe
 
 CL=cl -EHsc
 
-ifdef UNIX
+ifdef GCC
 CL=g++ -Wall -o $@ -std=c++14 -Dto_string=my_string
 endif
 

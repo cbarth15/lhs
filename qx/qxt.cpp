@@ -21,6 +21,7 @@
 #include <vector>
 #include <map>
 #include <set>
+#include <cctype>
 
 using std::string;
 
@@ -56,15 +57,15 @@ try
     std::ifstream in(av[1]);
     if ( !in ) throw "Cannot open file " + av1;
 
-    int line_counter = 0;
-    for ( string line; std::getline(in, line); )
+    int line_counter = 1;
+    for ( string line; std::getline(in, line); line_counter++ )
     {
         if ( line.empty() || line[0] == '#' ) continue;
+		if ( line.size()==1 && line[0] == '\r' ) continue; // dox/unix
 
         int x, y;
         std::istringstream is(line);
         is >> x >> y;
-        line_counter++;
 
         if ( !is ) throw "Bad indices at line " + std::to_string(line_counter);
 
@@ -86,16 +87,18 @@ try
         int idx = node.first;
 
         if ( ++current_node_counter != idx )
+        {
             if ( idx == 0 )
                 throw string() + "Node 0 must be defined";
             else
                 throw "Node " + std::to_string(idx)
                 + " is defined, but not " + std::to_string(idx - 1);
+        }
     }
 
-	// check that number of nodes is even
-	if( edges.size() == 0 ) throw "Input file "+av1+" does not define any edges";
-	if( edges.size()%2 ) throw string("Number of nodes must be even");
+    // check that number of nodes is even
+    if ( edges.size() == 0 ) throw "Input file " + av1 + " does not define any edges";
+    if ( edges.size() % 2 ) throw string("Number of nodes must be even");
 
     std::ofstream of((av1 + ".isakov").c_str());
     for ( const auto & node : edges )
