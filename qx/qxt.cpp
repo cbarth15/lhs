@@ -61,7 +61,7 @@ try
     for ( string line; std::getline(in, line); line_counter++ )
     {
         if ( line.empty() || line[0] == '#' ) continue;
-		if ( line.size()==1 && line[0] == '\r' ) continue; // dox/unix
+        if ( line.size() == 1 && line[0] == '\r' ) continue; // dox/unix
 
         int x, y;
         std::istringstream is(line);
@@ -129,15 +129,69 @@ catch (...)
 }
 
 
-
 int parse_result()
 {
-    std::vector<string> v;
-    for ( string line; std::getline(std::cin, line); )
-        v.push_back(line);
+    // find the best solution
+    int bestH = 0;
+    std::set<string> solutions;
+    while (true)
+    {
+        int H, N;
+        string s, t;
+        std::cin >> H >> N >> t;
+        if ( !std::cin ) break;
 
-    for ( auto x : v )
-        std::cout << x << '\n';
+        // check that split is equal and rebuild unique solution
+        size_t cntr = 0;
+        for ( size_t i = 0; i < t.size(); i++ )
+        {
+            if ( t[i] == t[0] )
+            {
+                cntr++;
+                s += '0';
+            }
+            else
+                s += '1';
+        }
+
+        if ( cntr * 2 != s.size() ) continue; // not equal groups
+
+        if ( solutions.empty() )
+        {
+            solutions.insert(s);
+            bestH = H;
+        }
+
+        if ( H > bestH ) continue;
+        else if ( H == bestH ) solutions.insert(s);
+        else
+        {
+            solutions.clear();
+            bestH = H;
+            solutions.insert(s);
+        }
+    }
+
+    if ( solutions.empty() )
+    {
+        std::cout << "No solutions found\n";
+        return 4;
+    }
+
+    for ( const auto & S : solutions )
+    {
+        std::cout << "Group A:";
+        for ( size_t i = 0; i < S.size(); i++ )
+            if ( S[i] == S[0] )
+                std::cout << ' ' << i;
+
+        std::cout << "\nGroup B:";
+        for ( size_t i = 0; i < S.size(); i++ )
+            if ( S[i] != S[0] )
+                std::cout << ' ' << i;
+
+        std::cout << "\n\n";
+    }
 
     return 0;
 }
