@@ -1,5 +1,5 @@
 // This program converts a list of node edges
-// into a list of Ising coefficeints with
+// into a list of Ising coefficients with
 // Hamiltonian H = sum_ij (2-e_ij) s_i s_j,
 // where e_ij=1 if the edge exists between i and j,
 // and e_ij=0 otherwise.

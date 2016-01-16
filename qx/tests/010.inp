@@ -1,9 +1,9 @@
-# 6 node ring with extra link
-#   0--1
-#  /    \
-# 5___   2
-#  \  \ /
-#   4--3
+# 6-node ring with extra link
+#   0---1
+#  /     \
+# 5____   2
+#  \   \ /
+#   4---3
 
 5 4
 3 2
