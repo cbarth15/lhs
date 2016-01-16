@@ -1,3 +1,7 @@
 Solution to QxBranch problem
 
-1. 
+Disign decisions
+- Use one source file
+- Use std::string for exceptions
+- Use simple sh script for tests
+
