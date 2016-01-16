@@ -4,7 +4,7 @@ qx=../qxt.exe
 isak=../isakov_win.exe
 
 if [ "$1" = "clean" ]; then
-rm -f *.out
+rm -f *.out *.err *.isakov
 exit
 fi
 

@@ -27,7 +27,9 @@ using std::string;
 
 void usage()
 {
-    std::cout << "Usage: 'qxt input_file' or 'qxt -r'";
+    std::cout << "Usage: 'qxt input_file' or 'qxt -r'\n";
+    std::cout << "\tinput_file is a list of edges, one per line\n";
+    std::cout << "\t'-r' is to parse result from isakov\n";
 }
 
 // workaround: gcc 4.9.2 (!) under windows does not have std::to_string
