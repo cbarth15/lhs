@@ -1,6 +1,6 @@
 // This program converts a list of node edges
 // into a list of Ising coefficients with
-// Hamiltonian H = sum_ij (2-e_ij) s_i s_j,
+// Hamiltonian H = sum_ij (N-e_ij) s_i s_j,
 // where e_ij=1 if the edge exists between i and j,
 // and e_ij=0 otherwise.
 
@@ -98,9 +98,12 @@ try
         }
     }
 
+	// number of nodes
+	int N = edges.size();
+
     // check that number of nodes is even
-    if ( edges.size() == 0 ) throw "Input file " + av1 + " does not define any edges";
-    if ( edges.size() % 2 ) throw string("Number of nodes must be even");
+    if ( N == 0 ) throw "Input file " + av1 + " does not define any edges";
+    if ( N % 2 ) throw string("Number of nodes must be even");
 
     std::ofstream of((av1 + ".isakov").c_str());
     for ( const auto & node : edges )
@@ -108,12 +111,12 @@ try
         int index = node.first;
 
         of << index << ' ' << index << " 0\n";
-        for ( int i = index + 1; i < (int)edges.size(); i++ )
+        for ( int i = index + 1; i < N; i++ )
         {
             bool e = node.second.find(i) != node.second.end();
 
-            // output coefficient (2-e), i.e. 1 is edge; 2 if not
-            of << index << ' ' << i << ' ' << (e ? '1' : '2') << '\n';
+            // output coefficient (N-e), i.e. N-1 is edge; N if not
+            of << index << ' ' << i << ' ' << (e ? N-1 : N) << '\n';
         }
     }
 }

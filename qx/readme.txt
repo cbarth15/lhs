@@ -29,4 +29,5 @@ Disign decisions
 - No dependencies on other languages and tools, except C++
 - Use std::string for exceptions; to save some extra lines of code
 - Use simple sh script for tests; easy to inspect and modify
-
+- Brevity over efficiency; because main calculatrions are outside
+- Linear code (no structure or classes); because algorithmic
