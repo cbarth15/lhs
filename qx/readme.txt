@@ -43,9 +43,8 @@ Such generator can be used for more elaborate extensive testing.
 
 
 
-
-
-
+Github web: https://github.com/mazonka/hw/tree/master/qx
+Repository: https://github.com/mazonka/hw/trunk/qx
 
 ..................
 Oleg Mazonka, 2016
