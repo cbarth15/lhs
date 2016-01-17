@@ -8,14 +8,13 @@ echo $1
 exit 1
 }
 
-[ -f $qx ] || die "Cannot find $qx"
-[ -f $isak ] || die "Cannot find $isak"
-
 if [ "$1" = "clean" ]; then
 rm -f *.out *.err *.isakov
 exit
 fi
 
+[ -f $qx ] || die "Cannot find $qx"
+[ -f $isak ] || die "Cannot find $isak"
 
 run()
 {
