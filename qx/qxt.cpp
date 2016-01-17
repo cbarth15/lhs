@@ -90,13 +90,8 @@ try
         int idx = node.first;
 
         if ( ++current_node_counter != idx )
-        {
-            if ( idx == 0 )
-                throw string() + "Node 0 must be defined";
-            else
-                throw "Node " + std::to_string(idx)
-                + " is defined, but not " + std::to_string(idx - 1);
-        }
+            throw "Node " + std::to_string(idx) // here idx>0 always
+            + " is defined, but not " + std::to_string(idx - 1);
     }
 
     // number of nodes
@@ -110,15 +105,15 @@ try
     std::ofstream of((av1 + ".isakov").c_str());
     for ( const auto & node : edges )
     {
-        int index = node.first;
+        int i = node.first;
 
-        of << index << ' ' << index << " 0\n";
-        for ( int i = index + 1; i < N; i++ )
+        of << i << ' ' << i << " 0\n";
+        for ( int j = i + 1; j < N; j++ )
         {
-            bool e = node.second.find(i) != node.second.end();
+            bool e = node.second.find(j) != node.second.end();
 
             // output coefficient (N-e), i.e. N-1 if edge; N if not
-            of << index << ' ' << i << ' ' << (e ? N - 1 : N) << '\n';
+            of << i << ' ' << j << ' ' << (e ? N - 1 : N) << '\n';
         }
     }
 }

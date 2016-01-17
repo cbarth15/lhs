@@ -16,6 +16,8 @@ Run 'qxt f.inp'. This will create a file 'f.inp.isakov'.
 Run 'isakov -l f.inp.isakov -s 100 -r 1000'.
 Grab the output from the previous command and feed 
 it back to 'qxt -r' as stdin.
+This is equivalent to a shell command:
+$ qxt f.inp && isakov -l f.inp.isakov -s 100 -r 1000 | qxt -r
 
 How to run tests
 ----------------
@@ -25,13 +27,13 @@ How to run tests
 
 Design decisions
 ----------------
-- Overall design is simplistic; because it is a simple algorithmic problem
 - Use one source file; to make it easy for another person to build and to run
 - No dependencies on other languages and tools, except C++
 - Use std::string for exceptions; to save some extra lines of code
 - Use simple sh script for tests; easy to inspect and modify
-- Brevity over efficiency; because main calculations are outside
-- Linear code (no structure or classes); because algorithmic
+- Brevity over efficiency; because expensive/main calculations are outside
+- Overall design is simplistic and the code is 
+  linear (no structure or classes); because it's an algorithmic problem
 
 Random graph generator
 ----------------------
@@ -44,8 +46,8 @@ Such generator can be used for more elaborate extensive testing.
 
 
 
-Github web: https://github.com/mazonka/hw/tree/master/qx
-Repository: https://github.com/mazonka/hw/trunk/qx
+Github web page: https://github.com/mazonka/hw/tree/master/qx
+Svn or Git repository: https://github.com/mazonka/hw/trunk/qx
 
 ..................
 Oleg Mazonka, 2016
