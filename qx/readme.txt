@@ -32,7 +32,12 @@ Disign decisions
 - Brevity over efficiency; because main calculatrions are outside
 - Linear code (no structure or classes); because algorithmic
 
-
+Random graph generator
+----------------------
+Folder 'random' has a simple program to generate random graphs.
+The size and connection density are two 'const int' parameters
+declared at the beginning of the file.
+Such generator can be used for more elaborate extensive testing.
 
 
 
