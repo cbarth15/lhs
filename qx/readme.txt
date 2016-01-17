@@ -22,14 +22,14 @@ How to run tests
 - Run 'run.sh file.inp' to run only one test case
 - Run 'run.sh clean' to clean outputs without fixing failing tests
 
-Disign decisions
+Design decisions
 ----------------
 - Overall design is simplistic; because it is a simple algorithmic problem
 - Use one source file; to make it easy for another person to build and to run
 - No dependencies on other languages and tools, except C++
 - Use std::string for exceptions; to save some extra lines of code
 - Use simple sh script for tests; easy to inspect and modify
-- Brevity over efficiency; because main calculatrions are outside
+- Brevity over efficiency; because main calculations are outside
 - Linear code (no structure or classes); because algorithmic
 
 Random graph generator
