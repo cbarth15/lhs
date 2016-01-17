@@ -3,8 +3,9 @@ Solution to QxBranch problem
 
 How to build
 ------------
-- make              to use MS cl compiler
-- make GCC=1        to use GCC
+- make              to use MS 'cl' compiler on Win
+- make              to use gcc on unix
+- make wingcc=1     to use gcc on windows
 - compile qxt.cpp   using any C++14 compiler
 
 How to run executable
