@@ -1,17 +1,23 @@
+// Simple generator of random graphs
+// optional argument is seed - for repeatability
+
 #include <iostream>
 #include <ctime>
 #include <functional>
 #include <set>
 #include <cstdlib>
 
+const int ITER = 20; // number of iterations
+const int DENS = 2; // Density factor; >=2
+
 bool stop(int i, size_t r)
 {
-	return i>10;
+	return i>ITER;
 }
 
-bool next(int i, size_t r)
+bool increase(int i, size_t r)
 {
-	return r%2==0;
+	return r%DENS==0;
 }
 
 std::pair<int,int> ordpair(int x, int y)
@@ -27,8 +33,6 @@ int main(int ac, char *av[])
 
 	std::cout<<"# seed "<<r<<'\n';
 
-	std::cout<<"0 1\n";
-
 	std::set< std::pair<int,int> > edges;
 	edges.insert(ordpair(0,1));
 
@@ -37,16 +41,21 @@ int main(int ac, char *av[])
 	for( int i=0; i<2000; i++ )
 	{
 		r = std::hash<size_t>()(r);
-		if( stop(i,r) ) break;
-		if( next(i,r) )
+
+		if( stop(i,r) && mx%2==0 ) break;
+
+		if( increase(i,r) )
 		{
 			edges.insert(ordpair(x,mx));
 			x = mx++;
 			continue;
 		}
+
 		int y = r%mx;
-		edges.insert(ordpair(x,y));
+		if( x!=y ) edges.insert(ordpair(x,y));
 		x = y;
 	}
 
+	for( const auto & x : edges )
+		std::cout<<x.first<<' '<<x.second<<'\n';
 }
