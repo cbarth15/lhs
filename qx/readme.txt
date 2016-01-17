@@ -31,3 +31,16 @@ Disign decisions
 - Use simple sh script for tests; easy to inspect and modify
 - Brevity over efficiency; because main calculatrions are outside
 - Linear code (no structure or classes); because algorithmic
+
+
+
+
+
+
+
+
+
+
+
+..................
+Oleg Mazonka, 2016

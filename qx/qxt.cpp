@@ -11,8 +11,9 @@
 // Empty lines are allowed as well as comments
 // with lines started with #.
 // Repetitions of edges are not allowed.
-
 // Standalone node can be defined as edge to itself.
+
+// Oleg Mazonka, 2016
 
 #include <iostream>
 #include <fstream>
@@ -63,7 +64,7 @@ try
     for ( string line; std::getline(in, line); line_counter++ )
     {
         if ( line.empty() || line[0] == '#' ) continue;
-        if ( line.size() == 1 && line[0] == '\r' ) continue; // dox/unix
+        if ( line.size() == 1 && line[0] == '\r' ) continue; // dos/unix
 
         int x, y;
         std::istringstream is(line);
@@ -98,13 +99,14 @@ try
         }
     }
 
-	// number of nodes
-	int N = edges.size();
+    // number of nodes
+    int N = edges.size();
 
     // check that number of nodes is even
     if ( N == 0 ) throw "Input file " + av1 + " does not define any edges";
     if ( N % 2 ) throw string("Number of nodes must be even");
 
+    // output coefficients
     std::ofstream of((av1 + ".isakov").c_str());
     for ( const auto & node : edges )
     {
@@ -115,8 +117,8 @@ try
         {
             bool e = node.second.find(i) != node.second.end();
 
-            // output coefficient (N-e), i.e. N-1 is edge; N if not
-            of << index << ' ' << i << ' ' << (e ? N-1 : N) << '\n';
+            // output coefficient (N-e), i.e. N-1 if edge; N if not
+            of << index << ' ' << i << ' ' << (e ? N - 1 : N) << '\n';
         }
     }
 }
@@ -183,6 +185,7 @@ int parse_result()
         return 4;
     }
 
+    // output unique solutions in sorted order
     for ( const auto & S : solutions )
     {
         std::cout << "Group A:";
