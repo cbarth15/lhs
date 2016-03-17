@@ -86,7 +86,10 @@ try
     Field field("game.conf");
     std::cout << field.title();
 
-    for( int i=0; i<23; i++ )
+    for( int i=0; i<7; i++ )
+        field.move();
+
+    for( int i=0; i<3; i++ )
     {
         field.move();
         std::cout << field.map();
@@ -217,7 +220,7 @@ string Field::map() const
 {
     std::ostringstream o;
 
-    ///for ( int i = 0; i < size.x; i++ ) o << "--"; o << '\n';
+    for ( int i = 0; i < size.x; i++ ) o << "--"; o << '\n';
 
     //B R M ! a-z #
     std::vector<string> v;
@@ -305,7 +308,67 @@ string draw(std::vector<Pos> cells)
     return o.str();
 }
 
+void Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies)
+{
+    // first collect the list of all possible places
 
+    std::vector<Pos> possible;
+    double sp2 = speed*speed;
+    for( int j = pos.y - speed; j<= pos.y+speed; j++ )
+    for( int i = pos.x - speed; i<= pos.x+speed; i++ )
+    {
+        if( i<1 || j<1 || i>sz.x || j>sz.y ) continue;
+
+        double d2 = dist2(Pos(i,j),pos);
+
+        if( d2 > sp2 +0.1 ) continue;
+
+        possible.push_back(Pos(i,j));
+    }
+
+    std::vector<double> prob(possible.size());
+    for( int i=0; i<possible.size(); i++ )
+    {
+        double p = 1;
+
+        const double s2 = stealth*stealth;
+        for( auto j : enemies )
+        {
+            double r2 = dist2(possible[i],j.pos);
+            p *= 1 - accuracy*std::exp( -r2/s2 );
+        }
+    
+        prob[i] = 1-p;
+    }
+
+    std::vector<Pos> poss2;
+    for( int i=0; i<possible.size(); i++ )
+    {
+        if( prob[i] < rnd() ) poss2.push_back(possible[i]);
+    }
+
+    //std::cout<<"AAA "<<possible.size()<<' '<<poss2.size()<<'\n';
+
+    if( poss2.empty() ) // panic
+    {
+        next = pos;
+        return;
+    }
+
+    double rmin2=1e6;
+    for ( auto i : poss2 )
+    {
+        double r2 = dist2(i,base);
+        if( r2<rmin2 )
+        {
+            rmin2=r2;
+            next = i;
+        }
+    }
+}
+
+
+/*///
 void Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies)
 {
     // first collect the list of all possible places
@@ -393,7 +456,7 @@ void Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies)
     throw string()+"Cannot sample";
 }
 
-
+*/
 
 
 
