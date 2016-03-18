@@ -32,7 +32,7 @@ class Rnd
         void reseed(unsigned long s) { reng.seed(s); }
 };
 unsigned long Rnd::seed = 0;
-Rnd rnd;
+Rnd * rnd = nullptr;
 
 struct Pos
 {
@@ -77,8 +77,8 @@ class Soldier
 
         string nm() const { return string() + team + char('A' + char(name > 25 ? 25 : name)); }
 
-        string move(Pos sz, Pos b, const std::vector<Soldier> & enemies);
-        string shoot(std::vector<Soldier> & enemies);
+        string move(Pos sz, Pos b, const std::vector<Soldier> & enemies, bool prn_move);
+        string shoot(std::vector<Soldier> & enemies, bool prn_shoot);
 };
 
 class Field
@@ -89,6 +89,7 @@ class Field
         std::vector<Soldier> blues;
         std::vector<Soldier> reds;
         int turn = 0;
+        int rep = 0;
 
         void init(string filename);
         bool arein(Pos base, const std::vector<Soldier> & s) const;
@@ -96,6 +97,15 @@ class Field
         int survived(const std::vector<Soldier> & s) const;
 
     public:
+        int prn_map = 1;
+        int prn_result = 1;
+        int prn_title = 1;
+        int prn_move = 1;
+        int prn_shoot = 1;
+
+        int Nrep = 1;
+        void reset();
+
         Field(string filename) { init(filename); }
         string title() const;
         string map() const;
@@ -103,7 +113,7 @@ class Field
         string move();
         string shoot();
         int isdone() const; // 0 go on; 1 - blues; 2 - reds; 3 draw
-        string result() const;
+        string result(string = "") const;
 
         int aliveR() const { return survived(reds); }
         int aliveB() const { return survived(blues); }
@@ -113,33 +123,41 @@ int main(int ac, char * av[])
 try
 {
     Field field("game.conf");
-    cout << field.title();
 
-    for ( int i = 0; i < 10000; i++ )
+    Rnd rnd_main; rnd = &rnd_main;
+
+    for ( int k = 0; k < field.Nrep; k++ )
     {
-        cout << field.move() << '\n';
-        cout << field.map();
+        field.reset();
 
-        int ar = field.aliveR();
-        int ab = field.aliveB();
+        cout << field.title();
 
-        string kills = field.shoot();
-        if ( !kills.empty() )
+        for ( int i = 0; i < 10000; i++ )
         {
-            cout << kills << '\n';
-
-            cout<<"Killed/Survived: "
-            <<(ab-field.aliveB())<<"/"<<(field.aliveB())<<" blues, "
-            <<(ar-field.aliveR())<<"/"<<(field.aliveR())<<" reds\n";
-
+            cout << field.move();
             cout << field.map();
+
+            int ar = field.aliveR();
+            int ab = field.aliveB();
+
+            string kills = field.shoot();
+            if ( !kills.empty() )
+            {
+                cout << kills << '\n';
+
+                cout << "Killed/Survived: "
+                     << (ab - field.aliveB()) << "/" << (field.aliveB()) << " blues, "
+                     << (ar - field.aliveR()) << "/" << (field.aliveR()) << " reds\n";
+
+                cout << field.map();
+            }
+
+            if ( field.isdone() ) break;
         }
 
-        if ( field.isdone() ) break;
+        cout << field.result("game.log");
+
     }
-
-    cout << field.result();
-
 }
 catch (string e)
 {
@@ -189,6 +207,7 @@ void Field::init(string filename)
         }
 
         if (0);
+        else if ( k[0] == '#' );
         else if ( k[0] == '$' ) dict[k] = v;
         else if ( k == "[blue]" ) mode = 1;
         else if ( k == "[red]" ) mode = 2;
@@ -199,14 +218,14 @@ void Field::init(string filename)
         else if ( k == "stealth" ) stl[mode] = std::atof(v.c_str());
         else if ( k == "speed" ) vel[mode] = std::atof(v.c_str());
         else if ( k == "fear" ) fea[mode] = std::atof(v.c_str());
-        else if ( k == "seed" )
-        {
-            long a = std::atol(v.c_str());
-            volatile double x;
+        else if ( k == "seed" ) Rnd::seed = std::atol(v.c_str());
+        else if ( k == "nrep" ) Nrep = std::atol(v.c_str());
 
-            for ( long i = 0; i < a; i++ )
-                x = rnd();
-        }
+        else if ( k == "prn_map" ) prn_map = std::atol(v.c_str());
+        else if ( k == "prn_result" ) prn_result = std::atol(v.c_str());
+        else if ( k == "prn_title" ) prn_title = std::atol(v.c_str());
+        else if ( k == "prn_move" ) prn_move = std::atol(v.c_str());
+        else if ( k == "prn_shoot" ) prn_shoot = std::atol(v.c_str());
 
         else
             throw "Unexpected [" + k + "] in " + filename;
@@ -250,8 +269,13 @@ string Pos::str() const
 
 string Field::title() const
 {
+    if( !prn_title ) return "";
+
     std::ostringstream o;
-    o << size.str() << " baseB=[" << baseB.str() << "] baseR=[" << baseR.str() << "]";
+
+    o<<"rep="<<rep;
+
+    o << " size=" << size.str() << " baseB=[" << baseB.str() << "] baseR=[" << baseR.str() << "]";
     if ( !blues.empty() )
     {
         o << " accB=" << blues[0].accuracy;
@@ -273,6 +297,8 @@ string Field::title() const
 
 string Field::map() const
 {
+    if( !prn_map ) return "";
+
     std::ostringstream o;
 
     for ( int i = 0; i < size.x; i++ ) o << "--"; o << '\n';
@@ -329,13 +355,13 @@ string Field::move()
     std::ostringstream o;
 
 //    blues[0].move(size,baseR,reds);
-    for ( auto & i : blues ) o << i.move(size, baseR, reds);
-    for ( auto & i : reds ) o << i.move(size, baseB, blues);
+    for ( auto & i : blues ) o << i.move(size, baseR, reds, prn_move);
+    for ( auto & i : reds ) o << i.move(size, baseB, blues, prn_move);
 
     for ( auto & i : blues ) i.pos = i.next;
     for ( auto & i : reds ) i.pos = i.next;
 
-    return o.str();
+    return prn_move?o.str()+'\n':"";
 }
 
 string draw(std::vector<Pos> cells)
@@ -369,7 +395,7 @@ string draw(std::vector<Pos> cells)
     return o.str();
 }
 
-string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies)
+string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies, bool prn_move)
 {
     if ( dead )
     {
@@ -415,7 +441,7 @@ string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies)
     std::vector<Pos> poss2;
     for ( int i = 0; i < possible.size(); i++ )
     {
-        if ( prob[i] < rnd() ) poss2.push_back(possible[i]);
+        if ( prob[i] < (*rnd)() ) poss2.push_back(possible[i]);
     }
 
     //cout<<"AAA "<<possible.size()<<' '<<poss2.size()<<'\n';
@@ -437,6 +463,8 @@ string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies)
         }
     }
 
+    if( !prn_move ) return "";
+
     std::ostringstream o;
 
     if ( next != pos )
@@ -450,8 +478,8 @@ string Field::shoot()
 {
     std::ostringstream o;
 
-    for ( auto & i : blues ) o << i.shoot(reds);
-    for ( auto & i : reds ) o << i.shoot(blues);
+    for ( auto & i : blues ) o << i.shoot(reds, prn_shoot);
+    for ( auto & i : reds ) o << i.shoot(blues, prn_shoot);
 
     for ( auto & i : blues ) i.dead = i.dying;
     for ( auto & i : reds ) i.dead = i.dying;
@@ -459,7 +487,7 @@ string Field::shoot()
     return o.str();
 }
 
-string Soldier::shoot(std::vector<Soldier> & enemies)
+string Soldier::shoot(std::vector<Soldier> & enemies, bool prn_shoot)
 {
     if ( dead )
     {
@@ -479,9 +507,9 @@ string Soldier::shoot(std::vector<Soldier> & enemies)
         double r2 = dist2(pos, i.pos);
         double p = accuracy * std::exp( -r2 / s2e );
 
-        if ( rnd() > p ) continue; // no kill
+        if ( (*rnd)() > p ) continue; // no kill
 
-        o << "(" << nm() << "/" << i.nm() << ")";
+        if(prn_shoot) o << "(" << nm() << "/" << i.nm() << ")";
         i.dying = true;
     }
 
@@ -541,10 +569,12 @@ bool Field::arein(Pos base, const std::vector<Soldier> & s) const
     return false;
 }
 
-string Field::result() const
+string Field::result(string log) const
 {
+    int end = isdone();
+
     std::ostringstream o;
-    switch (isdone())
+    switch (end)
     {
         case 0: o << "Result: Not finished\n"; break;
         case 1: o << "Result: Blues win\n"; break;
@@ -555,12 +585,37 @@ string Field::result() const
             throw string() + "Internal error 525";
     }
 
-    o << "Casualties Blues: " << (blues.size() - aliveB()) << " of " << blues.size() << '\n';
-    o << "Casualties Reds : " << (reds.size() - aliveR()) << " of " << reds.size() << '\n';
+    int alB = aliveB();
+    int alR = aliveR();
+    int casB = (blues.size() - alB);
+    int casR = (reds.size() - alR);
+
+    o << "Casualties Blues: " << casB << " of " << blues.size() << '\n';
+    o << "Casualties Reds : " << casR << " of " << reds.size() << '\n';
 
     o << "Turns : " << turn << '\n';
 
-    return o.str();
+    if ( !log.empty() )
+    {
+        std::ofstream of(log.c_str(), std::ios::app);
+
+        string s = ",   ";
+        of << Rnd::seed << s << rep << s << end << s << casB << s
+           << alB << s << casR << s << alR << s << turn << '\n';
+    }
+
+    return prn_result?o.str():"";
+}
+
+void Field::reset()
+{
+    rep++;
+    turn=0;
+
+    for ( auto & i : blues ) i.pos = i.next = baseB;
+    for ( auto & i : reds ) i.pos = i.next = baseR;
+    for ( auto & i : blues ) i.dead = i.dying = false;
+    for ( auto & i : reds ) i.dead = i.dying = false;
 }
 
 
