@@ -13,6 +13,7 @@
 
 
 using std::string;
+using std::cout;
 
 
 class Rnd
@@ -27,6 +28,8 @@ class Rnd
 
         Rnd(): reng(seed), dist(0, 1), rnd( std::bind(dist, reng) ) {}
         double operator()() { return rnd(); }
+
+        void reseed(unsigned long s) { reng.seed(s); }
 };
 unsigned long Rnd::seed = 0;
 Rnd rnd;
@@ -40,11 +43,15 @@ struct Pos
     string str() const;
 };
 
+bool operator==(const Pos & a, const Pos & b) { return a.x == b.x && a.y == b.y; }
+bool operator!=(const Pos & a, const Pos & b) { return !(a == b); }
+std::ostream & operator<<(std::ostream & o, const Pos & a) { return o << a.str(); }
+
 double dist2(Pos a, Pos b)
 {
-    double x = a.x-b.x;
-    double y = a.y-b.y;
-    return x*x+y*y;
+    double x = a.x - b.x;
+    double y = a.y - b.y;
+    return x * x + y * y;
 }
 
 class Field;
@@ -55,10 +62,23 @@ class Soldier
         double accuracy;
         double stealth;
         double speed;
+        int fear = 1;
+
+        bool dead = false;
+        bool dying = false;
+
+        char team;
+        int name;
+
         friend class Field;
 
-        Soldier(Pos b, double a, double s, double v): pos(b), accuracy(a), stealth(s), speed(v) {}
-        void move(Pos sz, Pos b, const std::vector<Soldier> & enemies);
+        Soldier(Pos b, double a, double s, double v, int f, char t, int n):
+            pos(b), accuracy(a), stealth(s), speed(v), fear(f), team(t), name(n) {}
+
+        string nm() const { return string() + team + char('A' + char(name > 25 ? 25 : name)); }
+
+        string move(Pos sz, Pos b, const std::vector<Soldier> & enemies);
+        string shoot(std::vector<Soldier> & enemies);
 };
 
 class Field
@@ -68,42 +88,67 @@ class Field
         Pos baseR;
         std::vector<Soldier> blues;
         std::vector<Soldier> reds;
+        int turn = 0;
 
         void init(string filename);
+        bool arein(Pos base, const std::vector<Soldier> & s) const;
+        bool alldead(const std::vector<Soldier> & s) const;
+        int survived(const std::vector<Soldier> & s) const;
 
     public:
         Field(string filename) { init(filename); }
         string title() const;
         string map() const;
 
-        void move();
+        string move();
         string shoot();
+        int isdone() const; // 0 go on; 1 - blues; 2 - reds; 3 draw
+        string result() const;
+
+        int aliveR() const { return survived(reds); }
+        int aliveB() const { return survived(blues); }
 };
 
-int main()
+int main(int ac, char * av[])
 try
 {
     Field field("game.conf");
-    std::cout << field.title();
+    cout << field.title();
 
-    for( int i=0; i<7; i++ )
-        field.move();
-
-    for( int i=0; i<3; i++ )
+    for ( int i = 0; i < 10000; i++ )
     {
-        field.move();
-        std::cout << field.map();
+        cout << field.move() << '\n';
+        cout << field.map();
+
+        int ar = field.aliveR();
+        int ab = field.aliveB();
+
+        string kills = field.shoot();
+        if ( !kills.empty() )
+        {
+            cout << kills << '\n';
+
+            cout<<"Killed/Survived: "
+            <<(ab-field.aliveB())<<"/"<<(field.aliveB())<<" blues, "
+            <<(ar-field.aliveR())<<"/"<<(field.aliveR())<<" reds\n";
+
+            cout << field.map();
+        }
+
+        if ( field.isdone() ) break;
     }
+
+    cout << field.result();
 
 }
 catch (string e)
 {
-    std::cout << "Error: " << e << '\n';
+    cout << "Error: " << e << '\n';
     return 1;
 }
 catch (...)
 {
-    std::cout << "Error\n";
+    cout << "Error\n";
     return 2;
 }
 
@@ -124,6 +169,7 @@ void Field::init(string filename)
     double acc[3];
     double stl[3];
     double vel[3];
+    double fea[3];
 
     string s;
     for (; in >> s;)
@@ -152,6 +198,15 @@ void Field::init(string filename)
         else if ( k == "accuracy" ) acc[mode] = std::atof(v.c_str());
         else if ( k == "stealth" ) stl[mode] = std::atof(v.c_str());
         else if ( k == "speed" ) vel[mode] = std::atof(v.c_str());
+        else if ( k == "fear" ) fea[mode] = std::atof(v.c_str());
+        else if ( k == "seed" )
+        {
+            long a = std::atol(v.c_str());
+            volatile double x;
+
+            for ( long i = 0; i < a; i++ )
+                x = rnd();
+        }
 
         else
             throw "Unexpected [" + k + "] in " + filename;
@@ -163,10 +218,10 @@ void Field::init(string filename)
     baseR = base[2];
 
     for ( int i = 0; i < ns[1]; i++ )
-        blues.push_back(Soldier(baseB, acc[1], stl[1], vel[1]));
+        blues.push_back(Soldier(baseB, acc[1], stl[1], vel[1], fea[1], 'B', i));
 
     for ( int i = 0; i < ns[2]; i++ )
-        reds.push_back(Soldier(baseR, acc[2], stl[2], vel[2]));
+        reds.push_back(Soldier(baseR, acc[2], stl[2], vel[2], fea[2], 'R', i));
 }
 
 void replaceAll(string & s, const string & r, const string & to)
@@ -229,37 +284,37 @@ string Field::map() const
             v.push_back("  ");
 
     Pos sz = size;
-    auto c = [&v,sz](Pos z) -> string&
+    auto c = [&v, sz](Pos z) -> string&
     {
-        return v[(z.y-1)*sz.x+(z.x-1)];
+        return v[(z.y - 1) * sz.x + (z.x - 1)];
     };
 
     c(baseB) = "B!";
     c(baseR) = "R!";
 
-    for( int i =0; i<blues.size(); i++ )
+    for ( int i = 0; i < blues.size(); i++ )
     {
-        char ch = 'a'+ char(i>25?25:i);
+        if ( blues[i].dead ) continue;
         string & s = c(blues[i].pos);
-        if( s[0]==' ' ) s = string("B")+ch;
-        else if( s[0]=='B' ) s = "B#";
+        if ( s[0] == ' ' ) s = blues[i].nm();
+        else if ( s[0] == 'B' ) s = "B#";
         else s = "M#";
     }
 
-    for( int i =0; i<reds.size(); i++ )
+    for ( int i = 0; i < reds.size(); i++ )
     {
-        char ch = 'a'+ char(i>25?25:i);
+        if ( reds[i].dead ) continue;
         string & s = c(reds[i].pos);
-        if( s[0]==' ' ) s = string("R")+ch;
-        else if( s[0]=='R' ) s = "R#";
+        if ( s[0] == ' ' ) s = reds[i].nm();
+        else if ( s[0] == 'R' ) s = "R#";
         else s = "M#";
     }
 
     for ( int j = 0; j < size.y; j++ )
     {
         for ( int i = 0; i < size.x; i++ )
-            o<<v[i+j*sz.x];
-        o<<'\n';
+            o << v[i + j * sz.x];
+        o << '\n';
     }
 
     for ( int i = 0; i < size.x; i++ ) o << "--";
@@ -267,24 +322,30 @@ string Field::map() const
     return o.str();
 }
 
-void Field::move()
+string Field::move()
 {
-//    blues[0].move(size,baseR,reds);
-    for( auto & i : blues ) i.move(size,baseR,reds);
-    for( auto & i : reds ) i.move(size,baseB,blues);
+    turn++;
 
-    for( auto & i : blues ) i.pos = i.next;
-    for( auto & i : reds ) i.pos = i.next;
+    std::ostringstream o;
+
+//    blues[0].move(size,baseR,reds);
+    for ( auto & i : blues ) o << i.move(size, baseR, reds);
+    for ( auto & i : reds ) o << i.move(size, baseB, blues);
+
+    for ( auto & i : blues ) i.pos = i.next;
+    for ( auto & i : reds ) i.pos = i.next;
+
+    return o.str();
 }
 
 string draw(std::vector<Pos> cells)
 {
     int m = 0;
     int r = 0;
-    for( auto i : cells )
+    for ( auto i : cells )
     {
-     if( i.x > m ) m = i.x;
-     if( i.y > r ) r = i.y;
+        if ( i.x > m ) m = i.x;
+        if ( i.y > r ) r = i.y;
     }
 
     std::vector<string> v;
@@ -292,179 +353,215 @@ string draw(std::vector<Pos> cells)
         for ( int i = 0; i < m; i++ )
             v.push_back("  ");
 
-    auto c = [&v,m](Pos z) -> string& { return v[(z.y-1)*m+(z.x-1)]; };
+    auto c = [&v, m](Pos z) -> string& { return v[(z.y - 1) * m + (z.x - 1)]; };
 
-    for( auto i : cells )
-        c(i) = "[]";    
+    for ( auto i : cells )
+        c(i) = "[]";
 
     std::ostringstream o;
     for ( int j = 0; j < r; j++ )
     {
         for ( int i = 0; i < m; i++ )
-            o<<v[i+j*m];
-        o<<'\n';
+            o << v[i + j * m];
+        o << '\n';
     }
 
     return o.str();
 }
 
-void Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies)
+string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies)
 {
+    if ( dead )
+    {
+        next = pos;
+        return "";
+    }
+
     // first collect the list of all possible places
 
     std::vector<Pos> possible;
-    double sp2 = speed*speed;
-    for( int j = pos.y - speed; j<= pos.y+speed; j++ )
-    for( int i = pos.x - speed; i<= pos.x+speed; i++ )
-    {
-        if( i<1 || j<1 || i>sz.x || j>sz.y ) continue;
+    double sp2 = speed * speed;
+    for ( int j = pos.y - speed; j <= pos.y + speed; j++ )
+        for ( int i = pos.x - speed; i <= pos.x + speed; i++ )
+        {
+            if ( i < 1 || j < 1 || i > sz.x || j > sz.y ) continue;
 
-        double d2 = dist2(Pos(i,j),pos);
+            double d2 = dist2(Pos(i, j), pos);
 
-        if( d2 > sp2 +0.1 ) continue;
+            if ( d2 > sp2 + 0.1 ) continue;
 
-        possible.push_back(Pos(i,j));
-    }
+            possible.push_back(Pos(i, j));
+        }
 
     std::vector<double> prob(possible.size());
-    for( int i=0; i<possible.size(); i++ )
+    for ( int i = 0; i < possible.size(); i++ )
     {
         double p = 1;
 
-        const double s2 = stealth*stealth;
-        for( auto j : enemies )
+        const double s2 = stealth * stealth;
+        for ( auto j : enemies )
         {
-            double r2 = dist2(possible[i],j.pos);
-            p *= 1 - accuracy*std::exp( -r2/s2 );
+            if ( j.dead ) continue;
+            double r2 = dist2(possible[i], j.pos);
+            p *= 1 - accuracy * std::exp( -r2 / s2 );
         }
-    
-        prob[i] = 1-p;
+
+        double q = 1;
+        for ( int j = 0; j < fear; j++ ) q *= p;
+
+        prob[i] = 1 - q;
     }
 
     std::vector<Pos> poss2;
-    for( int i=0; i<possible.size(); i++ )
+    for ( int i = 0; i < possible.size(); i++ )
     {
-        if( prob[i] < rnd() ) poss2.push_back(possible[i]);
+        if ( prob[i] < rnd() ) poss2.push_back(possible[i]);
     }
 
-    //std::cout<<"AAA "<<possible.size()<<' '<<poss2.size()<<'\n';
+    //cout<<"AAA "<<possible.size()<<' '<<poss2.size()<<'\n';
 
-    if( poss2.empty() ) // panic
+    if ( poss2.empty() ) // panic
     {
         next = pos;
-        return;
+        return "";
     }
 
-    double rmin2=1e6;
+    double rmin2 = 1e6;
     for ( auto i : poss2 )
     {
-        double r2 = dist2(i,base);
-        if( r2<rmin2 )
+        double r2 = dist2(i, base);
+        if ( r2 < rmin2 )
         {
-            rmin2=r2;
+            rmin2 = r2;
             next = i;
         }
     }
+
+    std::ostringstream o;
+
+    if ( next != pos )
+        o << "(" << nm() << ":" << pos << ">" << next << ")";
+
+    return o.str();
 }
 
 
-/*///
-void Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies)
+string Field::shoot()
 {
-    // first collect the list of all possible places
+    std::ostringstream o;
 
-    double sp2 = speed*speed;
+    for ( auto & i : blues ) o << i.shoot(reds);
+    for ( auto & i : reds ) o << i.shoot(blues);
 
-    // if base is close than speed, then do not consider going away
-    double tobase = dist2(base,pos);
-    double tob2 = tobase*tobase;
-    if( tob2 < sp2 ) sp2 = tob2;
+    for ( auto & i : blues ) i.dead = i.dying;
+    for ( auto & i : reds ) i.dead = i.dying;
 
-    std::vector<Pos> possible;
-    for( int j = pos.y - speed; j<= pos.y+speed; j++ )
-    for( int i = pos.x - speed; i<= pos.x+speed; i++ )
-    {
-        if( i<1 || j<1 || i>sz.x || j>sz.y ) continue;
-
-        double d2 = dist2(Pos(i,j),pos);
-
-        if( d2 > sp2 +0.1 ) continue;
-
-        possible.push_back(Pos(i,j));
-    }
-
-    //std::cout<<"AAA "<<possible.size()<< ' ' <<speed <<'\n'<<draw(possible);
-  
-    double rmax2=0, rmin2=1e6;
-    for( auto i : possible )
-    {
-        double r2 = dist2(i,base);
-        if( r2>rmax2 ) rmax2=r2;
-        if( r2<rmin2 ) rmin2=r2;
-    }
-
-    double rmax = std::sqrt(rmax2);
-    double rmin = std::sqrt(rmin2);
-    double delta = rmax-rmin;
-
-    //std::cout<<"AAA "<<rmax<<' '<<rmin<<' '<<delta<<'\n';
-
-    std::vector<double> prob(possible.size());
-    for( int i=0; i<possible.size(); i++ )
-    {
-        double r = std::sqrt(dist2(possible[i],base));
-        double p = (rmax-r)/delta;
-
-        ///p = std::pow(p,4.0);
-
-        for( auto j : enemies )
-        {
-            const double & s = stealth;
-            p *= 1 - accuracy*std::exp( -r*r/(s*s) );
-        }
-    
-        prob[i] = p;
-        ///std::cout<<p<<'\n';
-    }
-
-    // normilize
-    double sum =0;
-    for( auto i : prob ) sum += i;
-    for( auto &i : prob ) i /= sum;
-
-    // normalize to max 1
-    double pmax = 0;
-    for( auto i : prob ) if( pmax<i ) pmax = i;
-    for( auto &i : prob ) i /= pmax;
-
-    ///for( auto i : prob ) std::cout<<i<<'\n';;
-
-    for( int i=0; i<1000000; i++ )
-    {
-        double a = rnd();
-        double b = rnd();
-        a *= possible.size()+2;
-        int idx = int(a);
-        if( idx >= possible.size() ) continue;
-
-        if( prob[idx] < b ) continue;
-
-        next = possible[idx];
-        return;
-    }
-
-    throw string()+"Cannot sample";
+    return o.str();
 }
 
-*/
+string Soldier::shoot(std::vector<Soldier> & enemies)
+{
+    if ( dead )
+    {
+        next = pos;
+        return "";
+    }
 
+    std::ostringstream o;
 
+    for ( auto & i : enemies)
+    {
+        if ( i.dead || i.dying ) continue;
+        i.dying = false;
 
+        double s2e = i.stealth; s2e *= s2e;
 
+        double r2 = dist2(pos, i.pos);
+        double p = accuracy * std::exp( -r2 / s2e );
 
+        if ( rnd() > p ) continue; // no kill
 
+        o << "(" << nm() << "/" << i.nm() << ")";
+        i.dying = true;
+    }
 
+    return o.str();
+}
 
+int Field::isdone() const
+{
+    bool rdead = alldead(reds);
+    bool bdead = alldead(blues);
+
+    if ( rdead && bdead ) return 3;
+    if ( rdead && !bdead ) return 1;
+    if ( !rdead && bdead ) return 2;
+
+    bool rin = arein(baseB, reds);
+    bool bin = arein(baseR, blues);
+
+    if ( !rin && !bin ) return 0;
+
+    bool rdef = arein(baseR, reds);
+    bool bdef = arein(baseB, blues);
+
+    if ( rin && bin && !rdef && !bdef ) return 4;
+
+    if ( rin && !bdef ) return 2;
+    if ( bin && !rdef ) return 1;
+
+    return 0;
+}
+
+bool Field::alldead(const std::vector<Soldier> & s) const
+{
+    for ( const auto & i : s )
+        if ( !i.dead ) return false;
+
+    return true;
+}
+
+int Field::survived(const std::vector<Soldier> & s) const
+{
+    int k = 0;
+    for ( const auto & i : s )
+        if ( !i.dead ) k++;
+
+    return k;
+}
+
+bool Field::arein(Pos base, const std::vector<Soldier> & s) const
+{
+    for ( const auto & i : s )
+    {
+        if ( i.dead ) continue;
+        if ( base == i.pos ) return true;
+    }
+
+    return false;
+}
+
+string Field::result() const
+{
+    std::ostringstream o;
+    switch (isdone())
+    {
+        case 0: o << "Result: Not finished\n"; break;
+        case 1: o << "Result: Blues win\n"; break;
+        case 2: o << "Result: Reds win\n"; break;
+        case 3: o << "Result: Draw (all dead)\n"; break;
+        case 4: o << "Result: Draw (both sides win)\n"; break;
+        default:
+            throw string() + "Internal error 525";
+    }
+
+    o << "Casualties Blues: " << (blues.size() - aliveB()) << " of " << blues.size() << '\n';
+    o << "Casualties Reds : " << (reds.size() - aliveR()) << " of " << reds.size() << '\n';
+
+    o << "Turns : " << turn << '\n';
+
+    return o.str();
+}
 
 
 
