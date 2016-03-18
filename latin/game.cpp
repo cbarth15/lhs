@@ -126,11 +126,15 @@ try
 
     Rnd rnd_main; rnd = &rnd_main;
 
+	int stat[5] = {0,0,0,0,0};
+
     for ( int k = 0; k < field.Nrep; k++ )
     {
         field.reset();
 
         cout << field.title();
+
+		int done=0;		
 
         for ( int i = 0; i < 10000; i++ )
         {
@@ -152,12 +156,20 @@ try
                 cout << field.map();
             }
 
-            if ( field.isdone() ) break;
+			done = field.isdone();
+            if ( done ) break;
         }
 
         cout << field.result("game.log");
+		stat[done]++;
 
     }
+
+	cout<<"Not finished  : "<<stat[0]<<'\n';
+	cout<<"Won by Blues  : "<<stat[1]<<'\n';
+	cout<<"Won by Reds   : "<<stat[2]<<'\n';
+	cout<<"Draw all dead : "<<stat[3]<<'\n';
+	cout<<"Draw both win : "<<stat[4]<<'\n';
 }
 catch (string e)
 {
