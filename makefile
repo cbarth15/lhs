@@ -1,9 +1,26 @@
+appname := game
 
-CL=cl
-OP=-EHsc -Ox -WX
+CXX := g++
+CXXFLAGS := -std=c++11
 
-all: game.exe
+srcfiles := $(shell find . -name "*.cpp")
+objects  := $(patsubst %.C, %.o, $(srcfiles))
 
-game.exe: game.cpp; $(CL) $(OP) $<
+all: $(appname)
 
-clean:; rm -f *.obj *.exe *.out *.tmp
+$(appname): $(objects)
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) -o $(appname) $(objects) $(LDLIBS)
+
+depend: .depend
+
+.depend: $(srcfiles)
+	rm -f ./.depend
+	$(CXX) $(CXXFLAGS) -MM $^>>./.depend;
+
+clean:
+	rm -f $(appname) 
+
+dist-clean: clean
+	rm -f *~ .depend
+
+include .depend
