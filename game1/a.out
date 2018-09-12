@@ -1,5 +1,4 @@
-g++ -std=c++11   -c -o game.o game.cpp
-g++ -std=c++11  -o game  ./game.o 
+make: Nothing to be done for 'all'.
 ----------------------------------------
 B!                                      
                                         

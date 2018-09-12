@@ -18,22 +18,38 @@ using std::cout;
 
 class Rnd
 {
-        std::default_random_engine reng;
-        std::uniform_real_distribution<double> dist;
-        std::function<double()> rnd;
+        std::default_random_engine reng;	//reng is from random engine
+						//generator class now
+
+        std::uniform_real_distribution<double> dist;//produces random
+						//doubles within a range
+
+        std::function<double()> rnd;//used as an object for containing bind
 
     public:
 
-        static unsigned long seed;
+        static unsigned long seed;//a random number for auto-generation
 
+
+	//initialize constructor that feeds in information to these function
+	//s to set things up
         Rnd(): reng(seed), dist(0, 1), rnd( std::bind(dist, reng) ) {}
-        double operator()() { return rnd(); }
+	//^bind is used to pass reng to dist and name it as rnd 
 
-        void reseed(unsigned long s) { reng.seed(s); }
+
+        double operator()() { return rnd(); }//when an object is created
+						//rnd is ran
+	
+
+        void reseed(unsigned long s) { reng.seed(s); }// function to
+							//make sure
+							//things are random
 };
-unsigned long Rnd::seed = 0;
-Rnd * rnd = nullptr;
 
+unsigned long Rnd::seed = 0;	//initialize seed
+Rnd * rnd = nullptr;		//initialize rnd
+
+//made to 
 struct Pos
 {
     int x, y;
@@ -43,10 +59,14 @@ struct Pos
     string str() const;
 };
 
+//is something is equal then the positions must be the same
 bool operator==(const Pos & a, const Pos & b) { return a.x == b.x && a.y == b.y; }
+
+//if something is not equal then the positions must be different
 bool operator!=(const Pos & a, const Pos & b) { return !(a == b); }
 std::ostream & operator<<(std::ostream & o, const Pos & a) { return o << a.str(); }
 
+//function to calculate distance
 double dist2(Pos a, Pos b)
 {
     double x = a.x - b.x;
@@ -55,6 +75,8 @@ double dist2(Pos a, Pos b)
 }
 
 class Field;
+
+//holds all info for each piece
 class Soldier
 {
         Pos pos;
