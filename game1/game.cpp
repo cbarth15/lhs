@@ -49,7 +49,7 @@ class Rnd
 unsigned long Rnd::seed = 0;	//initialize seed
 Rnd * rnd = nullptr;		//initialize rnd
 
-//made to 
+//made to mark potion for each soldier
 struct Pos
 {
     int x, y;
@@ -93,27 +93,28 @@ class Soldier
         int name;
 
         friend class Field;
-
+	//definition for Soldier initializer
         Soldier(Pos b, double a, double s, double v, int f, char t, int n):
             pos(b), accuracy(a), stealth(s), speed(v), fear(f), team(t), name(n) {}
 
         string nm() const { return string() + team + char('A' + char(name > 25 ? 25 : name)); }
 
         string move(Pos sz, Pos b, const std::vector<Soldier> & enemies, bool prn_move);
+
         string shoot(std::vector<Soldier> & enemies, bool prn_shoot);
 };
 
 class Field
 {
         Pos size;
-        Pos baseB;
-        Pos baseR;
+        Pos baseB;	//location of Blue base
+        Pos baseR;	//location of Red base
         std::vector<Soldier> blues;
         std::vector<Soldier> reds;
         int turn = 0;
         int rep = 0;
-
-        void init(string filename);
+	// all these functions defined elsewhere
+        void init(string filename); //takes in a game.config and adjusts accordingly
         bool arein(Pos base, const std::vector<Soldier> & s) const;
         bool alldead(const std::vector<Soldier> & s) const;
         int survived(const std::vector<Soldier> & s) const;
@@ -127,16 +128,20 @@ class Field
 
         int Nrep = 1;
         void reset();
-
+	//initializer opens and grabs info from config file
         Field(string filename) { init(filename); }
+	
+	//functions declared and redefined elsewhere
         string title() const;
         string map() const;
 
         string move();
         string shoot();
+
         int isdone() const; // 0 go on; 1 - blues; 2 - reds; 3 draw
         string result(string = "") const;
 
+	//how many reds or blues are alive
         int aliveR() const { return survived(reds); }
         int aliveB() const { return survived(blues); }
 };
@@ -144,19 +149,24 @@ class Field
 int main(int ac, char * av[])
 try
 {
+	//initializes all variables from conf file
     Field field("game.conf");
 
+	//reassign rnd to a new object of Rnd
+	//makes a random double between 0 and 1
     Rnd rnd_main; rnd = &rnd_main;
 
-	int stat[5] = {0,0,0,0,0};
+	int stat[5] = {0,0,0,0,0};		//stores game statistics
 
+	//Nrep is number of repetitions
+						//This is where the game actually runs
     for ( int k = 0; k < field.Nrep; k++ )
     {
         field.reset();
 
         cout << field.title();
 
-		int done=0;		
+	int done=0;		
 
         for ( int i = 0; i < 10000; i++ )
         {
@@ -192,7 +202,7 @@ try
 	cout<<"Won by Reds   : "<<stat[2]<<'\n';
 	cout<<"Draw all dead : "<<stat[3]<<'\n';
 	cout<<"Draw both win : "<<stat[4]<<'\n';
-}
+}	//end of try
 catch (string e)
 {
     cout << "Error: " << e << '\n';
@@ -203,7 +213,8 @@ catch (...)
     cout << "Error\n";
     return 2;
 }
-
+//function handles the creation 
+//of the field
 void Field::init(string filename)
 {
     std::ifstream in(filename.c_str());
@@ -213,7 +224,7 @@ void Field::init(string filename)
 
     std::map<string, string> dict;
 
-    int mode = 0; // 0-none, 1-blue, 2-red
+    int mode = 0; // switches between arrays storing info according to 0-none, 1-blue, 2-red
 
     size = Pos(-1, -1);
     Pos base[3];
@@ -239,7 +250,7 @@ void Field::init(string filename)
             for ( auto j : dict )
                 replaceAll(v, j.first, j.second);
         }
-
+	//giving values to variables for field object
         if (0);
         else if ( k[0] == '#' );
         else if ( k[0] == '$' ) dict[k] = v;
@@ -266,16 +277,17 @@ void Field::init(string filename)
     }
 
     if ( size.x < 3 ) throw "Field size undefined in " + filename;
-
+//base location
     baseB = base[1];
     baseR = base[2];
-
+//assigning values to each soldier
     for ( int i = 0; i < ns[1]; i++ )
         blues.push_back(Soldier(baseB, acc[1], stl[1], vel[1], fea[1], 'B', i));
 
     for ( int i = 0; i < ns[2]; i++ )
         reds.push_back(Soldier(baseR, acc[2], stl[2], vel[2], fea[2], 'R', i));
 }
+
 
 void replaceAll(string & s, const string & r, const string & to)
 {
@@ -287,6 +299,7 @@ void replaceAll(string & s, const string & r, const string & to)
     }
 }
 
+//take in new position
 Pos::Pos(string s)
 {
     std::istringstream i(s);
@@ -294,12 +307,14 @@ Pos::Pos(string s)
     i >> x >> a >> y;
 }
 
+//output coordinates
 string Pos::str() const
 {
     std::ostringstream o;
     o << x << ',' << y;
     return o.str();
 }
+
 
 string Field::title() const
 {
@@ -389,12 +404,14 @@ string Field::move()
     std::ostringstream o;
 
 //    blues[0].move(size,baseR,reds);
+//calls the soldier's move
     for ( auto & i : blues ) o << i.move(size, baseR, reds, prn_move);
     for ( auto & i : reds ) o << i.move(size, baseB, blues, prn_move);
-
+	//redefine the soldier's position
     for ( auto & i : blues ) i.pos = i.next;
     for ( auto & i : reds ) i.pos = i.next;
 
+//returns the stream as a string
     return prn_move?o.str()+'\n':"";
 }
 
@@ -441,28 +458,31 @@ string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies, boo
 
     std::vector<Pos> possible;
     double sp2 = speed * speed;
-    for ( int j = pos.y - speed; j <= pos.y + speed; j++ )
-        for ( int i = pos.x - speed; i <= pos.x + speed; i++ )
+    for ( int j = pos.y - speed; j <= pos.y + speed; j++ )		//all y positions
+        for ( int i = pos.x - speed; i <= pos.x + speed; i++ )		//all x positions
         {
-            if ( i < 1 || j < 1 || i > sz.x || j > sz.y ) continue;
+            if ( i < 1 || j < 1 || i > sz.x || j > sz.y ) continue;	//as long as it is with-in the game borders
 
-            double d2 = dist2(Pos(i, j), pos);
+            double d2 = dist2(Pos(i, j), pos);//d2 holds the distance between where the soldier is
+						//and where he wants to go
 
             if ( d2 > sp2 + 0.1 ) continue;
 
-            possible.push_back(Pos(i, j));
+            possible.push_back(Pos(i, j));		//adding possible positions based on speed
         }
 
+	//prob is the probability of the soldier pursuing each enemy
+	//based on both accuracy and fear of the soldier
     std::vector<double> prob(possible.size());
     for ( int i = 0; i < possible.size(); i++ )
     {
         double p = 1;
 
         const double s2 = stealth * stealth;
-        for ( auto j : enemies )
+        for ( auto j : enemies )		//enemies is a vector of the opposing color
         {
             if ( j.dead ) continue;
-            double r2 = dist2(possible[i], j.pos);
+            double r2 = dist2(possible[i], j.pos);	//distance between soldier and enemy position
             p *= 1 - accuracy * std::exp( -r2 / s2 );
         }
 
@@ -472,7 +492,9 @@ string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies, boo
         prob[i] = 1 - q;
     }
 
-    std::vector<Pos> poss2;
+    std::vector<Pos> poss2;//if the random number between 0 and 1 
+			//is greater than probability
+			//then this is a possible move
     for ( int i = 0; i < possible.size(); i++ )
     {
         if ( prob[i] < (*rnd)() ) poss2.push_back(possible[i]);
@@ -480,21 +502,22 @@ string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies, boo
 
     //cout<<"AAA "<<possible.size()<<' '<<poss2.size()<<'\n';
 
-    if ( poss2.empty() ) // panic
-    {
-        next = pos;
+
+    if ( poss2.empty() ) // if there are
+    {			//no moves for the soldier
+        next = pos;	//panic
         return "";
     }
 
     double rmin2 = 1e6;
-    for ( auto i : poss2 )
+    for ( auto i : poss2 )	//for each remaining possible position
     {
         double r2 = dist2(i, base);
         if ( r2 < rmin2 )
         {
             rmin2 = r2;
-            next = i;
-        }
+            next = i;		//take the move remaining
+        }			//that brings the soldier closest to its base
     }
 
     if( !prn_move ) return "";
@@ -511,10 +534,11 @@ string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies, boo
 string Field::shoot()
 {
     std::ostringstream o;
-
+	//run shoot for each soldier
     for ( auto & i : blues ) o << i.shoot(reds, prn_shoot);
     for ( auto & i : reds ) o << i.shoot(blues, prn_shoot);
 
+	//if dying was true, now dead is true
     for ( auto & i : blues ) i.dead = i.dying;
     for ( auto & i : reds ) i.dead = i.dying;
 
@@ -531,39 +555,42 @@ string Soldier::shoot(std::vector<Soldier> & enemies, bool prn_shoot)
 
     std::ostringstream o;
 
-    for ( auto & i : enemies)
+    for ( auto & i : enemies)		//based on all of red team
     {
-        if ( i.dead || i.dying ) continue;
+        if ( i.dead || i.dying ) continue;	//dying people can not shoot
         i.dying = false;
 
-        double s2e = i.stealth; s2e *= s2e;
+        double s2e = i.stealth; s2e *= s2e;	//stealth
 
-        double r2 = dist2(pos, i.pos);
-        double p = accuracy * std::exp( -r2 / s2e );
+        double r2 = dist2(pos, i.pos);	//distance from enemy
+        double p = accuracy * std::exp( -r2 / s2e );	//calculated together
 
-        if ( (*rnd)() > p ) continue; // no kill
-
+        if ( (*rnd)() > p ) continue; // if p is greater than the random number,
+					//the enemy is killed
         if(prn_shoot) o << "(" << nm() << "/" << i.nm() << ")";
-        i.dying = true;
+        i.dying = true;			//the enemy is now dying
     }
 
     return o.str();
 }
 
 int Field::isdone() const
-{
-    bool rdead = alldead(reds);
+{	
+	//functions that check who is dead
+    bool rdead = alldead(reds);		
     bool bdead = alldead(blues);
 
+	//figuring out which or both teams have died
     if ( rdead && bdead ) return 3;
     if ( rdead && !bdead ) return 1;
     if ( !rdead && bdead ) return 2;
 
+		//is anyone in the base
     bool rin = arein(baseB, reds);
     bool bin = arein(baseR, blues);
 
     if ( !rin && !bin ) return 0;
-
+		//anyone of the opposite side in the other's base
     bool rdef = arein(baseR, reds);
     bool bdef = arein(baseB, blues);
 
@@ -578,13 +605,15 @@ int Field::isdone() const
 bool Field::alldead(const std::vector<Soldier> & s) const
 {
     for ( const auto & i : s )
-        if ( !i.dead ) return false;
+        if ( !i.dead ) return false;		//if alive false
 
     return true;
 }
 
+//counting the survived soldier's
 int Field::survived(const std::vector<Soldier> & s) const
 {
+
     int k = 0;
     for ( const auto & i : s )
         if ( !i.dead ) k++;
@@ -594,21 +623,22 @@ int Field::survived(const std::vector<Soldier> & s) const
 
 bool Field::arein(Pos base, const std::vector<Soldier> & s) const
 {
-    for ( const auto & i : s )
+    for ( const auto & i : s )	//for each soldier
     {
-        if ( i.dead ) continue;
-        if ( base == i.pos ) return true;
+        if ( i.dead ) continue; //if soldier is dead go to next soldier
+        if ( base == i.pos ) return true; //if a soldier is in base, true
     }
 
     return false;
 }
 
+//print everything at the end
 string Field::result(string log) const
 {
-    int end = isdone();
+    int end = isdone();		//depending on what isdone returns
 
     std::ostringstream o;
-    switch (end)
+    switch (end)		//match it with the case
     {
         case 0: o << "Result: Not finished\n"; break;
         case 1: o << "Result: Blues win\n"; break;
@@ -641,6 +671,8 @@ string Field::result(string log) const
     return prn_result?o.str():"";
 }
 
+//increase the repitions
+//reset all soldiers
 void Field::reset()
 {
     rep++;
