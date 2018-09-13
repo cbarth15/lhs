@@ -59,7 +59,7 @@ struct Pos
     string str() const;
 };
 
-//is something is equal then the positions must be the same
+//if something is equal then the positions must be the same
 bool operator==(const Pos & a, const Pos & b) { return a.x == b.x && a.y == b.y; }
 
 //if something is not equal then the positions must be different
@@ -315,7 +315,7 @@ string Pos::str() const
     return o.str();
 }
 
-
+//outputs information about each team
 string Field::title() const
 {
     if( !prn_title ) return "";
