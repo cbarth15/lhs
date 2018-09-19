@@ -57,6 +57,12 @@ struct Pos
     Pos(int a, int b): x(a), y(b) {}
     Pos(string);
     string str() const;
+	string output()
+	{
+	string out;
+	out=std::to_string(x)+"\n"+std::to_string(y);
+	return out;
+	}
 };
 
 //if something is equal then the positions must be the same
@@ -106,7 +112,6 @@ class Soldier
 
 class Field
 {
-        Pos size;
         Pos baseB;	//location of Blue base
         Pos baseR;	//location of Red base
         std::vector<Soldier> blues;
@@ -120,6 +125,8 @@ class Field
         int survived(const std::vector<Soldier> & s) const;
 
     public:
+
+        Pos size;
         int prn_map = 1;
         int prn_result = 1;
         int prn_title = 1;
@@ -163,7 +170,8 @@ try
     for ( int k = 0; k < field.Nrep; k++ )
     {
         field.reset();
-
+	cout<<field.size.output()<<"\n";//added
+			//gives java code field dimensions
         cout << field.title();
 
 	int done=0;		

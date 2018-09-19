@@ -46,9 +46,9 @@ public class Gui extends JFrame{
 		gameboard.setVisible(true);
 		layout= new FlowLayout(FlowLayout.CENTER,3,3);
 			
-		xBoard=int(line);
-		line=reader.readLine();
-		yBoard=int(line);
+		xBoard=Integer.parseInt(line);
+		try{line=reader.readLine();}catch(Exception ex){}
+		yBoard=Integer.parseInt(line);
 
 		soldiers=new playerpiece[yBoard][xBoard];
 		rows= new JPanel[yBoard];
@@ -68,12 +68,92 @@ public class Gui extends JFrame{
 
 			}
 		}
+
+		menubar.add(start);
+		menubar.add(quit);
+		this.setJMenuBar(menubar);
+		this.add(gameboard);
+
+		gameboard.setLayout(new GridLayout(yBoard+1,0,0,0));
+		for(int y=0;y<yBoard;y++)
+		{
+			gameboard.add(rows[y]);
+		}
+		
+		for(int y=0;y<yBoard;y++)
+		{
+			for(int x=0;x<xBoard;x++)
+			{
+				rows[y].add(soldiers[y][x]);
+			}
+		}
+
+		processing();
+	}	//end of function
+
+
+	public void processing()
+	{
+
+		
+		try{line=reader.readLine();}catch(Exception ex){}
+
+		while(line!=null)
+		{
+		//Grabs --- barrier seperating each game 
+		try{line=reader.readLine();}catch(Exception ex){}
+		//runs for the length of the board
+		for(int y=0;y<yBoard;y++)
+		{
+			//if ending is reached
+			if(line==null)
+				return;
+			//if the starting line is reached
+			if(line.indexOf('C')==0)
+				return;
+		//this point of the code is where I
+		//am working with the actual game
+		System.out.println(line);
+		pieceprinter(y);
+		
+		// Grabs ending --- barrier
+		try{line=reader.readLine();}catch(Exception ex){}
+		}
+		try{line=reader.readLine();}catch(Exception ex){}
+		}	
+
+
 	}
 
-
-
+	public void pieceprinter(int y)
+	{
 	
+	if((line.indexOf('B')==line.indexOf('!')+1)||(
+		line.indexOf('B')==line.indexOf('!')-1))
+		{
+			soldiers[y][line.indexOf('B')/2].changePiece(3);
 
+
+		}
+	
+	if((line.indexOf('R')==line.indexOf('!')+1)||(
+		line.indexOf('R')==line.indexOf('!')-1))
+		{
+			soldiers[y][line.indexOf('R')/2].changePiece(4);
+
+
+		}
+
+
+	}
+
+	public void baseFinder()
+	{
+
+
+
+
+	}
 	public static void getInfo (String[] args)
  
 	{
@@ -104,6 +184,8 @@ public class Gui extends JFrame{
 
 		public playerpiece(int num)
 		{
+			this.setBorder(BorderFactory.createEmptyBorder());
+			this.setContentAreaFilled(false);
 			playernumb=num;
 			colorselector(num);	
 
@@ -112,13 +194,24 @@ public class Gui extends JFrame{
 		{
 		if(color==0)
 			ColorString="empty";
+		if(color==1)
+			ColorString="Blue2";
+		if(color==2)
+			ColorString="Red4";
+		if(color==3)
+			ColorString="BlueBase";
+		if(color==4)
+			ColorString="RedBase";
 
 		String directory="players/"+ColorString+".gif";
 
 		Icon image= new ImageIcon(getClass().getResource(directory));
 		this.setIcon(image);
 
-
+		}
+		public void changePiece(int num)
+		{
+			colorselector(num);
 		}
 
 	}
@@ -136,6 +229,9 @@ public class Gui extends JFrame{
 
 	public class MenuHandler implements ActionListener
 	{
+		public void actionPerformed(ActionEvent event)
+		{
+		}
 	}	
 }
 
