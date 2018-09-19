@@ -6,15 +6,19 @@ import java.io.BufferedReader;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.concurrent.TimeUnit;
+
 
 public class Gui extends JFrame{
 	private board gameboard;
 	private JMenuBar menubar;       //for all things in the menu
 	private MenuHandler menuHandler;
 	private JMenu start,quit;
+	private JMenuItem Begin;
 	private FlowLayout layout;
 	private JPanel[] rows;
 	private playerpiece[][] soldiers;        //an array of all the pieces
+	private int counter;
 	BufferedReader reader;
 	String line;
 	private int xBoard;		//contains x dimension of field
@@ -41,7 +45,9 @@ public class Gui extends JFrame{
 		gameboard= new board();
 		menubar= new JMenuBar();
 		start= new JMenu("Start");
-		quit= new JMenu("Quit");	
+		quit= new JMenu("Quit");
+		Begin= new JMenuItem("Begin");
+		start.add(Begin);	
 
 		gameboard.setVisible(true);
 		layout= new FlowLayout(FlowLayout.CENTER,3,3);
@@ -87,21 +93,33 @@ public class Gui extends JFrame{
 				rows[y].add(soldiers[y][x]);
 			}
 		}
-
-		processing();
+		Begin.addActionListener(menuHandler);
 	}	//end of function
 
 
 	public void processing()
 	{
-
+		int temp=counter+1;
 		
 		try{line=reader.readLine();}catch(Exception ex){}
-
 		while(line!=null)
 		{
+		counter++;
 		//Grabs --- barrier seperating each game 
 		try{line=reader.readLine();}catch(Exception ex){}
+	
+		//clearboard each time
+		//except for the last
+		if(line.indexOf(':')==-1)
+		{
+			try{Thread.sleep(1000);}catch(Exception ex){}
+			clearBoard();
+		}
+		else
+		{
+
+
+		}
 		//runs for the length of the board
 		for(int y=0;y<yBoard;y++)
 		{
@@ -110,16 +128,19 @@ public class Gui extends JFrame{
 				return;
 			//if the starting line is reached
 			if(line.indexOf('C')==0)
+			{
 				return;
+			}
+			
 		//this point of the code is where I
 		//am working with the actual game
 		System.out.println(line);
 		pieceprinter(y);
-		
-		// Grabs ending --- barrier
+		// Grabs next line
 		try{line=reader.readLine();}catch(Exception ex){}
 		}
 		try{line=reader.readLine();}catch(Exception ex){}
+		//return;
 		}	
 
 
@@ -127,33 +148,60 @@ public class Gui extends JFrame{
 
 	public void pieceprinter(int y)
 	{
-	
-	if((line.indexOf('B')==line.indexOf('!')+1)||(
-		line.indexOf('B')==line.indexOf('!')-1))
+		StringBuilder lineSb= new StringBuilder(line);
+		int temp=0;
+		//blue base	
+	if((temp=lineSb.indexOf("B!"))!=-1)
 		{
-			soldiers[y][line.indexOf('B')/2].changePiece(3);
-
+			soldiers[y][temp/2].changePiece(3);
+		lineSb.delete(temp,temp+1);
 
 		}
-	
-	if((line.indexOf('R')==line.indexOf('!')+1)||(
-		line.indexOf('R')==line.indexOf('!')-1))
+		//red base
+	if((temp=lineSb.indexOf("R!"))!=-1)
 		{
-			soldiers[y][line.indexOf('R')/2].changePiece(4);
-
+			soldiers[y][temp/2].changePiece(4);
+			lineSb.delete(temp,temp+1);
 
 		}
-
-
-	}
-
-	public void baseFinder()
+	while(lineSb.indexOf("B")!=-1)
 	{
+		if((temp=lineSb.indexOf("B"))!=-1)
+		{
+			soldiers[y][temp/2].changePiece(1);
+			lineSb.delete(temp,temp+1);
 
 
+		}
+	}	
+	while(lineSb.indexOf("R")!=-1)
+	{
+		if((temp=lineSb.indexOf("R"))!=-1)
+		{
+			soldiers[y][temp/2].changePiece(2);
+			lineSb.delete(temp,temp+1);
+		}
+	}
 
 
 	}
+
+	public void clearBoard()
+	{
+		for(int y=0;y<yBoard;y++)
+		{
+			for(int x=0;x<xBoard;x++)
+			{
+			soldiers[y][x].changePiece(0);
+
+
+			}
+		}
+		
+		
+
+	}
+
 	public static void getInfo (String[] args)
  
 	{
@@ -231,6 +279,12 @@ public class Gui extends JFrame{
 	{
 		public void actionPerformed(ActionEvent event)
 		{
+		if(event.getSource() == Begin)
+		{
+			processing();
+
+		}
+		
 		}
 	}	
 }
