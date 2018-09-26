@@ -1,5 +1,3 @@
-/* Christian Barth */
-
 import javax.swing.*;
 import java.util.Scanner;
 import java.io.File;
@@ -15,21 +13,17 @@ public class Gui extends JFrame{
 	private board gameboard;
 	private JMenuBar menubar;       //for all things in the menu
 	private MenuHandler menuHandler;
-	private ButtonPress buttonPress;
 	private JMenu start,quit;
 	private JMenuItem Begin;
-	private JMenuItem config;
 	private FlowLayout layout;
 	private JPanel[] rows;
 	private playerpiece[][] soldiers;        //an array of all the pieces
-	private JButton Continue;
 	private int counter;
 	BufferedReader reader;
 	String line;
 	private int xBoard;		//contains x dimension of field
 	private int yBoard;		//contains y dimension of field
 
-	private int flag;
 	public Gui()
 	{
 
@@ -53,10 +47,8 @@ public class Gui extends JFrame{
 		start= new JMenu("Start");
 		quit= new JMenu("Quit");
 		Begin= new JMenuItem("Begin");
-		config= new JMenuItem("Config");
-		Continue= new JButton("Continue");
 		start.add(Begin);	
-		start.add(config);
+
 		gameboard.setVisible(true);
 		layout= new FlowLayout(FlowLayout.CENTER,3,3);
 			
@@ -65,11 +57,10 @@ public class Gui extends JFrame{
 		yBoard=Integer.parseInt(line);
 
 		soldiers=new playerpiece[yBoard][xBoard];
-		rows= new JPanel[yBoard+1];
+		rows= new JPanel[yBoard];
 		menuHandler= new MenuHandler();
-		buttonPress= new ButtonPress();
 
-		for(int y=0; y<yBoard+1;y++)
+		for(int y=0; y<yBoard;y++)
 		{
 			rows[y]= new Row();
 			rows[y].setLayout(layout);
@@ -86,12 +77,11 @@ public class Gui extends JFrame{
 
 		menubar.add(start);
 		menubar.add(quit);
-		rows[yBoard].add(Continue);
 		this.setJMenuBar(menubar);
 		this.add(gameboard);
 
 		gameboard.setLayout(new GridLayout(yBoard+1,0,0,0));
-		for(int y=0;y<yBoard+1;y++)
+		for(int y=0;y<yBoard;y++)
 		{
 			gameboard.add(rows[y]);
 		}
@@ -104,32 +94,36 @@ public class Gui extends JFrame{
 			}
 		}
 		Begin.addActionListener(menuHandler);
-		config.addActionListener(menuHandler);
-		Continue.addActionListener(buttonPress);
-
-		try{line=reader.readLine();}catch(Exception ex){}
-		flag=0;
-
-
 	}	//end of function
 
 
 	public void processing()
 	{
 
+		
+		try{line=reader.readLine();}catch(Exception ex){}
+		System.out.println(line);
+		while(line!=null)
+		{
+
+		counter++;
+		//Grabs --- barrier seperating each game 
+		try{line=reader.readLine();}catch(Exception ex){}
+	
 		//clearboard each time
 		//except for the last
-		if(flag==1)
+		if(line.indexOf(':')==-1)
 		{
-			return;
+			javax.swing.Timer timer=new javax.swing.Timer(1000, new ActionListener(){
+			@Override
+			public void actionPerformed(final ActionEvent e){
+			clearBoard();
+			}
+			});
+			timer.setRepeats(false);
+			timer.start();
+		
 		}
-		if(line.indexOf(':')!=-1)
-		{
-			flag=1;
-			return;
-		}
-		clearBoard();
-		try{line=reader.readLine();}catch(Exception ex){}
 		//runs for the length of the board
 		for(int y=0;y<yBoard;y++)
 		{
@@ -152,7 +146,9 @@ public class Gui extends JFrame{
 		try{line=reader.readLine();}catch(Exception ex){}
 		//return;
 
+
 			
+	}
 	}
 
 	//public void 
@@ -287,51 +283,7 @@ public class Gui extends JFrame{
 		}
 
 	}
-	public class ButtonPress implements ActionListener
-	{
-		public void actionPerformed(ActionEvent event)
-		{
-			
-	
-		//clearboard each time
-		//except for the last
-		if(flag==1)
-		{
-			return;
-		}
-		if(line.indexOf(':')!=-1)
-		{
-			flag=1;
-			return;
-		}
-		clearBoard();
-		try{line=reader.readLine();}catch(Exception ex){}
-		//runs for the length of the board
-		for(int y=0;y<yBoard;y++)
-		{
-			//if ending is reached
-			if(line==null)
-				return;
-			//if the starting line is reached
-			if(line.indexOf('C')==0)
-			{
-				return;
-			}
-			
-		//this point of the code is where I
-		//am working with the actual game
-		System.out.println(line);
-		pieceprinter(y);
-		// Grabs next line
-		try{line=reader.readLine();}catch(Exception ex){}
-		}
-		try{line=reader.readLine();}catch(Exception ex){}
-		//return;
 
-
-
-		}
-	}
 	public class MenuHandler implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
@@ -342,15 +294,7 @@ public class Gui extends JFrame{
 
 		}
 		
-		
-		if(event.getSource()==config)
-		{
-
-			Config configuration = new Config();
-			configuration.setSize(400,600);
-			configuration.setVisible(true);
 		}
 	}	
-	}
 }
 
