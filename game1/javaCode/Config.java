@@ -6,6 +6,8 @@
 import javax.swing.*;
 import java.awt.*;
 import java.io.*;
+import java.awt.event.*;
+
 public class Config extends JFrame
 {
 private FlowLayout layout;
@@ -15,6 +17,10 @@ private JTextField sent[];		//contains sentences
 private File configuration;
 private BufferedReader reader;
 private String line;
+private JTextField input[];
+private JButton submit;
+private JPanel bottom;
+private ButtonPress buttonPress;
 	public Config()
 	{
 
@@ -32,20 +38,23 @@ private String line;
 		}
 		
 		this.getContentPane().setBackground(Color.WHITE);
-		rows=new JPanel[10];
-		sent= new JTextField[10];
+		rows=new JPanel[13];
+		sent= new JTextField[13];
+		input= new JTextField[13];
 		JTextField title=new JTextField("Config");
-
+		submit=new JButton("Submit");
+		bottom=new JPanel();
+		buttonPress=new ButtonPress();
 		JPanel JTitle=new JPanel();
 		JTitle.setLayout( new FlowLayout(FlowLayout.CENTER));
 		JTitle.add(title);
 		this.add(JTitle);
 		
 		layout= new FlowLayout();
-		this.setLayout(new GridLayout(12,0,0,0));
+		this.setLayout(new GridLayout(15,0,0,0));
 
 		
-		for(int i=0;i<10;i++)
+		for(int i=0;i<13;i++)
 		{
 			rows[i]= new JPanel();
 			rows[i].setLayout(layout);
@@ -54,11 +63,14 @@ private String line;
 			sent[i].setEditable(false);
 			sent[i].setOpaque(false);
 			sent[i].setBorder(BorderFactory.createEmptyBorder());
-			
+		
+			input[i]=new JTextField();	
 			rows[i].add(sent[i]);
+			rows[i].add(input[i]);
 			this.add(rows[i]);
 		}
-
+		bottom.add(submit);
+		this.add(bottom);
 		Font font=new Font(title.getText(), Font.BOLD,12);
 		title.setFont(font);
 		title.setOpaque(false);
@@ -66,15 +78,37 @@ private String line;
 		title.setBorder(BorderFactory.createEmptyBorder());
 
 
+		sent[0].setText("Edit Board Dimensions:");
+		sent[1].setText("Blue Base Location:");
+		sent[2].setText("Number of Blue troops:");
+		sent[3].setText("Accuracy of Blue troops:");
+		sent[4].setText("Stealth of Blue troops:");
+		sent[5].setText("Speed of Blue troops:");
+		sent[6].setText("Fear of Blue troops:");
+		
+		
+		sent[7].setText("Red Base Location:");
+		sent[8].setText("Number of Red troops:");
+		sent[9].setText("Accuracy of Red troops:");
+		sent[10].setText("Stealth of Red troops:");
+		sent[11].setText("Speed of Red troops:");
+		sent[12].setText("Fear of Red troops:");
 
+		input[0].setText("20,20");
+		input[1].setText("1,1");
+		input[2].setText("10");
+		input[3].setText(".7");
+		input[4].setText("6");
+		input[5].setText("3");
+		input[6].setText("20");
+		input[7].setText("20,20");
+		input[8].setText("10");
+		input[9].setText(".7");
+		input[10].setText("6");
+		input[11].setText("3");
+		input[12].setText("20");
 
-
-
-
-
-
-
-
+		submit.addActionListener(buttonPress);
 
 	}
 
@@ -82,7 +116,29 @@ private String line;
 
 
 
+	private class ButtonPress implements ActionListener
+	{
 
+		public void actionPerformed(ActionEvent event)
+		{
+			PrintStream o=null;
+	
+			try{o = new PrintStream(new File("A.txt"));}catch(Exception ex){} 	
+		
+			PrintStream console = System.out; 
+			
+			System.setOut(o); 
+       			System.out.println("This will be written to the text file"); 
+
+
+
+
+
+
+	
+			System.setOut(console); 
+		}
+	}
 
 
 
