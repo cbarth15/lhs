@@ -19,7 +19,7 @@ fear=20
 [red]
 base=20,20
 N=10
-accuracy=0.8
+accuracy=0.7
 stealth=6
 speed=3
 fear=20

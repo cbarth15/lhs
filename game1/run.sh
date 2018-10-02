@@ -15,6 +15,8 @@ do
 	if [ $? != 4 ]
 	then
 		x=100
+		make clean >> a.out.tmp
+		rm -rf a.out.tmp
 	fi
 	cd ..
 done	

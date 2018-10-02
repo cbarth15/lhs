@@ -123,7 +123,7 @@ private ButtonPress buttonPress;
 		{
 			PrintStream o=null;
 	
-			try{o = new PrintStream(new File("A.txt"));}catch(Exception ex){} 	
+			try{o = new PrintStream(new File("../game.conf"));}catch(Exception ex){} 	
 		
 			PrintStream console = System.out; 
 			
