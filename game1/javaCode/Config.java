@@ -97,13 +97,13 @@ private ButtonPress buttonPress;
 		input[0].setText("20,20");
 		input[1].setText("1,1");
 		input[2].setText("10");
-		input[3].setText(".7");
+		input[3].setText("0.7");
 		input[4].setText("6");
 		input[5].setText("3");
 		input[6].setText("20");
 		input[7].setText("20,20");
 		input[8].setText("10");
-		input[9].setText(".7");
+		input[9].setText("0.7");
 		input[10].setText("6");
 		input[11].setText("3");
 		input[12].setText("20");
@@ -128,13 +128,41 @@ private ButtonPress buttonPress;
 			PrintStream console = System.out; 
 			
 			System.setOut(o); 
-       			System.out.println("This will be written to the text file"); 
+       			System.out.println("#Comments_only_with_no_spaces");
+			System.out.println();
+			System.out.println("$X=20"); 
+			System.out.println("$Y=20");
+			System.out.println("field="+input[0].getText());
+			System.out.println("seed=8"); 
+			System.out.println();
+			System.out.println("#Number_of_repetitions");
+			System.out.println("nrep=1"); 
+			System.out.println();
+			System.out.println("[blue]");
+			System.out.println("base="+input[1].getText());
+			System.out.println("N="+input[2].getText());
 
+			System.out.println("accuracy="+input[3].getText()); 
+			System.out.println("stealth="+input[4].getText());
+			System.out.println("speed="+input[5].getText());
+			System.out.println("fear="+input[6].getText());
+			System.out.println();
+			System.out.println("[red]");
+			System.out.println("base="+input[7].getText());
 
+			System.out.println("N="+input[8].getText()); 
+			System.out.println("accuracy="+input[9].getText());
+			System.out.println("stealth="+input[10].getText()); 
+			System.out.println("speed="+input[11].getText()); 
+			System.out.println("fear="+input[12].getText());
 
-
-
-
+			System.out.println(); 
+			System.out.println();
+			System.out.println("prn_map=1"); 
+			System.out.println("prn_result=1");
+			System.out.println("prn_move=0");
+			System.out.println("prn_shoot=0"); 
+			System.out.println("prn_title=0");
 	
 			System.setOut(console); 
 		}

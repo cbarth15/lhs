@@ -19,6 +19,7 @@ public class Gui extends JFrame{
 	private JMenu start,quit;
 	private JMenuItem Begin;
 	private JMenuItem config;
+	private JMenuItem stop;
 	private FlowLayout layout;
 	private JPanel[] rows;
 	private playerpiece[][] soldiers;        //an array of all the pieces
@@ -54,9 +55,11 @@ public class Gui extends JFrame{
 		quit= new JMenu("Quit");
 		Begin= new JMenuItem("Begin");
 		config= new JMenuItem("Config");
+		stop= new JMenuItem("Stop");
 		Continue= new JButton("Continue");
 		start.add(Begin);	
 		start.add(config);
+		quit.add(stop);
 		gameboard.setVisible(true);
 		layout= new FlowLayout(FlowLayout.CENTER,3,3);
 			
@@ -106,7 +109,7 @@ public class Gui extends JFrame{
 		Begin.addActionListener(menuHandler);
 		config.addActionListener(menuHandler);
 		Continue.addActionListener(buttonPress);
-
+		stop.addActionListener(menuHandler);
 		try{line=reader.readLine();}catch(Exception ex){}
 		flag=0;
 
@@ -297,6 +300,7 @@ public class Gui extends JFrame{
 		//except for the last
 		if(flag==1)
 		{
+			System.exit(4);
 			return;
 		}
 		if(line.indexOf(':')!=-1)
@@ -342,6 +346,10 @@ public class Gui extends JFrame{
 
 		}
 		
+		if(event.getSource() == stop)
+		{
+	 		System.exit(0);	
+		}
 		
 		if(event.getSource()==config)
 		{
