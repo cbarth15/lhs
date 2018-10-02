@@ -10,7 +10,7 @@
 #include <iterator>
 #include <functional>
 #include <cmath>
-
+#include <ctime>
 
 using std::string;
 using std::cout;
@@ -176,6 +176,7 @@ try
 
 	int done=0;		
 
+	//breaks out of for loop
         for ( int i = 0; i < 10000; i++ )
         {
             cout << field.move();
@@ -185,6 +186,8 @@ try
             int ab = field.aliveB();
 
             string kills = field.shoot();
+		//if statement does not appear to be
+		//used
             if ( !kills.empty() )
             {
                 cout << kills << '\n';
@@ -271,7 +274,11 @@ void Field::init(string filename)
         else if ( k == "stealth" ) stl[mode] = std::atof(v.c_str());
         else if ( k == "speed" ) vel[mode] = std::atof(v.c_str());
         else if ( k == "fear" ) fea[mode] = std::atof(v.c_str());
-        else if ( k == "seed" ) Rnd::seed = std::atol(v.c_str());
+	else if( k == "seed" )
+	{ 
+	std::srand(std::time(nullptr));
+         Rnd::seed=std::rand();	//= std::atol(v.c_str());
+	}
         else if ( k == "nrep" ) Nrep = std::atol(v.c_str());
 
         else if ( k == "prn_map" ) prn_map = std::atol(v.c_str());
@@ -354,10 +361,11 @@ string Field::title() const
 
 string Field::map() const
 {
+	//if not printing map return nothing
     if( !prn_map ) return "";
 
     std::ostringstream o;
-
+	//printing the border
     for ( int i = 0; i < size.x; i++ ) o << "--"; o << '\n';
 
     //B R M ! a-z #
@@ -367,21 +375,22 @@ string Field::map() const
             v.push_back("  ");
 
     Pos sz = size;
+	//c is the map
     auto c = [&v, sz](Pos z) -> string&
     {
         return v[(z.y - 1) * sz.x + (z.x - 1)];
     };
-
+//the bases are B! and R!
     c(baseB) = "B!";
     c(baseR) = "R!";
 
     for ( int i = 0; i < blues.size(); i++ )
     {
-        if ( blues[i].dead ) continue;
+        if ( blues[i].dead ) continue;//if blue is dead leave
         string & s = c(blues[i].pos);
-        if ( s[0] == ' ' ) s = blues[i].nm();
-        else if ( s[0] == 'B' ) s = "B#";
-        else s = "M#";
+        if ( s[0] == ' ' ) s = blues[i].nm();//move blue
+        else if ( s[0] == 'B' ) s = "Bq";//blue is not moving
+        else s = "M#";		//murdered?
     }
 
     for ( int i = 0; i < reds.size(); i++ )
