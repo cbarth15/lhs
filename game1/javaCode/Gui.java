@@ -113,6 +113,17 @@ public class Gui extends JFrame{
 		try{line=reader.readLine();}catch(Exception ex){}
 		flag=0;
 
+		Continue.doClick();
+
+		Timer timer = new Timer(5000, new ActionListener() {
+
+		    @Override
+		    public void actionPerformed(ActionEvent arg0) {            
+			Continue.doClick();
+		    }
+		});
+		timer.setRepeats(true);
+		timer.start();
 
 	}	//end of function
 
