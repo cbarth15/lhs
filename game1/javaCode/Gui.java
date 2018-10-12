@@ -311,7 +311,7 @@ public class Gui extends JFrame{
 		//except for the last
 		if(flag==1)
 		{
-			System.exit(4);
+			rerun();
 			return;
 		}
 		if(line.indexOf(':')!=-1)
@@ -346,6 +346,45 @@ public class Gui extends JFrame{
 
 
 		}
+	}
+	public void rerun()
+	{
+		ProcessBuilder hold;
+		File parent= new File("..");
+		try{
+
+			
+		hold=new ProcessBuilder("./run.sh", "");
+		hold.directory(parent);
+		Process p=hold.start();
+
+		p.waitFor();
+		flag=0;
+		clearBoard();
+		}
+		catch(Exception ex)
+		{
+
+		}
+
+
+		File Game= new File("../a.out");
+
+		try{
+		reader= new BufferedReader(new FileReader(Game));
+		line= reader.readLine();	
+		}
+		catch(Exception ex)
+		{
+		line=null;
+		}
+
+
+		try{line=reader.readLine();}catch(Exception ex){}
+
+		try{line=reader.readLine();}catch(Exception ex){}
+		System.out.println(line);
+
 	}
 	public class MenuHandler implements ActionListener
 	{
