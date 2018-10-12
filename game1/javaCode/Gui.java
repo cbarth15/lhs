@@ -303,6 +303,7 @@ public class Gui extends JFrame{
 	}
 	public class ButtonPress implements ActionListener
 	{
+		WinScreen Screen;
 		public void actionPerformed(ActionEvent event)
 		{
 			
@@ -312,11 +313,16 @@ public class Gui extends JFrame{
 		if(flag==1)
 		{
 			rerun();
+			Screen.setVisible(false);
+			Screen.dispose();
 			return;
 		}
-		if(line.indexOf(':')!=-1)
+		if(line.indexOf(':')!=-1)//runs at the end
 		{
 			flag=1;
+			Screen= new WinScreen();
+			Screen.setSize(400,300);
+			Screen.setVisible(true);
 			return;
 		}
 		clearBoard();
@@ -409,6 +415,43 @@ public class Gui extends JFrame{
 			configuration.setVisible(true);
 		}
 	}	
+	}
+	public class WinScreen extends JFrame
+	{
+	FlowLayout layout;
+	JTextField sent[];
+	JPanel rows[];
+
+
+	public WinScreen()
+	{
+		super("Win");
+		this.getContentPane().setBackground(Color.WHITE);
+		rows=new JPanel[13];
+		sent=new JTextField[13];
+		this.setLayout(new GridLayout(15,0,0,0));
+		layout=new FlowLayout();
+		for(int i=0;i<13;i++)
+		{
+			rows[i]=new JPanel();
+			sent[i]=new JTextField();
+			rows[i].setLayout(layout);
+			sent[i].setEditable(false);
+			sent[i].setOpaque(false);
+			sent[i].setBorder(BorderFactory.createEmptyBorder());
+			rows[i].add(sent[i]);
+			this.add(rows[i]);
+
+		}
+		sent[0].setText(line);	
+		try{line=reader.readLine();}catch(Exception ex){}
+		sent[1].setText(line);	
+		try{line=reader.readLine();}catch(Exception ex){}
+		sent[2].setText(line);	
+		try{line=reader.readLine();}catch(Exception ex){}
+		sent[3].setText(line);	
+	}
+
 	}
 }
 
