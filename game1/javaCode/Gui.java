@@ -223,34 +223,35 @@ public class Gui extends JFrame{
 		//blue base	
 	if((temp=lineSb.indexOf("B!"))!=-1)
 		{
-			soldiers[y][temp/2].changePiece(3);
-		lineSb.delete(temp,temp+1);
+			soldiers[y][temp/2].changePiece(3);	
+			lineSb.setCharAt(temp,'+');
+			lineSb.setCharAt(temp+1,'+');
 
 		}
 		//red base
 	if((temp=lineSb.indexOf("R!"))!=-1)
 		{
 			soldiers[y][temp/2].changePiece(4);
-			lineSb.delete(temp,temp+1);
+			lineSb.setCharAt(temp,'+');
+			lineSb.setCharAt(temp+1,'+');
 
 		}
 	while(lineSb.indexOf("B")!=-1)
 	{
-		if((temp=lineSb.indexOf("B"))!=-1)
-		{
-			soldiers[y][temp/2].changePiece(1);
-			lineSb.delete(temp,temp+1);
+			temp=lineSb.indexOf("B");
+			soldiers[y][temp/2].changePiece(1);	
+			lineSb.setCharAt(temp,'+');
+			lineSb.setCharAt(temp+1,'+');
 
 
-		}
+		
 	}	
 	while(lineSb.indexOf("R")!=-1)
 	{
-		if((temp=lineSb.indexOf("R"))!=-1)
-		{
+			temp=lineSb.indexOf("R");
 			soldiers[y][temp/2].changePiece(2);
-			lineSb.delete(temp,temp+1);
-		}
+			lineSb.setCharAt(temp,'+');
+			lineSb.setCharAt(temp+1,'+');
 	}
 
 
