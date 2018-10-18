@@ -10,6 +10,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.concurrent.TimeUnit;
 import javax.imageio.*;
+import java.util.Arrays;
 
 public class Gui extends JFrame{
 	private board gameboard;
@@ -165,13 +166,55 @@ public class Gui extends JFrame{
 		}
 		try{line=reader.readLine();}catch(Exception ex){}
 		//return;
-
+		overlapUpdate();
 			
 	}
 
-	//public void 
+	public void overlapUpdate()
+	{
+		//grabs Red~	
+		try{line=reader.readLine();}catch(Exception ex){}
+		//For Red pieces
+		while(true)
+		{
+		try{line=reader.readLine();}catch(Exception ex){}
 
+		if(line.indexOf('~')!=-1)//if at Blue~
+		{
+			break;
+		}
 
+		line=line.replaceAll("[^0-9]+"," ");
+		String[] temp=line.trim().split(" ");
+
+		int temp0 = Integer.parseInt(temp[0]);
+		int temp1= Integer.parseInt(temp[1]);
+
+		soldiers[temp0-1][temp1-1].setText(temp[2]);
+
+		}
+
+		//for blue pieces		
+		while(true)
+		{
+		try{line=reader.readLine();}catch(Exception ex){}
+
+		if(line.indexOf('~')!=-1)//if at End~
+		{
+			break;
+		}
+
+		line=line.replaceAll("[^0-9]+"," ");
+		String[] temp=line.trim().split(" ");
+
+		int temp0 = Integer.parseInt(temp[0]);
+		int temp1= Integer.parseInt(temp[1]);
+
+		soldiers[temp0-1][temp1-1].setText(temp[2]);
+
+		}
+
+	}
 	public void pieceprinter(int y)
 	{
 	
@@ -262,17 +305,29 @@ public class Gui extends JFrame{
 			this.setBorder(BorderFactory.createEmptyBorder());
 			this.setContentAreaFilled(false);
 			playernumb=num;
-			colorselector(num);	
+			colorselector(num);
+			this.setText("0");
+			this.setHorizontalTextPosition(JButton.CENTER);
+			this.setVerticalTextPosition(JButton.CENTER);	
 
 		}
 		private void colorselector(int color)
 		{
 		if(color==0)
+		{
 			ColorString="empty";
+			this.setText("0");
+		}
 		if(color==1)
+		{
 			ColorString="Blue2";
+			this.setText("1");
+		}
 		if(color==2)
+		{
 			ColorString="Red4";
+			this.setText("1");
+		}
 		if(color==3)
 			ColorString="BlueBase";
 		if(color==4)
@@ -346,11 +401,12 @@ public class Gui extends JFrame{
 		// Grabs next line
 		try{line=reader.readLine();}catch(Exception ex){}
 		}
-		try{line=reader.readLine();}catch(Exception ex){}
 		//return;
 
+		overlapUpdate();
 
 
+		try{line=reader.readLine();}catch(Exception ex){}
 		}
 	}
 	public void rerun()
