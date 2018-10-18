@@ -236,6 +236,14 @@ public class Gui extends JFrame{
 			lineSb.setCharAt(temp+1,'+');
 
 		}
+
+	while(lineSb.indexOf("R")!=-1)
+	{
+			temp=lineSb.indexOf("R");
+			soldiers[y][temp/2].changePiece(2);
+			lineSb.setCharAt(temp,'+');
+			lineSb.setCharAt(temp+1,'+');
+	}
 	while(lineSb.indexOf("B")!=-1)
 	{
 			temp=lineSb.indexOf("B");
@@ -246,13 +254,6 @@ public class Gui extends JFrame{
 
 		
 	}	
-	while(lineSb.indexOf("R")!=-1)
-	{
-			temp=lineSb.indexOf("R");
-			soldiers[y][temp/2].changePiece(2);
-			lineSb.setCharAt(temp,'+');
-			lineSb.setCharAt(temp+1,'+');
-	}
 
 
 	}
