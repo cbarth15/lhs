@@ -121,6 +121,7 @@ class Field
 	// all these functions defined elsewhere
         void init(string filename); //takes in a game.config and adjusts accordingly
         bool arein(Pos base, const std::vector<Soldier> & s) const;
+	int PosCounter(Pos base, const std::vector<Soldier> & s) const;
         bool alldead(const std::vector<Soldier> & s) const;
         int survived(const std::vector<Soldier> & s) const;
 
@@ -144,6 +145,7 @@ class Field
 
         string move();
         string shoot();
+	void printInBase() const;
 
         int isdone() const; // 0 go on; 1 - blues; 2 - reds; 3 draw
         string result(string = "") const;
@@ -198,7 +200,8 @@ try
 
                 cout << field.map();
             }
-
+		
+		field.printInBase();
 			done = field.isdone();
             if ( done ) break;
         }
@@ -389,7 +392,7 @@ string Field::map() const
         if ( blues[i].dead ) continue;//if blue is dead leave
         string & s = c(blues[i].pos);
         if ( s[0] == ' ' ) s = blues[i].nm();//move blue
-        else if ( s[0] == 'B' ) s = "Bq";//blue is not moving
+        else if ( s[0] == 'B' ) s = "B#";//blue is not moving
         else s = "M#";		//murdered?
     }
 
@@ -647,6 +650,60 @@ bool Field::arein(Pos base, const std::vector<Soldier> & s) const
     }
 
     return false;
+}
+
+int Field::PosCounter(Pos base, const std::vector<Soldier> & s) const
+{
+
+	int counter=0;
+	std::vector<Pos> Positions;
+	
+    for ( const auto & i : s )	//for each soldier
+    {
+
+	int flag=0;
+	for(int v=0;v<Positions.size();v++)
+	{
+		if(i.pos==Positions[v]) flag=1;
+	
+	}
+	if(flag==1)
+	{
+		flag=0;
+		continue;
+	}
+
+        if ( i.dead ) continue; //if soldier is dead go to next soldier
+	Positions.push_back(i.pos);
+
+	for(const auto & j : s) //for each soldier
+	{
+	if (j.dead) continue;	//if j is dead go to next
+	if(j.name==i.name) continue;
+        if ( j.pos == i.pos )
+	{
+
+		counter++; //if a soldiers share position add
+	}
+	}
+	if(counter>0)
+	{
+		cout<<i.pos.y<<" "<<i.pos.x<<":"<<counter+1<<std::endl;
+	}
+	counter=0;
+    }
+
+	return counter;
+
+}
+void Field::printInBase() const
+{
+cout<<"Reds~"<<std::endl;
+PosCounter(baseR,reds);
+cout<<"Blues~"<<std::endl;
+PosCounter(baseB, blues);
+cout<<"End~"<<std::endl;
+return;
 }
 
 //print everything at the end
