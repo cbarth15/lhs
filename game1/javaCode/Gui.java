@@ -13,18 +13,28 @@ import javax.imageio.*;
 import java.util.Arrays;
 
 public class Gui extends JFrame{
-	private board gameboard;
+	private board gameboard;	//A JPanel
 	private JMenuBar menubar;       //for all things in the menu
+
 	private MenuHandler menuHandler;
-	private ButtonPress buttonPress;
+	private ButtonPress buttonPress;//for the continue button,
+					//is pressed every few minutes
+					//by a timer for constant movement
+
 	private JMenu start,quit;
 	private JMenuItem Begin;
 	private JMenuItem config;
 	private JMenuItem stop;
 	private FlowLayout layout;
-	private JPanel[] rows;
-	private playerpiece[][] soldiers;        //an array of all the pieces
-	private JButton Continue;
+	private JPanel[] rows;		//each row is a Jpanel that contains
+					//all the buttons of a single row
+					//of the playerpiece array
+
+	private playerpiece[][] soldiers;       //an array of all the pieces
+	private JButton Continue;	//the continue button that is 
+					//linked with the buttonpress
+					//handler
+
 	private int counter;
 	BufferedReader reader;
 	String line;
@@ -32,11 +42,14 @@ public class Gui extends JFrame{
 	private int yBoard;		//contains y dimension of field
 
 	private int flag;
+
+//sets up Gui and also contains the timer that issues a button press
+//on continue every ~5 seconds
 	public Gui()
 	{
 
 		super("WarSim");
-
+		//sets up reading the file
 		File Game= new File("../a.out");
 
 		try{
@@ -49,7 +62,7 @@ public class Gui extends JFrame{
 		}
 
 
-		
+		//setting up the window itself
 		gameboard= new board();
 		menubar= new JMenuBar();
 		start= new JMenu("Start");
@@ -63,11 +76,13 @@ public class Gui extends JFrame{
 		quit.add(stop);
 		gameboard.setVisible(true);
 		layout= new FlowLayout(FlowLayout.CENTER,3,3);
-			
+		//take off max x coordinates of the board	
 		xBoard=Integer.parseInt(line);
 		try{line=reader.readLine();}catch(Exception ex){}
+		//take off max y coordinates of the board
 		yBoard=Integer.parseInt(line);
-
+		
+		//creates an array of all the pieces that can occur
 		soldiers=new playerpiece[yBoard][xBoard];
 		rows= new JPanel[yBoard+1];
 		menuHandler= new MenuHandler();
@@ -79,6 +94,8 @@ public class Gui extends JFrame{
 			rows[y].setLayout(layout);
 
 		}
+
+		//set each solider to be an empty piece
 		for(int y=0;y<yBoard;y++)
 		{
 			for(int x=0; x<xBoard;x++)
@@ -95,11 +112,12 @@ public class Gui extends JFrame{
 		this.add(gameboard);
 
 		gameboard.setLayout(new GridLayout(yBoard+1,0,0,0));
+		//start adding all the rows to the gameboard
 		for(int y=0;y<yBoard+1;y++)
 		{
 			gameboard.add(rows[y]);
 		}
-		
+		//go through x and y to add all of the pieces onto the rows
 		for(int y=0;y<yBoard;y++)
 		{
 			for(int x=0;x<xBoard;x++)
@@ -114,7 +132,9 @@ public class Gui extends JFrame{
 		try{line=reader.readLine();}catch(Exception ex){}
 		flag=0;
 
-		Continue.doClick();
+		Continue.doClick();//this function simulates a person click
+				//-ing a jbutton. I use it with this timer
+				//to iterate through each occurance
 
 		Timer timer = new Timer(5000, new ActionListener() {
 
@@ -128,7 +148,7 @@ public class Gui extends JFrame{
 
 	}	//end of function
 
-
+	//UNUSED LEGACY CODE
 	public void processing()
 	{
 
@@ -170,6 +190,10 @@ public class Gui extends JFrame{
 			
 	}
 
+	//I have the c program output all overlapping occurances
+	//right above the gameboard. This function grabs those overlaps
+	//and applies them to the necessary pieces, allowing for each piece
+	//to show overlaps.
 	public void overlapUpdate()
 	{
 		//grabs Red~	
@@ -207,14 +231,18 @@ public class Gui extends JFrame{
 		line=line.replaceAll("[^0-9]+"," ");
 		String[] temp=line.trim().split(" ");
 
-		int temp0 = Integer.parseInt(temp[0]);
-		int temp1= Integer.parseInt(temp[1]);
+		int temp0 = Integer.parseInt(temp[0]);//get x
+		int temp1= Integer.parseInt(temp[1]);//get y
 
 		soldiers[temp0-1][temp1-1].setText(temp[2]);
 
 		}
 
 	}
+
+	//grab pieces from the text file and apply them to the gui
+	//I have the characters then changed in order to not interfer
+	//with distance and to prevent a piece being counted twice
 	public void pieceprinter(int y)
 	{
 	
@@ -257,7 +285,7 @@ public class Gui extends JFrame{
 
 
 	}
-
+	//change all pieces to blank
 	public void clearBoard()
 	{
 		for(int y=0;y<yBoard;y++)
@@ -273,7 +301,7 @@ public class Gui extends JFrame{
 		
 
 	}
-
+	//UNUSED
 	public static void getInfo (String[] args)
  
 	{
@@ -297,6 +325,8 @@ public class Gui extends JFrame{
 
 	}
 
+
+	//sets up for each soldier
 	private class playerpiece extends JButton
 	{
 		private int playernumb;
@@ -304,15 +334,20 @@ public class Gui extends JFrame{
 
 		public playerpiece(int num)
 		{
+			//gets rid of default button image
 			this.setBorder(BorderFactory.createEmptyBorder());
 			this.setContentAreaFilled(false);
 			playernumb=num;
 			colorselector(num);
+			//assume to be no soldiers at position on creation
 			this.setText("0");
+			//sets text position
 			this.setHorizontalTextPosition(JButton.CENTER);
 			this.setVerticalTextPosition(JButton.CENTER);	
 
 		}
+		//this function changes the piece color
+		//sets it to 1 since each soldier is at least one
 		private void colorselector(int color)
 		{
 		if(color==0)
@@ -341,13 +376,14 @@ public class Gui extends JFrame{
 		this.setIcon(image);
 
 		}
+		//changepiece changes piece
 		public void changePiece(int num)
 		{
 			colorselector(num);
 		}
 
 	}
-
+		//sets up each row's defaults
 	public class Row extends JPanel
 	{
 		public Row()
@@ -358,6 +394,8 @@ public class Gui extends JFrame{
 		}
 
 	}
+
+	//This is where iterating through each turn happens
 	public class ButtonPress implements ActionListener
 	{
 		WinScreen Screen;
@@ -411,6 +449,9 @@ public class Gui extends JFrame{
 		try{line=reader.readLine();}catch(Exception ex){}
 		}
 	}
+
+	//runs the c program and then reruns the java code each time
+	//this function is used for rerunning the program automatically
 	public void rerun()
 	{
 		ProcessBuilder hold;
@@ -474,6 +515,8 @@ public class Gui extends JFrame{
 		}
 	}	
 	}
+
+	//a popup that displays results
 	public class WinScreen extends JFrame
 	{
 	FlowLayout layout;
@@ -501,6 +544,9 @@ public class Gui extends JFrame{
 			this.add(rows[i]);
 
 		}
+		//reads in what the c program outputs at the end (which is
+		//results)
+		//and sets each line to it
 		sent[0].setText(line);	
 		try{line=reader.readLine();}catch(Exception ex){}
 		sent[1].setText(line);	
