@@ -190,6 +190,38 @@ public class Gui extends JFrame{
 			
 	}
 
+	public void whoFired()
+	{
+		String[] POS;		//positions
+		
+		try{line=reader.readLine();}catch(Exception ex){}//listings
+		int temp;
+		//convert to stringbuilder for manipulation
+		POS=line.split(",");
+
+		for(int i=0;i<POS.length;i=i+2)
+		{
+		int temp0 = Integer.parseInt(POS[i]);
+		int temp1 = Integer.parseInt(POS[i+1]);
+
+		if(soldiers[temp0-1][temp1-1].isRed())
+			{
+			soldiers[temp0-1][temp1-1].changePiece(9);
+
+			}
+		else if(soldiers[temp0-1][temp1-1].isBlue())
+			{
+			soldiers[temp0-1][temp1-1].changePiece(10);
+			}
+
+		}
+		try{line=reader.readLine();}catch(Exception ex){}//Killed/S
+		try{line=reader.readLine();}catch(Exception ex){}//~
+
+		try{line=reader.readLine();}catch(Exception ex){}//Reds
+
+	}
+
 	//I have the c program output all overlapping occurances
 	//right above the gameboard. This function grabs those overlaps
 	//and applies them to the necessary pieces, allowing for each piece
@@ -198,6 +230,10 @@ public class Gui extends JFrame{
 	{
 		//grabs Red~	
 		try{line=reader.readLine();}catch(Exception ex){}
+		if(line.indexOf('R')==-1)
+		{
+		whoFired();
+		}
 		//For Red pieces
 		while(true)
 		{
@@ -213,8 +249,18 @@ public class Gui extends JFrame{
 
 		int temp0 = Integer.parseInt(temp[0]);
 		int temp1= Integer.parseInt(temp[1]);
+		int temp2=Integer.parseInt(temp[2]);
 
 		soldiers[temp0-1][temp1-1].setText(temp[2]);
+		if(temp2==2)
+		{
+			soldiers[temp0-1][temp1-1].changePiece(5);
+
+		}
+		if(temp2>=3)
+		{	
+			soldiers[temp0-1][temp1-1].changePiece(6);
+		}
 
 		}
 
@@ -233,9 +279,19 @@ public class Gui extends JFrame{
 
 		int temp0 = Integer.parseInt(temp[0]);//get x
 		int temp1= Integer.parseInt(temp[1]);//get y
+		int temp2= Integer.parseInt(temp[2]);
 
 		soldiers[temp0-1][temp1-1].setText(temp[2]);
 
+		if(temp2==2)
+		{
+			soldiers[temp0-1][temp1-1].changePiece(7);
+
+		}
+		else if(temp2>=3)
+		{	
+			soldiers[temp0-1][temp1-1].changePiece(8);
+		}
 		}
 
 	}
@@ -322,6 +378,18 @@ public class Gui extends JFrame{
 
 	private class board extends JPanel
 	{
+		private Image background;
+		public void paintComponent(Graphics g)
+		{
+			try{
+			background=ImageIO.read(getClass().getResource("players/background.jpeg"));
+		}catch(Exception ex){}
+		super.paintComponent(g);
+		g.drawImage(background.getScaledInstance(Gui.this.getWidth(), Gui.this.getHeight(), 1),0,0,this);
+
+
+
+		}
 
 	}
 
@@ -331,7 +399,7 @@ public class Gui extends JFrame{
 	{
 		private int playernumb;
 		private String ColorString;
-
+		private int colorHOLD;
 		public playerpiece(int num)
 		{
 			//gets rid of default button image
@@ -340,20 +408,40 @@ public class Gui extends JFrame{
 			playernumb=num;
 			colorselector(num);
 			//assume to be no soldiers at position on creation
-			this.setText("0");
+			this.setText("");
 			//sets text position
 			this.setHorizontalTextPosition(JButton.CENTER);
 			this.setVerticalTextPosition(JButton.CENTER);	
-
+			this.setForeground(Color.WHITE);
 		}
+		public boolean isRed()
+			{
+				if(colorHOLD==2 || colorHOLD==9 || colorHOLD==4 || colorHOLD==5 || colorHOLD==6)
+					{
+						return true;
+					
+					}	
+			return false;
+
+			}
+		public boolean isBlue()
+			{
+				if(colorHOLD==1 || colorHOLD==3 || colorHOLD==7 || colorHOLD==8 || colorHOLD==10)
+				{
+					return true;
+				}
+
+			return false;
+			}
 		//this function changes the piece color
 		//sets it to 1 since each soldier is at least one
 		private void colorselector(int color)
 		{
+		colorHOLD=color;
 		if(color==0)
 		{
 			ColorString="empty";
-			this.setText("0");
+			this.setText("");
 		}
 		if(color==1)
 		{
@@ -369,7 +457,18 @@ public class Gui extends JFrame{
 			ColorString="BlueBase";
 		if(color==4)
 			ColorString="RedBase";
-
+		if(color==5)
+			ColorString="RedMulti2";
+		if(color==6)
+			ColorString="RedMulti3";
+		if(color==7)
+			ColorString="BlueMulti2";
+		if(color==8)
+			ColorString="BlueMulti3";
+		if(color==9)
+			ColorString="RedGun";
+		if(color==10)
+			ColorString="BlueGun";
 		String directory="players/"+ColorString+".gif";
 
 		Icon image= new ImageIcon(getClass().getResource(directory));

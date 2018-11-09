@@ -192,12 +192,17 @@ try
 		//used
             if ( !kills.empty() )
             {
+		cout<<"~"<<'\n';
                 cout << kills << '\n';
 
                 cout << "Killed/Survived: "
                      << (ab - field.aliveB()) << "/" << (field.aliveB()) << " blues, "
                      << (ar - field.aliveR()) << "/" << (field.aliveR()) << " reds\n";
 
+
+		cout<<"~"<<'\n';
+
+		field.printInBase();
                 cout << field.map();
             }
 		
@@ -587,7 +592,10 @@ string Soldier::shoot(std::vector<Soldier> & enemies, bool prn_shoot)
 
         if ( (*rnd)() > p ) continue; // if p is greater than the random number,
 					//the enemy is killed
-        if(prn_shoot) o << "(" << nm() << "/" << i.nm() << ")";
+					//if print shoot is true, give 
+					//the name of the soldier
+					//and the name shot at
+        if(prn_shoot) o << pos.x<<","<<pos.y<<",";         // << "/" << i.nm() << ")";
         i.dying = true;			//the enemy is now dying
     }
 
