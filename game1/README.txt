@@ -4,7 +4,8 @@ ABOUT:
 soldiers (10 as default). These soldiers move on a config file specified
 playing board (the config file gives how many arbitrary units for the x 
 component of the board and how many units for the y component). A team wins
-if either one is able to kill all soldiers on an opposing team.
+if either one is able to kill all soldiers on an opposing team or capture
+the base.
 	All actions of the soldiers are determined based on values specified
 in the config file. The values that play into the algorithms of the soldiers
  are accuracy, stealth, speed, and fear (however, factors like the x and y
@@ -19,10 +20,12 @@ order of this can be found in the main function).
 
 Soldier::move:
 	This algorithm is ran for each soldier currently alive (Field::move
- calls this function for each soldier). The algorithm begins by creating a 
-vector containing all possible moves for the current soldier (a move is 
-considered to be possible if it is between the current position of the 
-solider - the speed of the solider and the current position + the speed).
+ calls this function for each soldier). It takes moves based on how likely 
+a soldier will survive when going to that position.The algorithm begins by 
+creating a vector containing all possible moves for the current soldier (a 
+move is considered to be possible if it is between the current position of 
+the solider - speed of the solider and the current position + the speed).
+This creates a circle of all possible moves.
 	For each position in the vector of all possible moves, a temporary 
 number p is created to contain: 
 
@@ -34,7 +37,8 @@ current position
 *Number of enemies refers to all enemies that are present on the field at
 the time
 
-	For each p created, p is multiplied by the number inputted into fear (a config file value) and is then subtracted from by 1 such as:
+	For each p created, p is exponated by the number inputted into fear
+ (a config file value) and is then subtracted from by 1 such as:
 1-p^(fear)
  
 	A new vector called probability(which is the total size of all 
@@ -52,6 +56,33 @@ minimizes the distance of the soldier to his own base.
 
 (note because this function runs in field::move, it is ran for every soldier
 on the playing field)
+
+VARIABLES AND THEIR EFFECTS:
+
+	The soldier's use their current values for distance, accuracy and 
+stealth to determine what the enemy's values for these variable are. 
+Based on that, they make descision as to whether they will survive if they
+move to a given position.
+
+-increases refers to an increased chance of taking position in question
+-decreases refers to a decreased chance of taking a position in question
+
+	higher stealth-decreases
+	lower stealth-increases
+
+	higher accuracy-decreases
+	lower accuracy-increases
+
+	higher distance-increases
+	lower distance-decreases
+
+	more enemies-decreases
+	less enemies-increases
+
+	more fear-decreases
+	less fear-increases
+
+
 SUDO CODE:
 	for( yth position-speed until yth position +speed):
 		for(xth position-speed until xth position+speed):
@@ -84,9 +115,10 @@ SUDO CODE:
 
 
 Solider::shoot:
-	This algorithm is ran for each soldier currently alive 
-(Field::shoot calls this function for each soldier). This algorithm is 
-responsible for causing the death of all soldiers on the playing field.
+	This algorithm is ran for each soldier currently alive, Gaussian
+Normal Distribution function (Field::shoot calls this function for each 
+soldier). This algorithm is responsible for causing the death of all 
+soldiers on the playing field.
 
 	The algorithm is ran on a per soldier basis but considered each 
 enemy soldier:
