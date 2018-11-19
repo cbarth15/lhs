@@ -347,12 +347,16 @@ public class Gui extends JFrame{
 			temp=lineSb.indexOf("B");
 			soldiers[y][temp/2].changePiece(1);	
 			lineSb.setCharAt(temp,'+');
-			lineSb.setCharAt(temp+1,'+');
-
-
-		
+			lineSb.setCharAt(temp+1,'+');		
 	}	
 
+	while(lineSb.indexOf("l")!=-1)
+	{
+			temp=lineSb.indexOf("l");
+			soldiers[y][temp/2].changePiece(11);	
+			lineSb.setCharAt(temp,'+');
+			lineSb.setCharAt(temp+1,'+');		
+	}	
 
 	}
 	//change all pieces to blank
@@ -483,6 +487,8 @@ public class Gui extends JFrame{
 			ColorString="RedGun";
 		if(color==10)
 			ColorString="BlueGun";
+		if(color==11)
+			ColorString="Wall";
 		String directory="players/"+ColorString+".gif";
 
 		Icon image= new ImageIcon(getClass().getResource(directory));
