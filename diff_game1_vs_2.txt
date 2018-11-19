@@ -106,7 +106,8 @@ code from game1.cpp:
  			//however, at this part the highest chance of
 			//survival (the smallest number) is chosen
 			//by going through the array of possible moves
-			//and picking the smallest number
+			//and picking which one minimizes the distance to
+			//the base
      double rmin2 = 1e6;
      for ( auto i : poss2 )
      {

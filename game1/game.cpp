@@ -80,6 +80,14 @@ double dist2(Pos a, Pos b)
     return x * x + y * y;
 }
 
+//distance not squared
+double dist1(Pos a, Pos b)
+{
+
+    double x = a.x - b.x;
+    double y = a.y - b.y;
+	return abs(x+y);
+}
 class Field;
 
 //holds all info for each piece
@@ -105,15 +113,16 @@ class Soldier
 
         string nm() const { return string() + team + char('A' + char(name > 25 ? 25 : name)); }
 
-        string move(Pos sz, Pos b, const std::vector<Soldier> & enemies, bool prn_move);
+        string move(Pos sz, Pos b, const std::vector<Soldier> & enemies, bool prn_move, const std::vector<std::vector<Pos> >& Wall);
 
-        string shoot(std::vector<Soldier> & enemies, bool prn_shoot);
+        string shoot(std::vector<Soldier> & enemies, bool prn_shoot, const std::vector<std::vector<Pos> >& Wall);
 };
 
 class Field
 {
         Pos baseB;	//location of Blue base
         Pos baseR;	//location of Red base
+	std::vector<std::vector<Pos>> Wall;
         std::vector<Soldier> blues;
         std::vector<Soldier> reds;
         int turn = 0;
@@ -309,6 +318,18 @@ void Field::init(string filename)
 
     for ( int i = 0; i < ns[2]; i++ )
         reds.push_back(Soldier(baseR, acc[2], stl[2], vel[2], fea[2], 'R', i));
+	Wall.resize(5);
+	for(int q=0;q<3;q++)
+	{	int temp1=rand()%size.x;
+		int temp2=rand()%size.y;
+		for(int i=0;i<3;i++)
+		{
+				if(temp2+i<size.y)
+				{
+				Wall[0].push_back(Pos(temp1,temp2+i));
+				}
+		}
+	}
 }
 
 
@@ -409,6 +430,17 @@ string Field::map() const
         else if ( s[0] == 'R' ) s = "R#";
         else s = "M#";
     }
+	for ( int i = 0; i < Wall.size(); i++ )
+	    {
+
+		if ( Wall[i].empty() ) continue;
+		for(int x=0;x<Wall[i].size();x++)
+		{
+			string & s = c(Wall[i][x]);
+			if ( s[0] == ' ' ) s = "ll";
+		}
+	    }
+
 
     for ( int j = 0; j < size.y; j++ )
     {
@@ -430,8 +462,8 @@ string Field::move()
 
 //    blues[0].move(size,baseR,reds);
 //calls the soldier's move
-    for ( auto & i : blues ) o << i.move(size, baseR, reds, prn_move);
-    for ( auto & i : reds ) o << i.move(size, baseB, blues, prn_move);
+    for ( auto & i : blues ) o << i.move(size, baseR, reds, prn_move, Wall);
+    for ( auto & i : reds ) o << i.move(size, baseB, blues, prn_move, Wall);
 	//redefine the soldier's position
     for ( auto & i : blues ) i.pos = i.next;
     for ( auto & i : reds ) i.pos = i.next;
@@ -471,7 +503,7 @@ string draw(std::vector<Pos> cells)
     return o.str();
 }
 
-string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies, bool prn_move)
+string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies, bool prn_move, const std::vector<std::vector<Pos>> & Wall)
 {
     if ( dead )
     {
@@ -490,11 +522,76 @@ string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies, boo
 
             double d2 = dist2(Pos(i, j), pos);//d2 holds the distance between where the soldier is
 						//and where he wants to go
-
+		Pos tempP=Pos(i,j);
             if ( d2 > sp2 + 0.1 ) continue;
+
+
+	int flag=0;	
+	for(int i=0;i<Wall.size();i++)
+	{
+		for(int x=0;x<Wall[i].size();x++)
+		{
+
+			if(tempP==Wall[i][x]) flag=1;
+			else if(tempP.x==Wall[i][x].x)
+				{
+				if(pos.y<Wall[i][x].y<tempP.y || pos.y>Wall[i][x].y>tempP.y)
+					{
+						int temp;
+						if(i<(Wall[i].size()-i))
+							{
+							temp=i*2+d2;
+							}
+						else
+							{
+							temp=Wall[i].size()-i;
+							temp=temp*2+d2;
+							}
+					if(temp>sp2+.1)
+						{
+						flag=1;
+						}
+
+					}
+				}
+			else if(tempP.y==Wall[i][x].y)
+				{
+				if(pos.y<Wall[i][x].y<tempP.y || pos.y>Wall[i][x].y>tempP.y)
+					{
+
+						int temp;
+						if(i<(Wall[i].size()-i))
+							{
+							temp=i*2+d2;
+							}
+						else
+							{
+							temp=Wall[i].size()-i;
+							temp=temp*2+d2;
+							}
+					if(temp>sp2+.1)
+						{
+						flag=1;
+						}
+
+					}
+
+				}
+
+			if(flag==1) break;
+			//if(pos.x==Wall[i]
+		}
+			if(flag==1) break;
+	}
+		if (flag==1)
+		{
+			flag=0;
+			continue;
+		}
 
             possible.push_back(Pos(i, j));		//adding possible positions based on speed
         }
+	
 
 	//prob is the probability of the soldier pursuing each enemy
 	//based on both accuracy and fear of the soldier
@@ -503,11 +600,11 @@ string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies, boo
     {
         double p = 1;
 
-        const double s2 = stealth * stealth;
+        const double s2 = stealth/2; //* stealth;
         for ( auto j : enemies )		//enemies is a vector of the opposing color
         {
             if ( j.dead ) continue;
-            double r2 = dist2(possible[i], j.pos);	//distance between soldier and enemy position
+            double r2 = dist1(possible[i], j.pos);	//distance between soldier and enemy position
             p *= 1 - accuracy * std::exp( -r2 / s2 );
         }
 
@@ -560,8 +657,11 @@ string Field::shoot()
 {
     std::ostringstream o;
 	//run shoot for each soldier
-    for ( auto & i : blues ) o << i.shoot(reds, prn_shoot);
-    for ( auto & i : reds ) o << i.shoot(blues, prn_shoot);
+	o<<"blues~\n";
+    for ( auto & i : blues ) o <<i.shoot(reds, prn_shoot, Wall);
+	o<<"\n";
+	o<<"reds~"<<std::endl;
+    for ( auto & i : reds ) o <<i.shoot(blues, prn_shoot, Wall);
 
 	//if dying was true, now dead is true
     for ( auto & i : blues ) i.dead = i.dying;
@@ -570,7 +670,7 @@ string Field::shoot()
     return o.str();
 }
 
-string Soldier::shoot(std::vector<Soldier> & enemies, bool prn_shoot)
+string Soldier::shoot(std::vector<Soldier> & enemies, bool prn_shoot, const std::vector<std::vector<Pos>> & Wall)
 {
     if ( dead )
     {
@@ -582,14 +682,45 @@ string Soldier::shoot(std::vector<Soldier> & enemies, bool prn_shoot)
 
     for ( auto & i : enemies)		//based on all of red team
     {
+
+	//if the x and y of an enemy soldier lines up with a wall	
+	//they might be past that wall
+	int flag=0;
+	for(int w=0;w<Wall.size();w++)
+	{
+		for(int q=0;q<Wall[w].size();q++)
+		{
+			if (i.pos.x==Wall[w][q].x || i.pos.y==Wall[w][q].y)
+				{	
+					if(pos.x<Wall[w][q].x<i.pos.x || pos.x>Wall[w][q].x>i.pos.x)
+					{	
+						flag=1;
+					}
+
+					if(pos.y<Wall[w][q].y<i.pos.y || pos.y>Wall[w][q].y>i.pos.y)
+					{	
+						flag=1;
+					}
+				}
+			if(flag==1) break;
+		}
+		if(flag==1) break;
+	}
+	
+	if(flag==1)
+	{
+	flag=0;
+	continue;
+	}
+
         if ( i.dead || i.dying ) continue;	//dying people can not shoot
         i.dying = false;
 
-        double s2e = i.stealth; s2e *= s2e;	//stealth
+        double s2e = i.stealth/2; //s2e *= s2e;	//stealth
 
-        double r2 = dist2(pos, i.pos);	//distance from enemy
-        double p = accuracy * std::exp( -r2 / s2e );	//calculated together
+        double r2 = dist1(pos, i.pos);	//distance from enemy
 
+        double p = accuracy * std::exp( -r2 /s2e );	//calculated together
         if ( (*rnd)() > p ) continue; // if p is greater than the random number,
 					//the enemy is killed
 					//if print shoot is true, give 
