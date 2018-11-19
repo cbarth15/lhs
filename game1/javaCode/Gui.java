@@ -193,28 +193,42 @@ public class Gui extends JFrame{
 	public void whoFired()
 	{
 		String[] POS;		//positions
+		try{line=reader.readLine();}catch(Exception ex){};//blues
+		try{line=reader.readLine();}catch(Exception ex){};//blist
+			if(!line.isEmpty())
+			{
+			System.out.println("Running blue guns");
+			int temp;
+			//convert to stringbuilder for manipulation
+			POS=line.split(",");
+
+			for(int i=0;i<POS.length;i=i+2)
+			{
+			int temp0 = Integer.parseInt(POS[i]);
+			int temp1 = Integer.parseInt(POS[i+1]);
+			System.out.println(temp0+", "+temp1);
+			soldiers[temp1-1][temp0-1].changePiece(10);
+			}
+			}
+		try{line=reader.readLine();}catch(Exception ex){}//reds
+		try{line=reader.readLine();}catch(Exception ex){}//rlist
+			if(!line.isEmpty())
+			{
 		
-		try{line=reader.readLine();}catch(Exception ex){}//listings
-		int temp;
-		//convert to stringbuilder for manipulation
-		POS=line.split(",");
+			System.out.println("Running red guns");
+		
+			int temp;
+			//convert to stringbuilder for manipulation
+			POS=line.split(",");
 
-		for(int i=0;i<POS.length;i=i+2)
-		{
-		int temp0 = Integer.parseInt(POS[i]);
-		int temp1 = Integer.parseInt(POS[i+1]);
-
-		if(soldiers[temp0-1][temp1-1].isRed())
+			for(int i=0;i<POS.length;i=i+2)
 			{
-			soldiers[temp0-1][temp1-1].changePiece(9);
+			int temp0 = Integer.parseInt(POS[i]);
+			int temp1 = Integer.parseInt(POS[i+1]);
+			soldiers[temp1-1][temp0-1].changePiece(9);
 
 			}
-		else if(soldiers[temp0-1][temp1-1].isBlue())
-			{
-			soldiers[temp0-1][temp1-1].changePiece(10);
-			}
-
-		}
+			}//isempty if statement
 		try{line=reader.readLine();}catch(Exception ex){}//Killed/S
 		try{line=reader.readLine();}catch(Exception ex){}//~
 
