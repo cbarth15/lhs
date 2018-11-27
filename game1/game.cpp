@@ -600,11 +600,11 @@ string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies, boo
     {
         double p = 1;
 
-        const double s2 = stealth/2; //* stealth;
+        const double s2 = stealth* stealth;
         for ( auto j : enemies )		//enemies is a vector of the opposing color
         {
             if ( j.dead ) continue;
-            double r2 = dist1(possible[i], j.pos);	//distance between soldier and enemy position
+            double r2 = dist2(possible[i], j.pos);	//distance between soldier and enemy position
             p *= 1 - accuracy * std::exp( -r2 / s2 );
         }
 
@@ -716,9 +716,9 @@ string Soldier::shoot(std::vector<Soldier> & enemies, bool prn_shoot, const std:
         if ( i.dead || i.dying ) continue;	//dying people can not shoot
         i.dying = false;
 
-        double s2e = i.stealth/2; //s2e *= s2e;	//stealth
+        double s2e = i.stealth; s2e *= s2e;	//stealth
 
-        double r2 = dist1(pos, i.pos);	//distance from enemy
+        double r2 = dist2(pos, i.pos);	//distance from enemy
 
         double p = accuracy * std::exp( -r2 /s2e );	//calculated together
         if ( (*rnd)() > p ) continue; // if p is greater than the random number,

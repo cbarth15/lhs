@@ -1,11 +1,15 @@
 20
 20
 ----------------------------------------
-B!                                      
-            ll                          
-    B#      ll            ll            
-            ll            ll            
+B!                        ll            
                           ll            
+    B#                    ll            
+                                        
+                                        
+                                        
+                              ll        
+                              ll        
+                              ll        
                                         
                                         
                                         
@@ -14,12 +18,8 @@ B!
                                         
                                         
                                         
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                  R#    
-                                        
+                                  llR#  
+                                  ll    
                                       R!
 ----------------------------------------
 ~
@@ -30,16 +30,20 @@ reds~
 Killed/Survived: 0/11 blues, 0/10 reds
 ~
 Reds~
-18 18:10
+18 19:10
 Blues~
 3 3:11
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-    B#      ll            ll            
-            ll            ll            
+B!                        ll            
                           ll            
+    B#                    ll            
+                                        
+                                        
+                                        
+                              ll        
+                              ll        
+                              ll        
                                         
                                         
                                         
@@ -48,39 +52,35 @@ B!
                                         
                                         
                                         
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                  R#    
-                                        
+                                  llR#  
+                                  ll    
                                       R!
 ----------------------------------------
 Reds~
-18 18:10
+18 19:10
 Blues~
 3 3:11
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll            ll            
-        B#                ll            
+B!                        ll            
+                          ll            
+                          ll            
+                                        
+        B#                              
+                                        
+                              ll        
+                              ll        
+                              ll        
                                         
                                         
                                         
                                         
                                         
                                         
+                                R#      
                                         
-                                        
-                                        
-  ll                                    
-  ll                          R#        
-  ll                                    
-                                        
-                                        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
@@ -91,57 +91,124 @@ reds~
 Killed/Survived: 0/11 blues, 0/10 reds
 ~
 Reds~
-16 16:10
+16 17:10
 Blues~
 5 5:11
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll            ll            
-        B#                ll            
+B!                        ll            
+                          ll            
+                          ll            
+                                        
+        B#                              
+                                        
+                              ll        
+                              ll        
+                              ll        
                                         
                                         
                                         
                                         
                                         
                                         
+                                R#      
                                         
-                                        
-                                        
-  ll                                    
-  ll                          R#        
-  ll                                    
-                                        
-                                        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 Reds~
-16 16:10
+16 17:10
 Blues~
 5 5:11
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll            ll            
+B!                        ll            
                           ll            
+                          ll            
+                                        
+              B#                        
             B#                          
+            B#                ll        
+                              ll        
+                              ll        
+                                        
+                                        
+                                        
+                                RC      
+                            R#          
+                            R#RF        
+                          RJ            
+                                        
+                                  ll    
+                                  ll    
+                                      R!
+----------------------------------------
+~
+blues~
+7,6,
+reds~
+15,15,15,14,
+Killed/Survived: 2/9 blues, 1/9 reds
+~
+Reds~
+15 15:4
+14 15:2
+Blues~
+6 7:3
+5 8:3
+7 7:3
+End~
+----------------------------------------
+B!                        ll            
+                          ll            
+                          ll            
+                                        
+              B#                        
             B#                          
+            B#                ll        
+                              ll        
+                              ll        
                                         
                                         
                                         
+                                RC      
+                            R#          
+                            R#RF        
+                          RJ            
+                                        
+                                  ll    
+                                  ll    
+                                      R!
+----------------------------------------
+Reds~
+15 15:4
+14 15:2
+Blues~
+6 7:3
+5 8:3
+7 7:3
+End~
+----------------------------------------
+B!                        ll            
+                          ll            
+                          ll            
+          BC    BA                      
+              B#                        
+                                        
+          B#B#                ll        
+                              ll        
+                              ll        
                                         
                                         
                                         
-                          R#R#          
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
+                                RC      
+                              RH        
+                                RIRE    
+                          RFR#          
+                          RJ  RA        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
@@ -149,133 +216,184 @@ blues~
 
 reds~
 
-Killed/Survived: 0/11 blues, 0/10 reds
+Killed/Survived: 0/9 blues, 0/9 reds
 ~
 Reds~
-14 15:3
-14 14:7
+16 15:2
 Blues~
-7 7:9
-6 7:2
+7 7:2
+7 6:2
+5 8:3
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll            ll            
+B!                        ll            
                           ll            
-            B#                          
-            B#                          
+                          ll            
+          BC    BA                      
+              B#                        
+                                        
+          B#B#                ll        
+                              ll        
+                              ll        
                                         
                                         
                                         
-                                        
-                                        
-                                        
-                          R#R#          
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
+                                RC      
+                              RH        
+                                RIRE    
+                          RFR#          
+                          RJ  RA        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 Reds~
-14 15:3
-14 14:7
+16 15:2
 Blues~
-7 7:9
-6 7:2
+7 7:2
+7 6:2
+5 8:3
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll            ll            
+B!                        ll            
                           ll            
-              B#                        
-            B#B#  BG                    
-        BK    B#                        
-          BJ                            
+                          ll            
+                                        
+                  B#                    
+            BG                          
+          BCBHB#              ll        
+        BB                    ll        
+            BD                ll        
                                         
                                         
-                        RJR#R#          
-                        R#RCRG          
+                                RI      
+                          RC  RH        
                                         
-  ll                                    
-  ll                                    
-  ll                                    
+                              RJRE      
+                        R#RBRA          
                                         
-                                        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
 blues~
-8,7,10,7,
+8,7,
 reds~
-14,12,15,12,13,12,
-Killed/Survived: 3/8 blues, 2/8 reds
+
+Killed/Survived: 0/9 blues, 1/8 reds
 ~
 Reds~
-13 13:2
-12 14:2
-12 15:2
+16 13:2
 Blues~
-7 7:2
-8 8:2
-6 8:2
+5 10:2
+7 8:2
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll            ll            
+B!                        ll            
                           ll            
-              B#                        
-            B#BD                        
-        BK    B#                        
+                          ll            
+                                        
+                  B#                    
+            BG                          
+          BCBHB#              ll        
+        BB                    ll        
+            BD                ll        
                                         
                                         
                                         
-                          R#R#          
-                        R#RCRG          
+                          RC  RH        
                                         
-  ll                                    
-  ll                                    
-  ll                                    
+                              RJRE      
+                        R#RBRA          
                                         
-                                        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 Reds~
-13 13:2
-12 14:2
-12 15:2
+16 13:2
 Blues~
-7 7:2
-8 8:2
-6 8:2
+5 10:2
+7 8:2
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll            ll            
+B!                        ll            
+                  BJ      ll            
+                  BA      ll            
+                                        
+            BF                          
+            BDBG                        
+        BKBC                  ll        
+        BB                    ll        
+        BH                    ll        
+                                        
+                                        
+                                        
+                          RC      RE    
+                                        
+                              RBRJ      
+                            RARH        
+                                        
+                      RD    RF    ll    
+                                  ll    
+                                      R!
+----------------------------------------
+~
+blues~
+
+reds~
+14,13,
+Killed/Survived: 1/8 blues, 0/8 reds
+~
+Reds~
+Blues~
+End~
+----------------------------------------
+B!                        ll            
+                  BJ      ll            
+                  BA      ll            
+                                        
+            BF                          
+              BG                        
+        BKBC                  ll        
+        BB                    ll        
+        BH                    ll        
+                                        
+                                        
+                                        
+                          RC      RE    
+                                        
+                              RBRJ      
+                            RARH        
+                                        
+                      RD    RF    ll    
+                                  ll    
+                                      R!
+----------------------------------------
+Reds~
+Blues~
+End~
+----------------------------------------
+B!                        ll            
                           ll            
-              B#                        
-            B#                          
-          B#                            
-          BK                            
+                          ll            
+                    BJ                  
+            BGBA                        
+                                        
+        BF  BB                ll        
+        BK                    ll        
+        BCBH                  ll        
+                                  RE    
                                         
                                         
-                          R#RGRF        
-                          RC            
-                        RD  R#          
-  ll                                    
-  ll                                    
-  ll                                    
                                         
+                            RAR#        
+                              RC        
+                        RFRH            
                                         
+                                  ll    
+                  RD              ll    
                                       R!
 ----------------------------------------
 ~
@@ -286,472 +404,291 @@ reds~
 Killed/Survived: 0/8 blues, 0/8 reds
 ~
 Reds~
-14 15:2
-12 14:2
+14 16:2
 Blues~
-8 6:2
-6 8:2
-7 7:3
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll            ll            
+B!                        ll            
                           ll            
-              B#                        
-            B#                          
-          B#                            
-          BK                            
+                          ll            
+                    BJ                  
+            BGBA                        
+                                        
+        BF  BB                ll        
+        BK                    ll        
+        BCBH                  ll        
+                                  RE    
                                         
                                         
-                          R#RGRF        
-                          RC            
-                        RD  R#          
-  ll                                    
-  ll                                    
-  ll                                    
                                         
+                            RAR#        
+                              RC        
+                        RFRH            
                                         
+                                  ll    
+                  RD              ll    
                                       R!
 ----------------------------------------
 Reds~
-14 15:2
-12 14:2
+14 16:2
 Blues~
-8 6:2
-6 8:2
-7 7:3
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll            ll            
-                  BI      ll            
+B!                        ll            
+                          ll            
+                  BA      ll            
+              BJBG                      
+                                        
+          BK                            
+          BF                  ll        
+        BB                    ll        
+                              ll        
+                                        
+    BC  BH                        RE    
                                         
                                         
-          BE  B#                        
-            BDBCBF                      
-          BK                RHR#        
-                              RC        
-                          RARD          
                                         
-                      RE  RB            
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
+                            RARCRJ      
+                            R#          
+                          RF            
+                      RD          ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
 blues~
 
 reds~
-15,12,15,10,
+15,15,17,15,
 Killed/Survived: 2/6 blues, 0/8 reds
 ~
 Reds~
-10 16:2
+16 15:2
 Blues~
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll            ll            
-                  BI      ll            
+B!                        ll            
+                          ll            
+                  BA      ll            
+              BJ                        
+                                        
+          BK                            
+          BF                  ll        
+        BB                    ll        
+                              ll        
+                                        
+    BC                            RE    
                                         
                                         
-          BE  BH                        
-            BDBCBF                      
-                            RHR#        
-                              RC        
-                          RARD          
                                         
-                      RE  RB            
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-10 16:2
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll            ll            
-                    BI    ll            
-                  BH                    
-            BF                          
-                                  RG    
-        BD    BC                        
-      BE                          RH    
-                                  RC    
-                          RA  RF        
+                            RARCRJ      
                             R#          
-                          RE            
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
+                          RF            
+                      RD          ll    
+                                  ll    
                                       R!
 ----------------------------------------
-~
-blues~
-
-reds~
-18,8,
-Killed/Survived: 1/5 blues, 0/8 reds
-~
 Reds~
-13 15:2
+16 15:2
 Blues~
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll            ll            
-                    BI    ll            
-                  BH                    
-            BF                          
-                                  RG    
-        BD    BC                        
-                                  RH    
-                                  RC    
-                          RA  RF        
+B!                        ll            
+                          ll            
+                          ll            
+                                        
+              B#                        
+                                        
+            BK                ll        
+          BF                  ll        
+        BC                    ll        
+      BB                                
+                                        
+                              RE        
+                            RB          
                             R#          
-                          RE            
-  ll                                    
-  ll                                    
-  ll                                    
+                          RH            
+                        RD              
                                         
-                                        
-                                      R!
-----------------------------------------
-Reds~
-13 15:2
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll    BH  BI  ll            
-                          ll            
-            BF                          
-                                  RG    
-          BC                            
-                              RHRC      
-                                        
-      BD                    R#          
-                        R#              
-                                        
-                          RB            
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
+                      RF          ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
 blues~
-4,11,
+6,8,7,7,
 reds~
 
-Killed/Survived: 0/5 blues, 1/7 reds
+Killed/Survived: 0/6 blues, 2/6 reds
 ~
 Reds~
-11 15:2
+14 15:2
 Blues~
+5 8:2
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll    BH  BI  ll            
+B!                        ll            
                           ll            
-            BF                          
-                                  RG    
-          BC                            
-                              RHRC      
+                          ll            
                                         
-      BD                    R#          
-                        RE              
+              B#                        
                                         
-                          RB            
-  ll                                    
-  ll                                    
-  ll                                    
+            BK                ll        
+          BF                  ll        
+        BC                    ll        
+      BB                                
                                         
+                              RE        
                                         
+                            R#          
+                          RH            
+                        RD              
+                                        
+                      RF          ll    
+                                  ll    
                                       R!
 ----------------------------------------
 Reds~
-11 15:2
+14 15:2
 Blues~
+5 8:2
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll    BH      ll            
-            ll  BI        ll            
+B!                        ll            
                           ll            
-              BC                        
-          BF                            
-                                RG      
-                            RH          
-                          RFR#          
-    BD                                  
-                        RB              
-                        RA              
+                  BA      ll            
                                         
-  ll                                    
-  ll                                    
-  ll                                    
+            BK                          
                                         
+            B#                ll        
+        BB                    ll        
+                              ll        
+    BC                                  
                                         
+                                RA  RE  
+                                        
+                              RJ        
+                                        
+                          RH            
+                        RD              
+                      RF          ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
 blues~
 
 reds~
-
-Killed/Survived: 0/5 blues, 0/7 reds
+13,17,
+Killed/Survived: 1/5 blues, 0/6 reds
 ~
 Reds~
-10 15:2
 Blues~
+7 7:2
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll    BH      ll            
-            ll  BI        ll            
+B!                        ll            
                           ll            
-              BC                        
-          BF                            
-                                RG      
-                            RH          
-                          RFR#          
-    BD                                  
-                        RB              
-                        RA              
+                  BA      ll            
                                         
-  ll                                    
-  ll                                    
-  ll                                    
+            BK                          
+                                        
+            B#                ll        
+        BB                    ll        
+                              ll        
                                         
                                         
+                                RA  RE  
+                                        
+                              RJ        
+                                        
+                          RH            
+                        RD              
+                      RF          ll    
+                                  ll    
                                       R!
 ----------------------------------------
 Reds~
-10 15:2
 Blues~
+7 7:2
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll  BH        ll            
-            ll            ll            
-            BI            ll            
-          BC                            
-          BF                            
-                              RC  RG    
-                                        
-                            RH          
-  BD                  RA  R#            
-                      RF                
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-6,7,
-reds~
-
-Killed/Survived: 0/5 blues, 1/6 reds
-~
-Reds~
-11 14:2
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-            ll  BH        ll            
-            ll            ll            
-            BI            ll            
-          BC                            
-          BF                            
-                              RC  RG    
-                                        
-                            RH          
-  BD                      R#            
-                      RF                
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-11 14:2
-Blues~
-End~
-----------------------------------------
-B!                  BH                  
-            ll                          
-            ll            ll            
-            ll            ll            
+B!                        ll            
                           ll            
-          BIBF                          
-                              RC        
-        BC                              
-                              RG        
-                          RB            
-      BD                  RF            
-                        RERH            
+                          ll            
+                      BA                
+            BJ                          
+            BK  BF                      
+                              ll        
+                              ll        
+                              ll        
+        BB                              
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
+                                RE      
+                              RA        
+                          RJRD          
                                         
-                                        
+                    RF    RH            
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
 blues~
 
 reds~
-
-Killed/Survived: 0/5 blues, 0/6 reds
-~
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                  BH                  
-            ll                          
-            ll            ll            
-            ll            ll            
-                          ll            
-          BIBF                          
-                              RC        
-        BC                              
-                              RG        
-                          RB            
-      BD                  RF            
-                        RERH            
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-            ll  BH        ll            
-            ll            ll            
-            BI            ll            
-              BF                        
-                                        
-                              RC        
-        BC                              
-    BD                    RGRE          
-                                        
-                      RFRB              
-                                        
-                      RH                
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-15,10,
+14,15,
 Killed/Survived: 1/4 blues, 0/6 reds
 ~
 Reds~
 Blues~
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll  BH        ll            
-            ll            ll            
-            BI            ll            
-              BF                        
-                                        
-                              RC        
-                                        
-    BD                    RGRE          
-                                        
-                      RFRB              
-                                        
-                      RH                
-  ll                                    
-  ll                                    
-  ll                                    
+B!                        ll            
+                          ll            
+                          ll            
+                      BA                
+            BJ                          
+            BK                          
+                              ll        
+                              ll        
+                              ll        
+        BB                              
                                         
                                         
+                                RE      
+                              RA        
+                          RJRD          
+                                        
+                    RF    RH            
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 Reds~
 Blues~
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll            ll            
-              BH          ll            
-              BF              RC        
-          BI                            
+B!                        ll            
+                          ll            
+                      BA  ll            
+                BJ                      
                                         
                                         
+                              ll        
+          BK                  ll        
+                              ll        
+      BB                                
                                         
-                    RBRGRE              
-BD                    RF                
+                                  RE    
                                         
-                RH                      
-  ll                                    
-  ll                                    
-  ll                                    
+                              RJ        
+                        RD  RA          
                                         
-                                        
+                    RH                  
+                    RF            ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
@@ -765,109 +702,50 @@ Reds~
 Blues~
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll            ll            
-              BH          ll            
-              BF              RC        
-          BI                            
-                                        
-                                        
-                                        
-                    RBRGRE              
-BD                    RF                
-                                        
-                RH                      
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll  BF        ll            
+B!                        ll            
                           ll            
-          BH                            
-      BI                                
-                                RC      
-                        RE              
+                      BA  ll            
+                BJ                      
                                         
                                         
-BD                    RF                
-                R#      RG              
+                              ll        
+          BK                  ll        
+                              ll        
+      BB                                
                                         
-  ll                                    
-  ll                                    
-  ll                                    
+                                  RE    
                                         
+                              RJ        
+                        RD  RA          
                                         
-                                      R!
-----------------------------------------
-~
-blues~
-9,4,
-reds~
-
-Killed/Survived: 0/4 blues, 1/5 reds
-~
-Reds~
-13 9:2
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll  BF        ll            
-                          ll            
-          BH                            
-      BI                                
-                                RC      
-                        RE              
-                                        
-                                        
-BD                                      
-                R#      RG              
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-13 9:2
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll  BF                      
-            ll            ll            
-            ll            ll            
-                          ll            
-          BH                            
-      BI                                
-                          RE            
-                                        
-                            RC          
-  BD                RBRG                
                     RH                  
+                    RF            ll    
+                                  ll    
+                                      R!
+----------------------------------------
+Reds~
+Blues~
+End~
+----------------------------------------
+B!                        ll            
+                          ll            
+                        BAll            
+                                        
+              BJ                        
+                                        
+      BK                      ll        
+                              ll        
+                              ll        
+    BB                                  
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
+                            RJR#        
                                         
                                         
+                      R#                
+                    RF                  
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
@@ -875,290 +753,176 @@ blues~
 
 reds~
 
-Killed/Survived: 0/4 blues, 0/5 reds
+Killed/Survived: 0/4 blues, 0/6 reds
+~
+Reds~
+13 16:2
+16 12:2
+Blues~
+End~
+----------------------------------------
+B!                        ll            
+                          ll            
+                        BAll            
+                                        
+              BJ                        
+                                        
+      BK                      ll        
+                              ll        
+                              ll        
+    BB                                  
+                                        
+                                        
+                            RJR#        
+                                        
+                                        
+                      R#                
+                    RF                  
+                                  ll    
+                                  ll    
+                                      R!
+----------------------------------------
+Reds~
+13 16:2
+16 12:2
+Blues~
+End~
+----------------------------------------
+B!                        ll            
+                      BA  ll            
+                          ll            
+                                        
+                                        
+              BJ                        
+                              ll        
+                              ll        
+    B#                        ll        
+                                        
+                              RJRE      
+                                        
+                          RA            
+                                        
+                                        
+                    RFRH                
+                    RD                  
+                                  ll    
+                                  ll    
+                                      R!
+----------------------------------------
+~
+blues~
+
+reds~
+
+Killed/Survived: 0/4 blues, 0/6 reds
+~
+Reds~
+Blues~
+9 3:2
+End~
+----------------------------------------
+B!                        ll            
+                      BA  ll            
+                          ll            
+                                        
+                                        
+              BJ                        
+                              ll        
+                              ll        
+    B#                        ll        
+                                        
+                              RJRE      
+                                        
+                          RA            
+                                        
+                                        
+                    RFRH                
+                    RD                  
+                                  ll    
+                                  ll    
+                                      R!
+----------------------------------------
+Reds~
+Blues~
+9 3:2
+End~
+----------------------------------------
+B!                        ll            
+                        BAll            
+                          ll            
+            BJ                          
+                                        
+                                        
+                              ll        
+        BK                    ll        
+    BB                        ll        
+                                RJ      
+                                        
+                                        
+                            RE          
+                          RA            
+                                        
+                  RF  RH                
+                                        
+                RD                ll    
+                                  ll    
+                                      R!
+----------------------------------------
+~
+blues~
+3,9,
+reds~
+17,10,
+Killed/Survived: 1/3 blues, 1/5 reds
 ~
 Reds~
 Blues~
 End~
 ----------------------------------------
-B!                                      
-            ll  BF                      
-            ll            ll            
-            ll            ll            
+B!                        ll            
+                        BAll            
                           ll            
-          BH                            
-      BI                                
-                          RE            
-                                        
-                            RC          
-  BD                RBRG                
-                    RH                  
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
+                                        
+                              ll        
+        BK                    ll        
+    BB                        ll        
+                                RJ      
                                         
                                         
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-            llBF          ll            
-            ll            ll            
-                          ll            
-      BI                                
+                            RE          
+                          RA            
                                         
-      BH                  RE            
-                          RC            
                       RH                
-  BD                                    
-                  RB    RG              
                                         
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
+                RD                ll    
+                                  ll    
                                       R!
 ----------------------------------------
-~
-blues~
-
-reds~
-14,8,
-Killed/Survived: 1/3 blues, 0/5 reds
-~
 Reds~
 Blues~
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            llBF          ll            
-            ll            ll            
+B!                        ll            
+                    BA    ll            
                           ll            
-      BI                                
                                         
-                          RE            
-                          RC            
+                                        
+          BK                            
+                              ll        
+    BB                        ll        
+                              ll        
+                                RJ      
+                              RE        
+                                        
+                          RA            
                       RH                
-  BD                                    
-                  RB    RG              
                                         
+                    RD                  
                                         
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-          BFll            ll            
-            ll            ll            
-                          ll            
-        BI                              
-                                        
-                                        
-    BD              RCRH                
-                    R#RE                
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-
-Killed/Survived: 0/3 blues, 0/5 reds
-~
-Reds~
-10 11:2
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-          BFll            ll            
-            ll            ll            
-                          ll            
-        BI                              
-                                        
-                                        
-    BD              RCRH                
-                    R#RE                
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-10 11:2
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-        BIBFll            ll            
-            ll            ll            
-                          ll            
-                                        
-                                        
-                        RE              
-    BD                                  
-                RBRG                    
-                  R#                    
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-
-Killed/Survived: 0/3 blues, 0/5 reds
-~
-Reds~
-11 10:2
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-        BIBFll            ll            
-            ll            ll            
-                          ll            
-                                        
-                                        
-                        RE              
-    BD                                  
-                RBRG                    
-                  R#                    
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-11 10:2
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-        BI  ll            ll            
-            BF            ll            
-                                        
-                                        
-  BD              RE                    
-                  RH  RC                
-                  R#                    
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-
-Killed/Survived: 0/3 blues, 0/5 reds
-~
-Reds~
-10 10:2
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-        BI  ll            ll            
-            BF            ll            
-                                        
-                                        
-  BD              RE                    
-                  RH  RC                
-                  R#                    
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-10 10:2
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-        BI  ll            ll            
-            BF            ll            
-  BD                                    
-                                        
-                  RE                    
-                    RC                  
-                  RBRH                  
-                                        
-              RG                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
@@ -1172,223 +936,166 @@ Reds~
 Blues~
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-        BI  ll            ll            
-            BF            ll            
-  BD                                    
-                                        
-                  RE                    
-                    RC                  
-                  RBRH                  
-                                        
-              RG                        
+B!                        ll            
+                    BA    ll            
+                          ll            
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
+          BK                            
+                              ll        
+    BB                        ll        
+                              ll        
+                                RJ      
+                              RE        
                                         
+                          RA            
+                      RH                
                                         
+                    RD                  
+                                        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 Reds~
 Blues~
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-        BIBFll            ll            
+B!                        ll            
+                  BA      ll            
                           ll            
+            BK                          
                                         
+                                        
+                              llRJ      
+                              ll        
+                              ll        
+  BB                          RE        
+                                        
+                          RA            
+                                        
+                    R#                  
+                                        
+                                        
+                                        
+                                  ll    
+                                  ll    
+                                      R!
+----------------------------------------
+~
+blues~
+
+reds~
+
+Killed/Survived: 0/3 blues, 0/5 reds
+~
+Reds~
+14 11:2
+Blues~
+End~
+----------------------------------------
+B!                        ll            
+                  BA      ll            
+                          ll            
+            BK                          
+                                        
+                                        
+                              llRJ      
+                              ll        
+                              ll        
+  BB                          RE        
+                                        
+                          RA            
+                                        
+                    R#                  
+                                        
+                                        
+                                        
+                                  ll    
+                                  ll    
+                                      R!
+----------------------------------------
+Reds~
+14 11:2
+Blues~
+End~
+----------------------------------------
+B!            BA          ll            
+                          ll            
+          BK              ll            
+                                        
+                            RJ          
+                                        
+                              ll        
+                              ll        
+                              ll        
+                                        
+  BB                      RE            
+                      RA                
                     RH                  
-BD                    RE                
-                    RB                  
-                                        
-                RGRC                    
+                  RD                    
                                         
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
 blues~
-
-reds~
-
-Killed/Survived: 0/3 blues, 0/5 reds
-~
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-        BIBFll            ll            
-                          ll            
-                                        
-                    RH                  
-BD                    RE                
-                    RB                  
-                                        
-                RGRC                    
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-          BFll            ll            
-      BI    ll            ll            
-                          ll            
-                                        
-BD                                      
-                  RH                    
-                  RB                    
-            RG    RE                    
-                                        
-              RC                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-
-Killed/Survived: 0/3 blues, 0/5 reds
-~
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-          BFll            ll            
-      BI    ll            ll            
-                          ll            
-                                        
-BD                                      
-                  RH                    
-                  RB                    
-            RG    RE                    
-                                        
-              RC                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-        BF  ll            ll            
-      BI                  ll            
-                                        
-                                        
-  BD              RH                    
-                RGRB                    
-            R#                          
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-4,5,
+2,11,
 reds~
 
 Killed/Survived: 0/3 blues, 1/4 reds
 ~
 Reds~
-10 7:2
 Blues~
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-        BF  ll            ll            
-      BI                  ll            
+B!            BA          ll            
+                          ll            
+          BK              ll            
+                                        
+                            RJ          
+                                        
+                              ll        
+                              ll        
+                              ll        
+                                        
+  BB                      RE            
+                      RA                
+                    RH                  
                                         
                                         
-  BD                                    
-                RGRB                    
-            R#                          
                                         
                                         
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 Reds~
-10 7:2
 Blues~
 End~
 ----------------------------------------
-B!                                      
-      BI    ll                          
-            ll            ll            
-      BF    ll            ll            
+B!      BA                ll            
                           ll            
+                          ll            
+      BK                                
+                            RJ          
                                         
-                      RB                
-  BD          RG                        
-                                        
-                RC                      
-                                        
-            RE                          
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
+                              ll        
+                              ll        
+                              ll        
+                      RE                
+  BB                    RHRA            
                                         
                                         
+                                        
+                                        
+                                        
+                                        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
@@ -1402,168 +1109,50 @@ Reds~
 Blues~
 End~
 ----------------------------------------
-B!                                      
-      BI    ll                          
-            ll            ll            
-      BF    ll            ll            
+B!      BA                ll            
                           ll            
-                                        
-                      RB                
-  BD          RG                        
-                                        
-                RC                      
-                                        
-            RE                          
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-  BIBF      ll            ll            
                           ll            
-  BD                                    
+      BK                                
+                            RJ          
                                         
-                  RB                    
-                  RG                    
-              R#                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
+                              ll        
+                              ll        
+                              ll        
+                      RE                
+  BB                    RHRA            
                                         
                                         
+                                        
+                                        
+                                        
+                                        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
-~
-blues~
-
-reds~
-
-Killed/Survived: 0/3 blues, 0/4 reds
-~
 Reds~
-10 8:2
 Blues~
 End~
 ----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-  BIBF      ll            ll            
+B!          BA            ll            
                           ll            
-  BD                                    
-                                        
-                  RB                    
-                  RG                    
-              R#                        
+        BK                llRJ          
                                         
                                         
                                         
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-10 8:2
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-      B#    ll            ll            
-    BF                    ll            
-                    RB                  
-              RC                        
-                                        
-                RG                      
-                                        
-          RE                            
+                              ll        
+                        RE    ll        
+                              ll        
+                        RH              
+                      RA                
+    BB                                  
                                         
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
                                         
                                         
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-
-Killed/Survived: 0/3 blues, 0/4 reds
-~
-Reds~
-Blues~
-4 4:2
-End~
-----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-      B#    ll            ll            
-    BF                    ll            
-                    RB                  
-              RC                        
-                                        
-                RG                      
-                                        
-          RE                            
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-4 4:2
-End~
-----------------------------------------
-B!                                      
-    BF      ll                          
-    BI  BD  ll            ll            
-            ll            ll            
-                          ll            
-                                        
-              RC    RB                  
-                                        
-                  RG                    
-                                        
-                                        
-        RE                              
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
@@ -1577,50 +1166,50 @@ Reds~
 Blues~
 End~
 ----------------------------------------
-B!                                      
-    BF      ll                          
-    BI  BD  ll            ll            
-            ll            ll            
+B!          BA            ll            
                           ll            
-                                        
-              RC    RB                  
-                                        
-                  RG                    
+        BK                llRJ          
                                         
                                         
-        RE                              
+                                        
+                              ll        
+                        RE    ll        
+                              ll        
+                        RH              
+                      RA                
+    BB                                  
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
                                         
                                         
+                                        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 Reds~
 Blues~
 End~
 ----------------------------------------
-B!      BI  BD                          
-            ll                          
-    BF      ll            ll            
-            ll            ll            
+B!          BA            ll    RJ      
                           ll            
-                  RG                    
-              RB                        
-            RC                          
-                                        
-            RE                          
+                          ll            
+    BK                                  
                                         
                                         
+                              ll        
+                          RERHll        
+                              ll        
+                        RA              
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
+                                        
+      BB                                
                                         
                                         
+                                        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
@@ -1634,50 +1223,50 @@ Reds~
 Blues~
 End~
 ----------------------------------------
-B!      BI  BD                          
-            ll                          
-    BF      ll            ll            
-            ll            ll            
+B!          BA            ll    RJ      
                           ll            
-                  RG                    
-              RB                        
-            RC                          
-                                        
-            RE                          
+                          ll            
+    BK                                  
                                         
                                         
+                              ll        
+                          RERHll        
+                              ll        
+                        RA              
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
+                                        
+      BB                                
                                         
                                         
+                                        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 Reds~
 Blues~
 End~
 ----------------------------------------
-B!BI        BD                          
-    BF      ll                          
-            ll            ll            
-            ll            ll            
-                          ll            
+B!                        ll            
+                          ll      RJ    
+        BA                ll            
                                         
                                         
-          RC          RG                
-                RB                      
-            RE                          
+    BK                                  
+                            RHll        
+                          RE  ll        
+                          RA  ll        
                                         
                                         
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
                                         
                                         
+      BB                                
+                                        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
@@ -1691,70 +1280,40 @@ Reds~
 Blues~
 End~
 ----------------------------------------
-B!BI        BD                          
-    BF      ll                          
-            ll            ll            
-            ll            ll            
-                          ll            
+B!                        ll            
+                          ll      RJ    
+        BA                ll            
                                         
                                         
-          RC          RG                
-                RB                      
-            RE                          
+    BK                                  
+                            RHll        
+                          RE  ll        
+                          RA  ll        
                                         
                                         
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
                                         
                                         
+      BB                                
+                                        
+                                  ll    
+                                  ll    
                                       R!
 ----------------------------------------
 Reds~
 Blues~
 End~
 ----------------------------------------
-B!    BDBF                              
-            ll                          
-  BI        ll            ll            
-            ll            ll            
+B!                        ll  RJ        
                           ll            
-                RB                      
-              RC  RG                    
-                                        
-                                        
-      RE                                
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-2,3,
-reds~
-4,10,
-Killed/Survived: 1/2 blues, 1/3 reds
-~
-Reds~
-Blues~
-End~
-----------------------------------------
-B!    BD                                
-            ll                          
-  BI        ll            ll            
-            ll            ll            
                           ll            
-                RB                      
-              RC  RG                    
+        BA                              
+                                        
+                          R#            
+    BK                    RA  ll        
+                              ll        
+                              ll        
                                         
                                         
                                         
@@ -1762,36 +1321,9 @@ B!    BD
                                         
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
                                         
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!      BD                              
-            ll                          
-    BI      ll            ll            
-            ll            ll            
-                          ll            
-            RB                          
-          RCRG                          
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
+          BB                      ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
@@ -1799,19 +1331,22 @@ blues~
 
 reds~
 
-Killed/Survived: 0/2 blues, 0/3 reds
+Killed/Survived: 0/3 blues, 0/4 reds
 ~
 Reds~
+6 14:2
 Blues~
 End~
 ----------------------------------------
-B!      BD                              
-            ll                          
-    BI      ll            ll            
-            ll            ll            
+B!                        ll  RJ        
                           ll            
-            RB                          
-          RCRG                          
+                          ll            
+        BA                              
+                                        
+                          R#            
+    BK                    RA  ll        
+                              ll        
+                              ll        
                                         
                                         
                                         
@@ -1819,36 +1354,35 @@ B!      BD
                                         
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
                                         
-                                        
+          BB                      ll    
+                                  ll    
                                       R!
 ----------------------------------------
 Reds~
+6 14:2
 Blues~
 End~
 ----------------------------------------
-B!BI    BD                              
-            ll                          
-            ll            ll            
-            ll            ll            
+B!                        llRJ          
                           ll            
-                RB                      
-              RG                        
-                                        
-            RC                          
+        BA                ll            
+                          RE  RH        
                                         
                                         
+                              ll        
+                              ll        
+BK                      RA    ll        
                                         
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
                                         
                                         
+                                        
+                                        
+                                        
+                BB                ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
@@ -1856,76 +1390,47 @@ blues~
 
 reds~
 
-Killed/Survived: 0/2 blues, 0/3 reds
+Killed/Survived: 0/3 blues, 0/4 reds
 ~
 Reds~
 Blues~
 End~
 ----------------------------------------
-B!BI    BD                              
-            ll                          
-            ll            ll            
-            ll            ll            
+B!                        llRJ          
                           ll            
-                RB                      
-              RG                        
-                                        
-            RC                          
+        BA                ll            
+                          RE  RH        
                                         
                                         
+                              ll        
+                              ll        
+BK                      RA    ll        
                                         
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
                                         
                                         
+                                        
+                                        
+                                        
+                BB                ll    
+                                  ll    
                                       R!
 ----------------------------------------
 Reds~
 Blues~
 End~
 ----------------------------------------
-B!                                      
-      BI    ll                          
-      BD    ll            ll            
-            ll            ll            
-            RG            ll            
-                                        
-              RB                        
-                                        
-      RC                                
+B!                        ll            
+                          ll  RH        
+                          llRJ          
+      BA                    RE          
                                         
                                         
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-4,3,
-reds~
-
-Killed/Survived: 0/2 blues, 1/2 reds
-~
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-      BI    ll                          
-      BD    ll            ll            
-            ll            ll            
-            RG            ll            
-                                        
-              RB                        
+                              ll        
+                              ll        
+                    RA        ll        
+    BK                                  
                                         
                                         
                                         
@@ -1933,36 +1438,8 @@ B!
                                         
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-  BD        ll                          
-      BI    ll            ll            
-            ll            ll            
-                          ll            
-                                        
-                RG                      
-          RB                            
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
+                      BB          ll    
+                                  ll    
                                       R!
 ----------------------------------------
 ~
@@ -1970,783 +1447,213 @@ blues~
 
 reds~
 
-Killed/Survived: 0/2 blues, 0/2 reds
+Killed/Survived: 0/3 blues, 0/4 reds
 ~
 Reds~
 Blues~
 End~
 ----------------------------------------
-B!                                      
-  BD        ll                          
-      BI    ll            ll            
-            ll            ll            
-                          ll            
-                                        
-                RG                      
-          RB                            
+B!                        ll            
+                          ll  RH        
+                          llRJ          
+      BA                    RE          
                                         
                                         
+                              ll        
+                              ll        
+                    RA        ll        
+    BK                                  
                                         
                                         
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
                                         
                                         
+                                        
+                      BB          ll    
+                                  ll    
                                       R!
 ----------------------------------------
 Reds~
 Blues~
 End~
 ----------------------------------------
-B!                                      
-          BIll                          
-            ll            ll            
-    BD      ll            ll            
-                          ll            
-            RG                          
-                                        
-                                        
-          RB                            
+B!                        llRE          
+    BA                    ll            
+                      RJ  llRH          
                                         
                                         
                                         
+                              ll        
+                              ll        
+                    RA        ll        
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-
-Killed/Survived: 0/2 blues, 0/2 reds
-~
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-          BIll                          
-            ll            ll            
-    BD      ll            ll            
-                          ll            
-            RG                          
-                                        
-                                        
-          RB                            
+    BK                                  
                                         
                                         
                                         
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!        BI                            
-            ll                          
-            ll            ll            
-BD          ll            ll            
-                          ll            
-            RG                          
-                                        
-              RB                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
+                                  ll    
+                                  ll    
+                          BB          R!
 ----------------------------------------
 ~
 blues~
 
 reds~
 
-Killed/Survived: 0/2 blues, 0/2 reds
+Killed/Survived: 0/3 blues, 0/4 reds
 ~
 Reds~
 Blues~
 End~
 ----------------------------------------
-B!        BI                            
-            ll                          
-            ll            ll            
-BD          ll            ll            
+B!                        llRE          
+    BA                    ll            
+                      RJ  llRH          
+                                        
+                                        
+                                        
+                              ll        
+                              ll        
+                    RA        ll        
+                                        
+                                        
+    BK                                  
+                                        
+                                        
+                                        
+                                        
+                                        
+                                  ll    
+                                  ll    
+                          BB          R!
+----------------------------------------
+Reds~
+Blues~
+End~
+----------------------------------------
+B!                    RERHll            
                           ll            
-            RG                          
-                                        
-              RB                        
-                                        
+                      RJ  ll            
+BA                                      
                                         
                                         
+                              ll        
+                      RA      ll        
+                              ll        
                                         
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
+                                        
+    BK                                  
                                         
                                         
-                                      R!
+                                        
+                                  ll    
+                                  ll    
+                                BB    R!
 ----------------------------------------
+~
+blues~
+
+reds~
+
+Killed/Survived: 0/3 blues, 0/4 reds
+~
 Reds~
 Blues~
 End~
 ----------------------------------------
-B!        BI                            
-BD          ll                          
-            ll            ll            
-            ll            ll            
+B!                    RERHll            
                           ll            
-                  RG                    
-                                        
-            RB                          
-                                        
+                      RJ  ll            
+BA                                      
                                         
                                         
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-
-Killed/Survived: 0/2 blues, 0/2 reds
-~
-Reds~
-Blues~
-End~
-----------------------------------------
-B!        BI                            
-BD          ll                          
-            ll            ll            
-            ll            ll            
-                          ll            
-                  RG                    
-                                        
-            RB                          
+                              ll        
+                      RA      ll        
+                              ll        
                                         
                                         
                                         
                                         
+    BK                                  
                                         
                                         
-  ll                                    
-  ll                                    
-  ll                                    
                                         
-                                        
-                                      R!
+                                  ll    
+                                  ll    
+                                BB    R!
 ----------------------------------------
 Reds~
 Blues~
 End~
 ----------------------------------------
-B!      BI                              
-      BD    ll                          
-            ll            ll            
-            ll            ll            
-                RG        ll            
-              RB                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-
-Killed/Survived: 0/2 blues, 0/2 reds
-~
-Reds~
-Blues~
-End~
-----------------------------------------
-B!      BI                              
-      BD    ll                          
-            ll            ll            
-            ll            ll            
-                RG        ll            
-              RB                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!  BI                                  
-      BD    ll                          
-            ll            ll            
-            ll            ll            
-                RG        ll            
-              RB                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-
-Killed/Survived: 0/2 blues, 0/2 reds
-~
-Reds~
-Blues~
-End~
-----------------------------------------
-B!  BI                                  
-      BD    ll                          
-            ll            ll            
-            ll            ll            
-                RG        ll            
-              RB                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!      BD                              
-    BI      ll                          
-            ll            ll            
-            ll            ll            
-                RG        ll            
-                                        
-                                        
-          RB                            
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-
-Killed/Survived: 0/2 blues, 0/2 reds
-~
-Reds~
-Blues~
-End~
-----------------------------------------
-B!      BD                              
-    BI      ll                          
-            ll            ll            
-            ll            ll            
-                RG        ll            
-                                        
-                                        
-          RB                            
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!  BD                                  
-    BI      ll                          
-            ll            ll            
-            ll            ll            
+B!                RJRH    ll            
+                    RE    ll            
                           ll            
                                         
-            RG                          
-                                        
-          RB                            
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
+BA                                      
+                  RA                    
+                              ll        
+                              ll        
+                              ll        
                                         
                                         
-                                      R!
+                                        
+                                        
+                                        
+                                        
+        BK                              
+                                        
+                                  ll    
+                                  ll    
+                                      M#
 ----------------------------------------
 ~
 blues~
 
 reds~
-
-Killed/Survived: 0/2 blues, 0/2 reds
+10,6,
+Killed/Survived: 1/2 blues, 0/4 reds
 ~
 Reds~
 Blues~
 End~
 ----------------------------------------
-B!  BD                                  
-    BI      ll                          
-            ll            ll            
-            ll            ll            
+B!                RJRH    ll            
+                    RE    ll            
                           ll            
                                         
-            RG                          
                                         
-          RB                            
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
+                  RA                    
+                              ll        
+                              ll        
+                              ll        
                                         
                                         
-                                      R!
+                                        
+                                        
+                                        
+                                        
+        BK                              
+                                        
+                                  ll    
+                                  ll    
+                                      M#
 ----------------------------------------
 Reds~
 Blues~
 End~
-----------------------------------------
-B!    BD                                
-        BI  ll                          
-            ll            ll            
-            ll            ll            
-                          ll            
-                                        
-      RB    RG                          
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-
-Killed/Survived: 0/2 blues, 0/2 reds
-~
-Reds~
-Blues~
-End~
-----------------------------------------
-B!    BD                                
-        BI  ll                          
-            ll            ll            
-            ll            ll            
-                          ll            
-                                        
-      RB    RG                          
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!    BD                                
-        BI  ll                          
-            ll            ll            
-            ll            ll            
-              RG          ll            
-                                        
-                                        
-        RB                              
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-
-Killed/Survived: 0/2 blues, 0/2 reds
-~
-Reds~
-Blues~
-End~
-----------------------------------------
-B!    BD                                
-        BI  ll                          
-            ll            ll            
-            ll            ll            
-              RG          ll            
-                                        
-                                        
-        RB                              
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!    BI                                
-    BD      ll                          
-            ll            ll            
-            ll            ll            
-                          ll            
-                RG                      
-                                        
-                                        
-            RB                          
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-9,6,
-Killed/Survived: 1/1 blues, 0/2 reds
-~
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-    BD      ll                          
-            ll            ll            
-            ll            ll            
-                          ll            
-                RG                      
-                                        
-                                        
-            RB                          
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-        BD  ll                          
-            ll            ll            
-            ll            ll            
-              RG          ll            
-                                        
-        RB                              
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-
-Killed/Survived: 0/1 blues, 0/2 reds
-~
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-        BD  ll                          
-            ll            ll            
-            ll            ll            
-              RG          ll            
-                                        
-        RB                              
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-        BD  ll                          
-            ll            ll            
-            ll            ll            
-              RG          ll            
-                                        
-                                        
-                                        
-                                        
-        RB                              
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-
-Killed/Survived: 0/1 blues, 0/2 reds
-~
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-        BD  ll                          
-            ll            ll            
-            ll            ll            
-              RG          ll            
-                                        
-                                        
-                                        
-                                        
-        RB                              
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-----------------------------------------
-B!    BD                                
-            ll                          
-            ll            ll            
-            ll            ll            
-              RG          ll            
-                                        
-                                        
-            RB                          
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues~
-
-reds~
-7,8,
-Killed/Survived: 1/0 blues, 0/2 reds
-~
-Reds~
-Blues~
-End~
-----------------------------------------
-B!                                      
-            ll                          
-            ll            ll            
-            ll            ll            
-              RG          ll            
-                                        
-                                        
-            RB                          
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-  ll                                    
-  ll                                    
-  ll                                    
-                                        
-                                        
-                                      R!
-----------------------------------------
-Reds~
-Blues~
-End~
-Result: Reds win
-Casualties Blues: 11 of 11
-Casualties Reds : 8 of 10
-Turns : 47
+Result: Blues win
+Casualties Blues: 9 of 11
+Casualties Reds : 6 of 10
+Turns : 28
 Not finished  : 0
-Won by Blues  : 0
-Won by Reds   : 1
+Won by Blues  : 1
+Won by Reds   : 0
 Draw all dead : 0
 Draw both win : 0
