@@ -318,15 +318,31 @@ void Field::init(string filename)
 
     for ( int i = 0; i < ns[2]; i++ )
         reds.push_back(Soldier(baseR, acc[2], stl[2], vel[2], fea[2], 'R', i));
-	Wall.resize(5);
-	for(int q=0;q<3;q++)
-	{	int temp1=rand()%size.x;
+//adds walls randomly to game
+	Wall.resize(10);
+	int numWalls=rand()%10;
+	for(int q=0;q<numWalls;q++)
+	{	
+		int lengWall=rand()%10;
+		int widthWall=rand()%10;
+		int temp1=rand()%size.x;
 		int temp2=rand()%size.y;
-		for(int i=0;i<3;i++)
+		temp1=temp1+1;
+		temp2=temp2+1;
+		//Wall[q].resize(21);
+		for(int i=0;i<lengWall;i++)
 		{
 				if(temp2+i<size.y)
 				{
-				Wall[0].push_back(Pos(temp1,temp2+i));
+				Wall[q].push_back(Pos(temp1,temp2+i));
+				}
+		}
+		for(int i=0;i<widthWall;i++)
+		{
+			
+				if(temp1+i<size.x)
+				{
+				Wall[q].push_back(Pos(temp1+i,temp2));
 				}
 		}
 	}
