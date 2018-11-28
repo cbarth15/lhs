@@ -318,32 +318,129 @@ void Field::init(string filename)
 
     for ( int i = 0; i < ns[2]; i++ )
         reds.push_back(Soldier(baseR, acc[2], stl[2], vel[2], fea[2], 'R', i));
+
+int angle[8]={0,45,90,135,180,225,270,315};
 //adds walls randomly to game
 	Wall.resize(10);
-	int numWalls=rand()%10;
+	int numWalls=1;			//rand()%10;
 	for(int q=0;q<numWalls;q++)
 	{	
-		int lengWall=rand()%10;
-		int widthWall=rand()%10;
+		int index=5;		//rand()%8;
+		int lengWall=5;		//rand()%10;
+		int widthWall=3;		//rand()%10;
+
 		int temp1=rand()%size.x;
 		int temp2=rand()%size.y;
+
 		temp1=temp1+1;
 		temp2=temp2+1;
-		//Wall[q].resize(21);
+		
+		int trueTemp1=temp1;
+		int trueTemp2=temp2;
+
+		if(angle[index]==315)
+		{
+			temp1=temp1+lengWall;
+			temp2=temp2-widthWall;
+		}
+		else if(angle[index]==135)
+		{
+			temp1=temp1+lengWall;
+			temp2=temp2+widthWall;
+			angle[index]=315;
+		}
 		for(int i=0;i<lengWall;i++)
 		{
-				if(temp2+i<size.y)
-				{
+			if(angle[index]==315)
+			{
+				temp1=temp1-i;
+
+			}
+			else if(angle[index]==45)
+			{
+				temp1=temp1-i;
+
+			}
+			else if(angle[index]==225)
+			{
+				temp1=temp1+i;
+			}
+			std::cout<<temp1<<" "<<temp2+i<<std::endl;
+			if(temp2+i<size.y && temp1>=1 && temp1<size.x)
+			{
 				Wall[q].push_back(Pos(temp1,temp2+i));
-				}
+			}
+			if(angle[index]==315)
+			{
+				temp1=trueTemp1+lengWall;
+			}
+			else if(angle[index]==45)
+			{
+				temp1=trueTemp1;
+			}
+			else if(angle[index]==225)
+			{
+				temp1=trueTemp1;
+			}
 		}
+	
+		temp1=trueTemp1;
+		temp2=trueTemp2;
+
+		if(angle[index]==270)
+		{
+			temp2=temp2+lengWall;	
+		}
+		else if(angle[index]==90)
+		{
+			temp1=temp1-widthWall;
+
+		}
+		else if(angle[index]==180)
+		{
+			temp1=temp1-widthWall;
+			temp2=temp2+lengWall-1;
+		}
+		else if(angle[index]==225)
+		{
+			temp1=temp1+lengWall;
+			temp2=temp2+lengWall;
+			trueTemp2=temp2;	
+
+		}
+		std::cout<<"Now running width"<<std::endl;
 		for(int i=0;i<widthWall;i++)
 		{
-			
-				if(temp1+i<size.x)
-				{
-				Wall[q].push_back(Pos(temp1+i,temp2));
-				}
+			if(angle[index]==315)
+			{
+				temp1=temp1+i;
+
+			}
+			if(angle[index]==45)
+			{
+				temp2=temp2+i;
+			}	
+			else if(angle[index]==225)
+			{
+				temp2=temp2-i;
+			}
+			std::cout<<temp1<<" "<<temp2<<std::endl;
+			if(temp1+i<size.x && temp2<size.y && temp1>1 && temp2>0)
+			{
+			Wall[q].push_back(Pos(temp1+i,temp2));
+			}
+			if(angle[index]==315)
+			{
+				temp2=trueTemp2;
+			}
+			else if(angle[index]==45)
+			{
+				temp2=trueTemp2;
+			}
+			else if(angle[index]==225)
+			{
+				temp2=trueTemp2;
+			}
 		}
 	}
 }
