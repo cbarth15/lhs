@@ -365,7 +365,7 @@ int angle[8]={0,45,90,135,180,225,270,315};
 			{
 				temp1=temp1+i;
 			}
-			if(temp2+i<size.y && temp1>=1 && temp1<size.x)
+			if(temp2+i<size.y && temp1>=1 && temp1<size.x && temp2+i>=1)
 			{
 				Wall[q].push_back(Pos(temp1,temp2+i));
 			}
@@ -422,7 +422,7 @@ int angle[8]={0,45,90,135,180,225,270,315};
 			{
 				temp2=temp2-i;
 			}
-			if(temp1+i<size.x && temp2<size.y && temp1>1 && temp2>0)
+			if(temp1+i<size.x && temp2<size.y && temp1>=1 && temp2>=0)
 			{
 			Wall[q].push_back(Pos(temp1+i,temp2));
 			}
