@@ -322,12 +322,12 @@ void Field::init(string filename)
 int angle[8]={0,45,90,135,180,225,270,315};
 //adds walls randomly to game
 	Wall.resize(10);
-	int numWalls=rand()%10;
+	int numWalls=rand()%8;
 	for(int q=0;q<numWalls;q++)
 	{	
 		int index=rand()%8;
-		int lengWall=rand()%10;
-		int widthWall=rand()%10;
+		int lengWall=rand()%5;
+		int widthWall=rand()%5;
 
 		int temp1=rand()%size.x;
 		int temp2=rand()%size.y;
@@ -648,13 +648,13 @@ string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies, boo
 				if(pos.y<Wall[i][x].y<tempP.y || pos.y>Wall[i][x].y>tempP.y)
 					{
 						int temp;
-						if(i<(Wall[i].size()-i))
+						if(x<(Wall[i].size()-x))
 							{
-							temp=i*2+d2;
+							temp=x*2+d2;
 							}
 						else
 							{
-							temp=Wall[i].size()-i;
+							temp=Wall[i].size()-x;
 							temp=temp*2+d2;
 							}
 					if(temp>sp2+.1)
@@ -670,13 +670,13 @@ string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies, boo
 					{
 
 						int temp;
-						if(i<(Wall[i].size()-i))
+						if(x<(Wall[i].size()-x))
 							{
-							temp=i*2+d2;
+							temp=x*2+d2;
 							}
 						else
 							{
-							temp=Wall[i].size()-i;
+							temp=Wall[i].size()-x;
 							temp=temp*2+d2;
 							}
 					if(temp>sp2+.1)
