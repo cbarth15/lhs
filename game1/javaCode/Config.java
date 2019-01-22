@@ -133,7 +133,7 @@ private ButtonPress buttonPress;
 			System.out.println("$X=20"); 
 			System.out.println("$Y=20");
 			System.out.println("field="+input[0].getText());
-			System.out.println("seed=8"); 
+			System.out.println("seed=20"); 
 			System.out.println();
 			System.out.println("#Number_of_repetitions");
 			System.out.println("nrep=1"); 
@@ -161,7 +161,7 @@ private ButtonPress buttonPress;
 			System.out.println("prn_map=1"); 
 			System.out.println("prn_result=1");
 			System.out.println("prn_move=0");
-			System.out.println("prn_shoot=0"); 
+			System.out.println("prn_shoot=1"); 
 			System.out.println("prn_title=0");
 	
 			System.setOut(console); 
