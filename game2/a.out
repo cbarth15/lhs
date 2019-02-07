@@ -1,7 +1,0 @@
-g++ -std=c++11   -c -o game2.o game2.cpp
-g++ -std=c++11  -o game2  ./game2.o 
-Not finished  : 0
-Won by Blues  : 411
-Won by Reds   : 583
-Draw all dead : 4
-Draw both win : 2
