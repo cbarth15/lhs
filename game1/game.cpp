@@ -767,10 +767,10 @@ string Field::shoot()
 {
     std::ostringstream o;
 	//run shoot for each soldier
-	o<<"blues~\n";
+	o<<"blues that fired~\n";
     for ( auto & i : blues ) o <<i.shoot(reds, prn_shoot, Wall);
 	o<<"\n";
-	o<<"reds~"<<std::endl;
+	o<<"reds that fired~"<<std::endl;
     for ( auto & i : reds ) o <<i.shoot(blues, prn_shoot, Wall);
 
 	//if dying was true, now dead is true
@@ -947,11 +947,11 @@ int Field::PosCounter(Pos base, const std::vector<Soldier> & s) const
 }
 void Field::printInBase() const
 {
-cout<<"Reds~"<<std::endl;
+cout<<"Reds overlap~"<<std::endl;
 PosCounter(baseR,reds);
-cout<<"Blues~"<<std::endl;
+cout<<"Blues overlap~"<<std::endl;
 PosCounter(baseB, blues);
-cout<<"End~"<<std::endl;
+cout<<"End overlap~"<<std::endl;
 return;
 }
 
