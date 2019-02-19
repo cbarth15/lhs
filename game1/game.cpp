@@ -15,35 +15,19 @@
 using std::string;
 using std::cout;
 
-
+//a class that aids in guaranteeing the seed is random
+//from the text file, however the text file seed is
 class Rnd
 {
-        std::default_random_engine reng;	//reng is from random engine
-						//generator class now
-
-        std::uniform_real_distribution<double> dist;//produces random
-						//doubles within a range
-
-        std::function<double()> rnd;//used as an object for containing bind
-
-    public:
-
-        static unsigned long seed;//a random number for auto-generation
-
-
-	//initialize constructor that feeds in information to these function
-	//s to set things up
-        Rnd(): reng(seed), dist(0, 1), rnd( std::bind(dist, reng) ) {}
-	//^bind is used to pass reng to dist and name it as rnd 
-
-
-        double operator()() { return rnd(); }//when an object is created
-						//rnd is ran
+        std::default_random_engine reng;
 	
+        std::uniform_real_distribution<double> dist;
 
-        void reseed(unsigned long s) { reng.seed(s); }// function to
-							//make sure
-							//things are random
+        std::function<double()> rnd; 
+   public:
+        static unsigned long seed;
+        Rnd(): reng(seed), dist(0, 1), rnd( std::bind(dist, reng) ) {}
+        double operator()() { return rnd(); }
 };
 
 unsigned long Rnd::seed = 0;	//initialize seed
@@ -65,11 +49,12 @@ struct Pos
 	}
 };
 
-//if something is equal then the positions must be the same
+//if x and y is equal then the positions must be the same
 bool operator==(const Pos & a, const Pos & b) { return a.x == b.x && a.y == b.y; }
 
-//if something is not equal then the positions must be different
+//if x and y are not equal then the positions must be different
 bool operator!=(const Pos & a, const Pos & b) { return !(a == b); }
+
 std::ostream & operator<<(std::ostream & o, const Pos & a) { return o << a.str(); }
 
 //function to calculate distance
@@ -110,23 +95,28 @@ class Soldier
 	//definition for Soldier initializer
         Soldier(Pos b, double a, double s, double v, int f, char t, int n):
             pos(b), accuracy(a), stealth(s), speed(v), fear(f), team(t), name(n) {}
-
+	//outputs "name" of soldier
         string nm() const { return string() + team + char('A' + char(name > 25 ? 25 : name)); }
 
+	//executes the move ability of the soldier
         string move(Pos sz, Pos b, const std::vector<Soldier> & enemies, bool prn_move, const std::vector<std::vector<Pos> >& Wall);
-
+	//executes the shoot ability of the soldier
         string shoot(std::vector<Soldier> & enemies, bool prn_shoot, const std::vector<std::vector<Pos> >& Wall);
 };
 
+//class used to represent the board the soldier
+//pieces will play on
 class Field
 {
         Pos baseB;	//location of Blue base
         Pos baseR;	//location of Red base
-	std::vector<std::vector<Pos>> Wall;
+	std::vector<std::vector<Pos>> Wall;	//used to hold all instances of walls
+
         std::vector<Soldier> blues;
         std::vector<Soldier> reds;
         int turn = 0;
         int rep = 0;
+
 	// all these functions defined elsewhere
         void init(string filename); //takes in a game.config and adjusts accordingly
         bool arein(Pos base, const std::vector<Soldier> & s) const;
@@ -152,8 +142,7 @@ class Field
         string title() const;
         string map() const;
 
-        string move();
-        string shoot();
+        string MoveAndShoot();
 	void printInBase() const;
 
         int isdone() const; // 0 go on; 1 - blues; 2 - reds; 3 draw
@@ -193,7 +182,7 @@ try
 	//breaks out of for loop
         for ( int i = 0; i < 10000; i++ )
         {
-            killings=field.move();
+            killings=field.MoveAndShoot();
             cout << field.map();
 
             int ar = field.aliveR();
@@ -563,7 +552,7 @@ string Field::map() const
 }
 
 
-string Field::move()
+string Field::MoveAndShoot()
 {
     turn++;
 
@@ -776,23 +765,6 @@ string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies, boo
     return o.str();
 }
 
-
-string Field::shoot()
-{
-    std::ostringstream o;
-	//run shoot for each soldier
-	o<<"blues that fired~\n";
-    for ( auto & i : blues ) o <<i.shoot(reds, prn_shoot, Wall);
-	o<<"\n";
-	o<<"reds that fired~"<<std::endl;
-    for ( auto & i : reds ) o <<i.shoot(blues, prn_shoot, Wall);
-
-	//if dying was true, now dead is true
-    for ( auto & i : blues ) i.dead = i.dying;
-    for ( auto & i : reds ) i.dead = i.dying;
-
-    return o.str();
-}
 
 string Soldier::shoot(std::vector<Soldier> & enemies, bool prn_shoot, const std::vector<std::vector<Pos>> & Wall)
 {
