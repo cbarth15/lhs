@@ -183,8 +183,9 @@ try
     for ( int k = 0; k < field.Nrep; k++ )
     {
         field.reset();
-	cout<<field.size.output()<<"\n";//added
-			//gives java code field dimensions
+
+	//gives java field dimensions
+	cout<<field.size.output()<<"\n";
         cout << field.title();
 
 	int done=0;		
@@ -198,13 +199,11 @@ try
             int ar = field.aliveR();
             int ab = field.aliveB();
 
-            string kills = field.shoot();
-		//if statement does not appear to be
-		//used
-            if ( !kills.empty() )
+
+		//if there are kills, output them
+            if ( !killings.empty() )
             {
 		cout<<"~"<<'\n';
-                //cout << kills << '\n';
 		cout<<killings<<'\n';
                 cout << "Killed/Survived: "
                      << (ab - field.aliveB()) << "/" << (field.aliveB()) << " blues, "
@@ -212,9 +211,6 @@ try
 
 
 		cout<<"~"<<'\n';
-
-		//field.printInBase();
-                //cout << field.map();
             }
 		
 		field.printInBase();
