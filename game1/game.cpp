@@ -167,6 +167,8 @@ class Field
 int main(int ac, char * av[])
 try
 {
+
+    string killings;
 	//initializes all variables from conf file
     Field field("game.conf");
 
@@ -190,7 +192,7 @@ try
 	//breaks out of for loop
         for ( int i = 0; i < 10000; i++ )
         {
-            cout << field.move();
+            killings=field.move();
             cout << field.map();
 
             int ar = field.aliveR();
@@ -202,8 +204,8 @@ try
             if ( !kills.empty() )
             {
 		cout<<"~"<<'\n';
-                cout << kills << '\n';
-
+                //cout << kills << '\n';
+		cout<<killings<<'\n';
                 cout << "Killed/Survived: "
                      << (ab - field.aliveB()) << "/" << (field.aliveB()) << " blues, "
                      << (ar - field.aliveR()) << "/" << (field.aliveR()) << " reds\n";
@@ -211,8 +213,8 @@ try
 
 		cout<<"~"<<'\n';
 
-		field.printInBase();
-                cout << field.map();
+		//field.printInBase();
+                //cout << field.map();
             }
 		
 		field.printInBase();
@@ -564,6 +566,7 @@ string Field::map() const
     return o.str();
 }
 
+
 string Field::move()
 {
     turn++;
@@ -572,14 +575,29 @@ string Field::move()
 
 //    blues[0].move(size,baseR,reds);
 //calls the soldier's move
-    for ( auto & i : blues ) o << i.move(size, baseR, reds, prn_move, Wall);
-    for ( auto & i : reds ) o << i.move(size, baseB, blues, prn_move, Wall);
+	o<<"blues that fired~\n";
+    for ( auto & i : blues )
+	{ i.move(size, baseR, reds, prn_move, Wall);
+	o<<i.shoot(reds, prn_shoot, Wall);
+
+	}
+	o<<"\n";
+	o<<"reds that fired~"<<std::endl;
+    for ( auto & i : reds )
+	{
+	 i.move(size, baseB, blues, prn_move, Wall);	
+	o<<i.shoot(blues, prn_shoot, Wall);
+	}
 	//redefine the soldier's position
     for ( auto & i : blues ) i.pos = i.next;
     for ( auto & i : reds ) i.pos = i.next;
 
+
+    for ( auto & i : blues ) i.dead = i.dying;
+    for ( auto & i : reds ) i.dead = i.dying;
+
 //returns the stream as a string
-    return prn_move?o.str()+'\n':"";
+    return o.str();
 }
 
 string draw(std::vector<Pos> cells)
