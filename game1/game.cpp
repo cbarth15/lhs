@@ -304,13 +304,15 @@ void Field::init(string filename)
 
 int angle[8]={0,45,90,135,180,225,270,315};
 //adds walls randomly to game
+//walls that are created can be anywhere,
+//they tend to be one of the angles within the array
 	Wall.resize(10);
 	int numWalls=rand()%num_walls;
 	for(int q=0;q<numWalls;q++)
 	{	
-		int index=rand()%8;
-		int lengWall=rand()%5;
-		int widthWall=rand()%5;
+		int index=rand()%8;	//chooses one of the angles
+		int lengWall=rand()%5;	//chooses a length between 0-5
+		int widthWall=rand()%5;//chooses a length between 0-5
 
 		int temp1=rand()%size.x;
 		int temp2=rand()%size.y;
@@ -337,12 +339,10 @@ int angle[8]={0,45,90,135,180,225,270,315};
 			if(angle[index]==315)
 			{
 				temp1=temp1-i;
-
 			}
 			else if(angle[index]==45)
 			{
 				temp1=temp1-i;
-
 			}
 			else if(angle[index]==225)
 			{
@@ -388,14 +388,12 @@ int angle[8]={0,45,90,135,180,225,270,315};
 			temp1=temp1+lengWall;
 			temp2=temp2+lengWall;
 			trueTemp2=temp2;	
-
 		}
 		for(int i=0;i<widthWall;i++)
 		{
 			if(angle[index]==315)
 			{
 				temp1=temp1+i;
-
 			}
 			if(angle[index]==45)
 			{
@@ -407,7 +405,7 @@ int angle[8]={0,45,90,135,180,225,270,315};
 			}
 			if(temp1+i<size.x && temp2<size.y && temp1>=1 && temp2>=0)
 			{
-			Wall[q].push_back(Pos(temp1+i,temp2));
+				Wall[q].push_back(Pos(temp1+i,temp2));
 			}
 			if(angle[index]==315)
 			{
@@ -481,6 +479,8 @@ string Field::title() const
     return o.str();
 }
 
+//this function prints the game board
+//each and every turn
 string Field::map() const
 {
 	//if not printing map return nothing
@@ -547,33 +547,31 @@ string Field::map() const
     return o.str();
 }
 
-
+//This function dictates both moving and shooting for each soldier
 string Field::MoveAndShoot()
 {
     turn++;
 
     std::ostringstream o;
 
-//    blues[0].move(size,baseR,reds);
-//calls the soldier's move
 	o<<"blues that fired~\n";
     for ( auto & i : blues )
-	{ i.move(size, baseR, reds, prn_move, Wall);
-	o<<i.shoot(reds, prn_shoot, Wall);
-
+	{ 
+		i.move(size, baseR, reds, prn_move, Wall);
+		o<<i.shoot(reds, prn_shoot, Wall);
 	}
 	o<<"\n";
 	o<<"reds that fired~"<<std::endl;
     for ( auto & i : reds )
 	{
-	 i.move(size, baseB, blues, prn_move, Wall);	
-	o<<i.shoot(blues, prn_shoot, Wall);
+		i.move(size, baseB, blues, prn_move, Wall);	
+		o<<i.shoot(blues, prn_shoot, Wall);
 	}
 	//redefine the soldier's position
     for ( auto & i : blues ) i.pos = i.next;
     for ( auto & i : reds ) i.pos = i.next;
 
-
+	//redefine the soldier's living status
     for ( auto & i : blues ) i.dead = i.dying;
     for ( auto & i : reds ) i.dead = i.dying;
 
@@ -581,36 +579,6 @@ string Field::MoveAndShoot()
     return o.str();
 }
 
-string draw(std::vector<Pos> cells)
-{
-    int m = 0;
-    int r = 0;
-    for ( auto i : cells )
-    {
-        if ( i.x > m ) m = i.x;
-        if ( i.y > r ) r = i.y;
-    }
-
-    std::vector<string> v;
-    for ( int j = 0; j < r; j++ )
-        for ( int i = 0; i < m; i++ )
-            v.push_back("  ");
-
-    auto c = [&v, m](Pos z) -> string& { return v[(z.y - 1) * m + (z.x - 1)]; };
-
-    for ( auto i : cells )
-        c(i) = "[]";
-
-    std::ostringstream o;
-    for ( int j = 0; j < r; j++ )
-    {
-        for ( int i = 0; i < m; i++ )
-            o << v[i + j * m];
-        o << '\n';
-    }
-
-    return o.str();
-}
 
 string Soldier::move(Pos sz, Pos base, const std::vector<Soldier> & enemies, bool prn_move, const std::vector<std::vector<Pos>> & Wall)
 {

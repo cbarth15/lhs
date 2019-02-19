@@ -2,22 +2,22 @@
 20
 ----------------------------------------
 B!                                      
+                                        
     B#                                  
-                        llllllll        
-                  llllll                
-                                        
-                                        
-  ll  ll    ll      ll                  
-                                        
-                                        
-                                        
-    ll                                  
                                         
                                         
                                         
                                         
                                         
                                         
+                                        
+                                        
+                                        
+                      ll                
+                    ll                  
+                                ll  ll  
+                                        
+                  ll  ll    ll      ll  
                                   R#    
                                         
                                       R!
@@ -32,26 +32,26 @@ Killed/Survived: 0/10 blues, 0/10 reds
 Reds overlap~
 18 18:10
 Blues overlap~
-2 3:10
+3 3:10
 End overlap~
 ----------------------------------------
 B!                                      
                                         
-                        llllllll        
-      B#          llllll                
                                         
                                         
-  ll  ll    ll      ll                  
-                                        
-                                        
-                                        
-    ll                                  
+        B#                              
                                         
                                         
                                         
                                         
+                                        
+                                        
+                                        
+                      ll                
+                    ll                  
+                                ll  ll  
                               R#        
-                                        
+                  ll  ll    ll      ll  
                                         
                                         
                                       R!
@@ -66,26 +66,26 @@ Killed/Survived: 0/10 blues, 0/10 reds
 Reds overlap~
 16 16:10
 Blues overlap~
-4 4:10
+5 5:10
 End overlap~
 ----------------------------------------
 B!                                      
                                         
-                        llllllll        
-                  llllll                
-          B#                            
-          B#                            
-  ll  ll    ll      ll                  
+                                        
+                                        
+              B#                        
+            B#                          
+          B#BJ                          
                                         
                                         
                                         
-    ll                                  
-                                        
-                              R#        
-                            R#          
-                          RD            
                                         
                                         
+                      ll      RH        
+                    ll      R#          
+                          R#    ll  ll  
+                        RB  RD          
+                  ll  ll    ll      ll  
                                         
                                         
                                       R!
@@ -98,135 +98,67 @@ reds that fired~
 Killed/Survived: 0/10 blues, 0/10 reds
 ~
 Reds overlap~
-14 15:7
-13 16:2
+15 14:4
+14 15:3
 Blues overlap~
-6 6:7
-5 6:3
+6 7:2
+7 6:4
+5 8:3
 End overlap~
 ----------------------------------------
 B!                                      
                                         
-                        llllllll        
-        BGBC      llllll                
-      BFBI  BJBA                        
-        B#  BE                          
-  ll  ll    ll      ll                  
                                         
-                                        
-                                        
-    ll                                  
-                              R#  RF    
-                            RIRGR#      
-                                        
-                            RE          
-                          RCRD          
-                                        
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues that fired~
-
-reds that fired~
-14,15,
-Killed/Survived: 0/9 blues, 0/10 reds
-~
-Reds overlap~
-13 17:2
-12 16:2
-Blues overlap~
-6 5:2
-End overlap~
-----------------------------------------
-B!                                      
-                                        
-                        llllllll        
-          B#    BAllllll                
-          B#                            
-        BGBJ                            
-  ll  llBI  ll      ll                  
-                                        
-                                  RF    
-                                        
-    ll                            R#    
-                                RG      
-                            RIRA        
-                            RE          
-                            RD          
-                        RC              
-                                        
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues that fired~
-7,6,
-reds that fired~
-
-Killed/Survived: 0/9 blues, 0/9 reds
-~
-Reds overlap~
-11 18:2
-Blues overlap~
-5 6:3
-4 6:2
-End overlap~
-----------------------------------------
-B!                                      
-                  BA                    
-                        llllllll        
-              BF  llllll                
-                                        
-        B#B#                            
-  ll  llB#  ll      ll                  
-          BI                            
-                                  RF    
-                                  RG    
-    ll                          RB      
-                              RJ        
-                          RE            
-                          RARI          
-                          RD            
-                    RC                  
-                                        
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues that fired~
-
-reds that fired~
-
-Killed/Survived: 0/9 blues, 0/9 reds
-~
-Reds overlap~
-Blues overlap~
-6 6:2
-6 5:2
-7 5:2
-End overlap~
-----------------------------------------
-B!                                      
               B#                        
-                        llllllll        
-        BD        llllll                
+        BAB#                            
+        BB                              
+          BJ                            
+      BH                                
                                         
-    BG  BHBC                            
-  llBJll    ll      ll                  
-    BE    BI                            
-                                RG      
-                                    RF  
-    ll                                  
-                                R#      
-                          RE    RB      
                                         
-                        RA              
-                    RC  RD              
                                         
+                                        
+                      ll      RH        
+                    ll          RE      
+                        RGRFRJ  ll  ll  
+                            R#          
+                  ll  ll    ll      ll  
+                          R#            
+                                        
+                                      R!
+----------------------------------------
+~
+blues that fired~
+
+reds that fired~
+13,16,14,15,
+Killed/Survived: 0/8 blues, 0/10 reds
+~
+Reds overlap~
+18 14:2
+16 15:3
+Blues overlap~
+4 8:2
+5 6:2
+End overlap~
+----------------------------------------
+B!                                      
+                                        
+              BD                        
+            BCBF                        
+            BJ                          
+        BI  BB                          
+                                        
+        BA                              
+      BH                                
+                                        
+                                        
+                                        
+                      ll      RH        
+                    ll      RERD        
+                          RG  RFll  ll  
+                        R#  RA          
+                  ll  ll  RIll      ll  
                                         
                                         
                                       R!
@@ -236,31 +168,30 @@ blues that fired~
 
 reds that fired~
 
-Killed/Survived: 0/9 blues, 0/9 reds
+Killed/Survived: 0/8 blues, 0/10 reds
 ~
 Reds overlap~
-12 17:2
+16 13:3
 Blues overlap~
-2 8:2
 End overlap~
 ----------------------------------------
 B!                                      
                                         
-                BF      llllllll        
-        BD    BA  llllll                
-          BC                            
-          BG                            
-  ll  ll    ll      ll                  
-          BI                      RF    
-    BJ                          RG      
-    BE                          RI      
-    ll                        RJ  RB    
                                         
-                          RA            
-                          RE            
+                BD                      
+          BIBBBF                        
+          BCBABJ                        
                                         
-                        RC              
-                      RD                
+                                        
+                                        
+    BH                                  
+                                        
+                                RH      
+                      ll                
+                    ll        RD        
+                          R#R#  ll  ll  
+                      RCR#              
+                  ll  ll    ll      ll  
                                         
                                         
                                       R!
@@ -269,31 +200,68 @@ B!
 blues that fired~
 
 reds that fired~
-17,12,
-Killed/Survived: 0/8 blues, 0/9 reds
+
+Killed/Survived: 0/8 blues, 0/10 reds
 ~
 Reds overlap~
+16 13:2
+15 15:2
+15 14:3
 Blues overlap~
 End overlap~
 ----------------------------------------
 B!                                      
                                         
-          BA            llllllll        
-            BF    llllll                
-      BG      BC                        
-      BD                                
-  ll  ll    ll      ll            RF    
-          BI                      RI    
-                                  RG    
-    B#                          RB      
-    ll                        RJ        
-                              RA        
+                BB                      
+              BJ                        
+        BC  B#                          
+            BF                          
                                         
                                         
                                         
-                          RE            
-                        RC              
-                    RD                  
+                                        
+                                        
+                                        
+                      ll          RH    
+                    ll      RD          
+                        RCRE    ll  ll  
+                          R#RF          
+                  ll  llRGRAll      ll  
+                                        
+                                        
+                                      R!
+----------------------------------------
+~
+blues that fired~
+
+reds that fired~
+17,12,14,15,
+Killed/Survived: 0/6 blues, 0/10 reds
+~
+Reds overlap~
+16 14:3
+Blues overlap~
+5 7:2
+End overlap~
+----------------------------------------
+B!                                      
+                                        
+                  B#                    
+                                        
+          BCB#BF                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                            RD          
+                      ll        RH      
+                    ll                  
+                        R#R#    ll  ll  
+                        R#RF            
+                  ll  ll    ll      ll  
+                                        
                                         
                                       R!
 ----------------------------------------
@@ -302,154 +270,158 @@ blues that fired~
 
 reds that fired~
 
-Killed/Survived: 0/8 blues, 0/9 reds
+Killed/Survived: 0/6 blues, 0/10 reds
 ~
 Reds overlap~
+15 13:3
+16 13:2
+15 14:2
 Blues overlap~
-10 3:2
+3 10:2
+5 7:2
 End overlap~
 ----------------------------------------
 B!                                      
                                         
-          BF  BA        llllllll        
-                  llllll                
-                                RFRI    
+              B#                        
+                  BB                    
         BD                              
-  ll  llBG  ll      ll                  
-      BI                        RG      
-        BJ                              
-                                R#      
-  BEll                                  
+        BC                              
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                      ll                
+                    ll  RC  R#RH        
+                        RGRARB  ll  ll  
+                    RI    RF            
+                  ll  ll    ll      ll  
+                                        
+                                        
+                                      R!
+----------------------------------------
+~
+blues that fired~
+
+reds that fired~
+17,13,
+Killed/Survived: 0/5 blues, 0/10 reds
+~
+Reds overlap~
+14 15:3
+Blues overlap~
+3 8:2
+End overlap~
+----------------------------------------
+B!                BF                    
+                                        
+                BJBB                    
+                                        
+            BC                          
+                                        
+        BD                              
+                                        
+                                        
+                                        
+                                        
+                                        
+                      ll                
+                    ll  RER#R#          
+                    RIRCR#      ll  ll  
+                                        
+                  ll  ll    ll      ll  
+                                        
+                                        
+                                      R!
+----------------------------------------
+~
+blues that fired~
+
+reds that fired~
+
+Killed/Survived: 0/5 blues, 0/10 reds
+~
+Reds overlap~
+14 14:2
+14 15:3
+15 13:2
+Blues overlap~
+End overlap~
+----------------------------------------
+B!                      BF              
+                                        
+            BC                          
+              BB                        
+            BJ                          
+          BD                            
+                                        
+                                        
+                                        
+                                        
+                                        
+                              RD        
+                      ll    R#          
+                    ll  RHR#            
+                    RG  RC      ll  ll  
+                    R#                  
+                  ll  ll    ll      ll  
+                                        
+                                        
+                                      R!
+----------------------------------------
+~
+blues that fired~
+
+reds that fired~
+
+Killed/Survived: 0/5 blues, 0/10 reds
+~
+Reds overlap~
+13 15:2
+14 14:2
+16 11:2
+Blues overlap~
+End overlap~
+----------------------------------------
+B!                        BF            
+                BB                      
+                                        
+        B#                              
+          BC                            
+                                        
+                                        
+                                        
                                         
                                         
                               RE        
+                          RARF          
+                      llRBRC            
+                    ll                  
+                RG        RH    ll  ll  
+                  RIRJ                  
+                  ll  ll    ll      ll  
                                         
-                    RC                  
                                         
-                                        
-                RD                      
                                       R!
 ----------------------------------------
 ~
 blues that fired~
-
-reds that fired~
-17,10,
-Killed/Survived: 0/7 blues, 0/9 reds
-~
-Reds overlap~
-10 17:3
-Blues overlap~
-End overlap~
-----------------------------------------
-B!                                      
-          BA                            
-                        llllllll  RF    
-        B#        llllll                
-                                        
-      BG                          RG    
-  ll  ll    ll      ll                  
-      BI                      RJ  RA    
-        BJ                              
-                                RB      
-  BEll                                  
-                            RE          
-                                        
-                                        
-                                        
-                                        
-                    RC                  
-                                        
-                                        
-            RD                        R!
-----------------------------------------
-~
-blues that fired~
-5,6,
+13,1,
 reds that fired~
 
-Killed/Survived: 0/7 blues, 0/8 reds
+Killed/Survived: 0/5 blues, 0/9 reds
 ~
 Reds overlap~
 Blues overlap~
 4 5:2
 End overlap~
 ----------------------------------------
-B!                              RF      
-              BA                        
-                        llllllll        
-          BF      llllll        RG      
-            BD                RJ  RA    
-        BI                              
-  ll  ll    ll      ll                  
-    BG                                  
-                              RB        
-      BE                                
-    ll                        RE        
+B!                BB      BF            
                                         
                                         
-                                        
-                                        
-                                        
-                  RC                    
-                                        
-                                        
-          RD                          R!
-----------------------------------------
-~
-blues that fired~
-
-reds that fired~
-17,10,
-Killed/Survived: 0/6 blues, 0/8 reds
-~
-Reds overlap~
-Blues overlap~
-End overlap~
-----------------------------------------
-B!                              RF      
-                                        
-          BA            llllllll        
-                  llllll                
-        BF  BD                    RARJ  
-                                  RG    
-  llBIll    ll      ll                  
-                                        
-      BG                      RE        
-      BE                      RB        
-    ll                                  
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                RC                      
-                                        
-                                      R!
-----------------------------------------
-~
-blues that fired~
-5,6,
-reds that fired~
-
-Killed/Survived: 0/6 blues, 0/7 reds
-~
-Reds overlap~
-Blues overlap~
-End overlap~
-----------------------------------------
-B!                                      
-                                  RF    
-                        llllllll        
-        BD        llllll        R#RA    
-            BA                          
-      BF                                
-  ll  ll    ll      ll      RE          
-    BE  BI                              
-                                        
-  BG                          RB        
-    ll                                  
+        BCBJBD                          
                                         
                                         
                                         
@@ -457,212 +429,46 @@ B!
                                         
                                         
                                         
-                RC                      
-                                      R!
-----------------------------------------
-~
-blues that fired~
-
-reds that fired~
-
-Killed/Survived: 0/6 blues, 0/7 reds
-~
-Reds overlap~
-4 17:2
-Blues overlap~
-End overlap~
-----------------------------------------
-B!                                      
-                              RJ        
-                        llllllllR#      
-                  llllll        RA      
-            BA                  RE      
-        BD                              
-  ll  ll    ll      ll                  
-        BF                              
-                                        
-    B#BG                                
-    ll                                  
-                            RB          
-                                        
-                                        
-                                        
-                                        
-                                        
-                  RC                    
-                                        
-                                      R!
-----------------------------------------
-~
-blues that fired~
-
-reds that fired~
-
-Killed/Survived: 0/6 blues, 0/7 reds
-~
-Reds overlap~
-3 17:2
-Blues overlap~
-10 3:2
-End overlap~
-----------------------------------------
-B!                              RF      
-                              R#RE      
-                        llllllll        
-                  llllll                
-            BA                RJ        
-                                        
-  ll  ll    ll      ll                  
-                                        
-    BF  B#                              
-      BE                      RB        
-    ll  BG                              
-                                        
-                                        
-                                        
-                                        
-                                        
-                    RC                  
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues that fired~
-
-reds that fired~
-
-Killed/Survived: 0/6 blues, 0/7 reds
-~
-Reds overlap~
-2 16:2
-Blues overlap~
-9 5:2
-End overlap~
-----------------------------------------
-B!                                      
-                              R#R#      
-                        llllllll        
-                  llllll        RJ      
-            BA                          
-                                        
-  ll  ll    ll      ll                  
-                                        
-      BF                        RB      
-        BG                              
-    llBDBI                              
-    BE                                  
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                    RC                  
-                                      R!
-----------------------------------------
-~
-blues that fired~
-
-reds that fired~
-
-Killed/Survived: 0/6 blues, 0/7 reds
-~
-Reds overlap~
-2 17:2
-2 16:2
-Blues overlap~
-End overlap~
-----------------------------------------
-B!                            RARJ      
-                          RG    R#      
-                        llllllll        
-                  llllll                
-                                        
-                                        
-  ll  ll  BAll      ll          RB      
-                                        
-        B#                              
-                                        
-    ll                                  
-      BD                                
-        B#                              
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                        RC            R!
-----------------------------------------
-~
-blues that fired~
-
-reds that fired~
-
-Killed/Survived: 0/6 blues, 0/7 reds
-~
-Reds overlap~
-2 17:2
-Blues overlap~
-13 5:2
-9 5:2
-End overlap~
-----------------------------------------
-B!                        R#R#          
                               RE        
-                        llllllll        
-                  llllll                
-                              RB        
-                                        
-  ll  ll    ll      ll                  
-          BA                            
-                                        
-          BF                            
-    ll                                  
-        BI                              
-              BG                        
-          B#                            
+                      llRF              
+            RG      llRBRHRC            
+                RJ              ll  ll  
+              RI                        
+                  ll  ll    ll      ll  
                                         
                                         
-                                        
-                                        
-                          RC            
                                       R!
 ----------------------------------------
 ~
 blues that fired~
-
+5,4,
 reds that fired~
 
-Killed/Survived: 0/6 blues, 0/7 reds
+Killed/Survived: 0/5 blues, 0/8 reds
 ~
 Reds overlap~
-1 14:2
-1 15:2
 Blues overlap~
-14 6:2
 End overlap~
 ----------------------------------------
-B!                      RAR#            
-                          R#  RB        
-                        llllllll        
-                  llllll                
-                                        
-                                        
-  ll  ll    ll      ll                  
-                                        
-      BA                                
-                                        
-    ll        BG                        
-          BF                            
-          BD                            
-                                        
-        B#                              
+B!                                      
+              BD              BF        
+              BJ    BB                  
+          BC                            
                                         
                                         
                                         
-                                RC      
+                                        
+                                        
+                                        
+                                        
+                            RC          
+                      llRFRE            
+            RG      ll                  
+            RI  RJRBRH          ll  ll  
+                                        
+                  ll  ll    ll      ll  
+                                        
+                                        
                                       R!
 ----------------------------------------
 ~
@@ -670,32 +476,63 @@ blues that fired~
 
 reds that fired~
 
-Killed/Survived: 0/6 blues, 0/7 reds
+Killed/Survived: 0/5 blues, 0/8 reds
 ~
 Reds overlap~
-1 14:2
-2 14:2
 Blues overlap~
+End overlap~
+----------------------------------------
+B!                                BF    
+                BJ    BB                
+              BC                        
+            BD                          
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                                        
+                RJ  RBll                
+                    ll  RFR#            
+        R#        RH            ll  ll  
+                                        
+                  ll  ll    ll      ll  
+                                        
+                                        
+                                      R!
+----------------------------------------
+~
+blues that fired~
+
+reds that fired~
+
+Killed/Survived: 0/5 blues, 0/8 reds
+~
+Reds overlap~
+14 14:2
 15 5:2
+Blues overlap~
 End overlap~
 ----------------------------------------
-B!                  RARFRGR#            
-                          RB            
-                        llllllll        
-                  llllll                
-                                        
-                                        
-  ll  ll    ll      ll                  
+B!                        BB            
+              BDBCBJ                    
+                                      BF
                                         
                                         
                                         
-    ll    BABG                          
-              BD                        
                                         
-              BF                        
-              B#                        
                                         
-                                  RC    
+                                        
+                                        
+                                        
+                          RF            
+      RI        RH    ll    RE          
+      RG            ll  RC              
+              RJ  RB            ll  ll  
+                                        
+                  ll  ll    ll      ll  
                                         
                                         
                                       R!
@@ -705,64 +542,29 @@ blues that fired~
 
 reds that fired~
 
-Killed/Survived: 0/6 blues, 0/7 reds
+Killed/Survived: 0/5 blues, 0/8 reds
 ~
 Reds overlap~
-1 14:2
-Blues overlap~
-15 8:2
-End overlap~
-----------------------------------------
-B!                RGRE  R#              
-                      RFRJ              
-                        llllllll        
-                  llllll                
-                                        
-                                        
-  ll  ll    ll      ll                  
-                                        
-                                        
-                                        
-    ll                                  
-                                        
-            BG  BI                      
-          BA      BD                    
-                BE                      
-                                        
-                                        
-                                        
-                                        
-                                      R!
-----------------------------------------
-~
-blues that fired~
-8,12,
-reds that fired~
-18,17,
-Killed/Survived: 0/5 blues, 0/6 reds
-~
-Reds overlap~
-1 13:2
 Blues overlap~
 End overlap~
 ----------------------------------------
-B!              R#  R#                  
-                RF    RJ                
-                        llllllll        
-                  llllll                
-                                        
-                                        
-  ll  ll    ll      ll                  
+B!                                      
+                BC      BJ    BB        
+                BD                      
                                         
                                         
                                         
-    ll                                  
                                         
                                         
                                         
-                BG  BD                  
-              BABI  BE                  
                                         
+    RI                                  
+  RG                    RC              
+          RJRH    RB  llRF              
+                    ll  RE              
+                                ll  ll  
+                                        
+                  ll  ll    ll      ll  
                                         
                                         
                                       R!
@@ -771,33 +573,95 @@ B!              R#  R#
 blues that fired~
 
 reds that fired~
-
-Killed/Survived: 0/5 blues, 0/6 reds
+14,12,
+Killed/Survived: 0/4 blues, 0/8 reds
 ~
 Reds overlap~
-1 11:2
-1 9:2
 Blues overlap~
 End overlap~
 ----------------------------------------
-B!        R#RFRBRARJ                    
-                                        
-                        llllllll        
-                  llllll                
+B!            BD    BCBJ                
                                         
                                         
-  ll  ll    ll      ll                  
-                                        
-                                        
-                                        
-    ll                                  
+                              BB        
                                         
                                         
                                         
                                         
-                    BG  BD              
-                    BI  BE              
-                  BA                    
+                                        
+  RI                                    
+                                        
+RG                      RE              
+    RJRH      RB      ll                
+                    ll    RF            
+                                ll  ll  
+                                        
+                  ll  ll    ll      ll  
+                                        
+                                        
+                                      R!
+----------------------------------------
+~
+blues that fired~
+9,2,
+reds that fired~
+
+Killed/Survived: 0/4 blues, 0/7 reds
+~
+Reds overlap~
+Blues overlap~
+End overlap~
+----------------------------------------
+B!                  BD                  
+                    BJ            BB    
+                        BC              
+                                        
+                                        
+                                        
+                                        
+                                        
+  RI                                    
+RG                                      
+RJRH                                    
+            RB                          
+                      ll                
+                    ll                  
+                        RF      ll  ll  
+                                        
+                  ll  ll    ll      ll  
+                                        
+                                        
+                                      R!
+----------------------------------------
+~
+blues that fired~
+16,4,
+reds that fired~
+
+Killed/Survived: 0/4 blues, 0/6 reds
+~
+Reds overlap~
+Blues overlap~
+End overlap~
+----------------------------------------
+B!                                      
+                                        
+                        B#              
+                            BC          
+                                  BB    
+                                        
+R#                                      
+                                        
+  RHRJ                                  
+                                        
+        RB                              
+                                        
+                      ll                
+                    llRF                
+                                ll  ll  
+                                        
+                  ll  ll    ll      ll  
+                                        
                                         
                                       R!
 ----------------------------------------
@@ -806,82 +670,82 @@ blues that fired~
 
 reds that fired~
 
-Killed/Survived: 0/5 blues, 0/6 reds
+Killed/Survived: 0/4 blues, 0/6 reds
 ~
 Reds overlap~
-1 6:2
+7 1:2
 Blues overlap~
+3 13:2
 End overlap~
 ----------------------------------------
-B!  R#RFRBRARJ                          
-                                        
-                        llllllll        
-                  llllll                
-                                        
-                                        
-  ll  ll    ll      ll                  
-                                        
-                                        
-                                        
-    ll                                  
-                                        
-                                        
-                                        
+B!                                      
                                         
                               BD        
-                        BG    BE        
-                        BI              
-                      BA                
+RG                                      
+                        BJ              
+RI  RJ                        BC        
+RH                                    BB
+                                        
+                                        
+                                        
+                                        
+                                        
+                      ll                
+                  RFll                  
+                                ll  ll  
+                                        
+                  ll  ll    ll      ll  
+                                        
+                                        
+                                      R!
+----------------------------------------
+~
+blues that fired~
+13,3,
+reds that fired~
+
+Killed/Survived: 0/4 blues, 0/5 reds
+~
+Reds overlap~
+Blues overlap~
+End overlap~
+----------------------------------------
+M#                                      
+                                        
+    RJ                    BJ            
+R#                                      
+                                        
+                                        
+                                        
+                                        
+                              BC        
+                                      BB
+                                        
+                                        
+              RF      ll                
+                    ll                  
+                                ll  ll  
+                                        
+                  ll  ll    ll      ll  
+                                        
+                                        
                                       R!
 ----------------------------------------
 ~
 blues that fired~
 
 reds that fired~
-
-Killed/Survived: 0/5 blues, 0/6 reds
+3,6,
+Killed/Survived: 0/3 blues, 0/5 reds
 ~
 Reds overlap~
-1 3:2
-Blues overlap~
-End overlap~
-----------------------------------------
-M#RBRARJ                                
-                                        
-                        llllllll        
-                  llllll                
-                                        
-                                        
-  ll  ll    ll      ll                  
-                                        
-                                        
-                                        
-    ll                                  
-                                        
-                                        
-                                        
-                                        
-                                        
-                              BG        
-                              BI  BD    
-                                  BE    
-                          BA          R!
-----------------------------------------
-~
-blues that fired~
-
-reds that fired~
-
-Killed/Survived: 0/5 blues, 0/6 reds
-~
-Reds overlap~
-1 1:3
+4 1:2
 Blues overlap~
 End overlap~
 Result: Reds win
-Casualties Blues: 5 of 10
-Casualties Reds : 4 of 10
-Turns : 26
+Casualties Blues: 7 of 10
+Casualties Reds : 5 of 10
+Turns : 22
 Not finished  : 0
 Won by Blues  : 0
 Won by Reds   : 1
