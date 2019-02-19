@@ -793,6 +793,7 @@ string Soldier::shoot(std::vector<Soldier> & enemies, bool prn_shoot, const std:
     return o.str();
 }
 
+//is the war over?
 int Field::isdone() const
 {	
 	//functions that check who is dead
@@ -840,6 +841,7 @@ int Field::survived(const std::vector<Soldier> & s) const
     return k;
 }
 
+//how many soldiers are in the base?
 bool Field::arein(Pos base, const std::vector<Soldier> & s) const
 {
     for ( const auto & i : s )	//for each soldier
@@ -851,6 +853,8 @@ bool Field::arein(Pos base, const std::vector<Soldier> & s) const
     return false;
 }
 
+//count the number of overlapping soldiers
+//
 int Field::PosCounter(Pos base, const std::vector<Soldier> & s) const
 {
 
@@ -877,14 +881,18 @@ int Field::PosCounter(Pos base, const std::vector<Soldier> & s) const
 
 	for(const auto & j : s) //for each soldier
 	{
-	if (j.dead) continue;	//if j is dead go to next
-	if(j.name==i.name) continue;
-        if ( j.pos == i.pos )
-	{
+		//if j is dead go to next
+		if (j.dead) continue;
 
-		counter++; //if a soldiers share position add
+		//if looking at same solider,skip
+		if(j.name==i.name) continue;
+
+       		if ( j.pos == i.pos )
+		{counter++; //if a soldiers share position add
+		}
 	}
-	}
+	//if there is an overlap
+	//output it so Java knows
 	if(counter>0)
 	{
 		cout<<i.pos.y<<" "<<i.pos.x<<":"<<counter+1<<std::endl;
@@ -905,7 +913,7 @@ cout<<"End overlap~"<<std::endl;
 return;
 }
 
-//print everything at the end
+//The Results Screen
 string Field::result(string log) const
 {
     int end = isdone();		//depending on what isdone returns
@@ -956,6 +964,3 @@ void Field::reset()
     for ( auto & i : blues ) i.dead = i.dying = false;
     for ( auto & i : reds ) i.dead = i.dying = false;
 }
-
-
-
