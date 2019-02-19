@@ -102,7 +102,7 @@ class Soldier
         string move(Pos sz, Pos b, const std::vector<Soldier> & enemies, bool prn_move, const std::vector<std::vector<Pos> >& Wall);
 	//executes the shoot ability of the soldier
         string shoot(std::vector<Soldier> & enemies, bool prn_shoot, const std::vector<std::vector<Pos> >& Wall);
-};
+};//end soldier class
 
 //class used to represent the board the soldier
 //pieces will play on
@@ -129,9 +129,10 @@ class Field
         Pos size;
         int prn_map = 1;
         int prn_result = 1;
-        int prn_title = 1;
+        int prn_title = 0;
         int prn_move = 1;
         int prn_shoot = 1;
+	int num_walls=8;
 
         int Nrep = 1;
         void reset();
@@ -156,31 +157,30 @@ class Field
 int main(int ac, char * av[])
 try
 {
-
     string killings;
+
 	//initializes all variables from conf file
-    Field field("game.conf");
+	Field field("game.conf");
 
-	//reassign rnd to a new object of Rnd
 	//makes a random double between 0 and 1
-    Rnd rnd_main; rnd = &rnd_main;
+	Rnd rnd_main; rnd = &rnd_main;
 
-	int stat[5] = {0,0,0,0,0};		//stores game statistics
+	//stores game statistics
+	int stat[5] = {0,0,0,0,0};	
+	
+	//This is where the game actually runs
+	for ( int k = 0; k < field.Nrep; k++ )
+	{
 
-	//Nrep is number of repetitions
-						//This is where the game actually runs
-    for ( int k = 0; k < field.Nrep; k++ )
-    {
-        field.reset();
+	field.reset();
 
-	//gives java field dimensions
+	//gives java the field dimensions
 	cout<<field.size.output()<<"\n";
         cout << field.title();
 
 	int done=0;		
 
-	//breaks out of for loop
-        for ( int i = 0; i < 10000; i++ )
+        while (2>1)
         {
             killings=field.MoveAndShoot();
             cout << field.map();
@@ -190,8 +190,8 @@ try
 
 
 		//if there are kills, output them
-            if ( !killings.empty() )
-            {
+		if ( !killings.empty() )
+            	{
 		cout<<"~"<<'\n';
 		cout<<killings<<'\n';
                 cout << "Killed/Survived: "
@@ -200,7 +200,7 @@ try
 
 
 		cout<<"~"<<'\n';
-            }
+            	}
 		
 		field.printInBase();
 			done = field.isdone();
@@ -228,6 +228,7 @@ catch (...)
     cout << "Error\n";
     return 2;
 }
+
 //function handles the creation 
 //of the field
 void Field::init(string filename)
@@ -279,37 +280,32 @@ void Field::init(string filename)
         else if ( k == "speed" ) vel[mode] = std::atof(v.c_str());
         else if ( k == "fear" ) fea[mode] = std::atof(v.c_str());
 	else if( k == "seed" )
-	{ 
+	{
 	std::srand(std::time(nullptr));
-         Rnd::seed=std::rand();	//= std::atol(v.c_str());
+	Rnd::seed=std::rand();
 	}
-        else if ( k == "nrep" ) Nrep = std::atol(v.c_str());
-
-        else if ( k == "prn_map" ) prn_map = std::atol(v.c_str());
-        else if ( k == "prn_result" ) prn_result = std::atol(v.c_str());
-        else if ( k == "prn_title" ) prn_title = std::atol(v.c_str());
-        else if ( k == "prn_move" ) prn_move = std::atol(v.c_str());
-        else if ( k == "prn_shoot" ) prn_shoot = std::atol(v.c_str());
+	else if(k=="num_walls") num_walls=std::atol(v.c_str());
 
         else
             throw "Unexpected [" + k + "] in " + filename;
     }
 
     if ( size.x < 3 ) throw "Field size undefined in " + filename;
-//base location
-    baseB = base[1];
-    baseR = base[2];
-//assigning values to each soldier
-    for ( int i = 0; i < ns[1]; i++ )
+	//base location
+	baseB = base[1];
+	baseR = base[2];
+
+	//assigning values to each soldier
+	for ( int i = 0; i < ns[1]; i++ )
         blues.push_back(Soldier(baseB, acc[1], stl[1], vel[1], fea[1], 'B', i));
 
-    for ( int i = 0; i < ns[2]; i++ )
-        reds.push_back(Soldier(baseR, acc[2], stl[2], vel[2], fea[2], 'R', i));
+	for ( int i = 0; i < ns[2]; i++ )
+	reds.push_back(Soldier(baseR, acc[2], stl[2], vel[2], fea[2], 'R', i));
 
 int angle[8]={0,45,90,135,180,225,270,315};
 //adds walls randomly to game
 	Wall.resize(10);
-	int numWalls=rand()%8;
+	int numWalls=rand()%num_walls;
 	for(int q=0;q<numWalls;q++)
 	{	
 		int index=rand()%8;

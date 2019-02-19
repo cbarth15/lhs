@@ -38,9 +38,9 @@ private ButtonPress buttonPress;
 		}
 		
 		this.getContentPane().setBackground(Color.WHITE);
-		rows=new JPanel[13];
-		sent= new JTextField[13];
-		input= new JTextField[13];
+		rows=new JPanel[14];
+		sent= new JTextField[14];
+		input= new JTextField[14];
 		JTextField title=new JTextField("Config");
 		submit=new JButton("Submit");
 		bottom=new JPanel();
@@ -51,10 +51,10 @@ private ButtonPress buttonPress;
 		this.add(JTitle);
 		
 		layout= new FlowLayout();
-		this.setLayout(new GridLayout(15,0,0,0));
+		this.setLayout(new GridLayout(16,0,0,0));
 
 		
-		for(int i=0;i<13;i++)
+		for(int i=0;i<14;i++)
 		{
 			rows[i]= new JPanel();
 			rows[i].setLayout(layout);
@@ -93,6 +93,7 @@ private ButtonPress buttonPress;
 		sent[10].setText("Stealth of Red troops:");
 		sent[11].setText("Speed of Red troops:");
 		sent[12].setText("Fear of Red troops:");
+		sent[13].setText("Max Number of Walls:");
 
 		input[0].setText("20,20");
 		input[1].setText("1,1");
@@ -107,6 +108,7 @@ private ButtonPress buttonPress;
 		input[10].setText("6");
 		input[11].setText("3");
 		input[12].setText("20");
+		input[13].setText("8");
 
 		submit.addActionListener(buttonPress);
 
@@ -135,8 +137,6 @@ private ButtonPress buttonPress;
 			System.out.println("field="+input[0].getText());
 			System.out.println("seed=20"); 
 			System.out.println();
-			System.out.println("#Number_of_repetitions");
-			System.out.println("nrep=1"); 
 			System.out.println();
 			System.out.println("[blue]");
 			System.out.println("base="+input[1].getText());
@@ -158,12 +158,7 @@ private ButtonPress buttonPress;
 
 			System.out.println(); 
 			System.out.println();
-			System.out.println("prn_map=1"); 
-			System.out.println("prn_result=1");
-			System.out.println("prn_move=0");
-			System.out.println("prn_shoot=1"); 
-			System.out.println("prn_title=0");
-	
+			System.out.println("num_walls="+input[13].getText());	
 			System.setOut(console); 
 		}
 	}
